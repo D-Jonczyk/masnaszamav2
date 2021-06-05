@@ -8,11 +8,52 @@ import {NotFoundComponent} from './not-found';
 import {ChangePasswordComponent} from './change-password';
 import {ForbiddenComponent} from './forbidden';
 import {SignupComponent} from './signup';
+import {CourierPanelComponent} from './component/courier-panel';
+import {OrderlistComponent} from './component/courier-panel/orderlist';
+import {SupportComponent} from './component/courier-panel/support/support.component';
+import {ProfileComponent} from './component/courier-panel/profile/profile.component';
+import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
+import {ShowScheduleComponent} from './component/courier-panel/Schedule/show-schedule/show-schedule.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    // courier
+    path: 'courier-panel',
+    component: CourierPanelComponent,
+    pathMatch: 'full'
+  },
+  {
+    // courier
+    path: 'courier/orderlist',
+    component: OrderlistComponent,
+    pathMatch: 'full'
+  },
+  {
+    // courier
+    path: 'courier/support',
+    component: SupportComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'courier/profile',
+    component: ProfileComponent,
+    pathMatch: 'full'
+  },
+  {
+    // courier
+    path: 'courier-orderhistory',
+    component: CourierOrderhistoryComponent,
+    pathMatch: 'full'
+  },
+  {
+    // courier
+    path: 'courier/show-schedule',
+    component: ShowScheduleComponent,
     pathMatch: 'full'
   },
   {

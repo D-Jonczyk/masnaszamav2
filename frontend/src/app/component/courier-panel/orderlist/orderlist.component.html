@@ -1,0 +1,148 @@
+<div class="content" fxLayout="row" fxLayoutAlign="center none">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 float-left">
+        <div class="left-navbar text-center">
+          <h4 class="mb-0"> Witaj Kurierze!</h4>
+          <!-- <a [routerLink]="['/courier-panel']"> -->
+          <nav>
+            <button class="start-shift"><fa-icon [icon]="['far', 'play-circle']"> </fa-icon> Zacznij zmianę</button>
+            <hr/>
+            <ul ngbNav>
+              <li class="btn-block border-white" [ngbNavItem]="link.fragment" *ngFor="let link of links">
+
+                <a ngbNavLink data-toggle="collapse" [routerLink]="[link.fragment]" routerLinkActive="active" class="float-left">
+                  <fa-icon class="float-left" icon="{{ link.icon }}"> </fa-icon> {{ link.title }}
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <router-outlet> </router-outlet>
+
+        </div>
+      </div>
+
+      <!-- content -->
+      <div class="col-lg-9">
+        <div class="card-box col-lg-10">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                    <div class="tab-pane active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+
+                      <h4 class="font-weight-bold mt-0 mb-4">Zamówienia</h4>
+
+                      <div class="bg-white card mb-4 order-list shadow-sm" *ngFor="let order of orders">
+                        <div class="gold-members p-3">
+                          <div class="media">
+                            <div class="media-body">
+                                <span class="float-right font-weight-bold">
+                                  <fa-icon [icon]="['fas', 'truck-loading']"> </fa-icon>
+                                  Odbiór {{order.orderedTime | slice:0:5}}</span>
+                              <h6 class="mb-2">
+                                <fa-icon [icon]="['fas', 'location-arrow']"> </fa-icon>
+                                <a href="#" class="text-black"> {{order.restoName}}</a>
+                              </h6>
+                              <hr/>
+                              <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'map-marker-alt']"> </fa-icon> {{order.customerAddress}}
+                                <span class="float-right">
+                                  <fa-icon [icon]="['far', 'clock']"> </fa-icon>
+                                    <span class="font-weight-bold">
+                                      Dostawa {{order.desiredDeliveryTime | slice:0:5}}
+                                    </span>
+                                </span>
+                              </p>
+                              <p class="text-gray mb-3"><fa-icon [icon]="['fas', 'clipboard-list']"> </fa-icon> ID: {{order.orderId}}#{{order.orderPrice}} </p>
+
+
+                              <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'info']" > </fa-icon>
+                                <span class="text-info"> Prosze uwazac na lody i napoje</span>
+                              </p>
+
+                              <hr/>
+
+                              <div class="float-right">
+                                <button type="button" class="btn btn-sm btn-outline-primary" (click)="openCallCoordinator(contentCallCoordinator)"><fa-icon [icon]="['fas', 'headset']" > </fa-icon> Pomoc</button>
+                                <button type="button" class="btn btn-sm btn-primary btn-primary px-2" (click)="openConfirmDelivery(confirmDelivery)"><fa-icon [icon]="['far', 'check-circle']" > </fa-icon> Potwierdź dostarczenie</button>
+                              </div>
+                              <button type="button" class="btn btn-sm btn-outline-primary px-2" (click)="openCallTheClient(contentCallTheClient)"><fa-icon [icon]="['fas', 'phone-alt']" > </fa-icon> Zadzwoń do klienta</button>
+                            </div>
+                          </div>
+
+                          <ng-template #contentCallTheClient let-modal>
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="modal-call-client">Numer telefonu klienta</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+
+                            <div class="modal-body">
+                              {{order.phoneNumber}}
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')"><fa-icon [icon]="['fas', 'phone-alt']" > </fa-icon> Zadzwoń</button>
+                            </div>
+                          </ng-template>
+
+                          <ng-template #contentCallCoordinator let-modal>
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="modal-call-coordinator">Numer telefonu koordynatora</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+
+                            <div class="modal-body">
+                              123-432-235
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')"><fa-icon [icon]="['fas', 'phone-alt']" > </fa-icon> Zadzwoń</button>
+                            </div>
+                          </ng-template>
+
+                          <ng-template #confirmDelivery let-modal>
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="modal-confirm-delivery">Potwierdź dostawę</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                              Czy na pewno chcesz potwierdzić dostawę?
+                              <hr>
+
+                              <div class="form-group">
+                                <div class="col-lg-12 text-lg-right px-2">
+
+                                  <button class="btn btn-secondary mr-2 col-lg-2" (click)="modal.dismiss('Close modal')">
+                                    Anuluj
+                                  </button>
+
+                                  <button class="btn btn-success col-lg-2" (click)="finishDeliveryOrder(order); modal.dismiss('Delivery finished')">
+                                   Tak
+                                  </button>
+
+                                </div>
+
+                              </div>
+                            </div>
+                          </ng-template>
+
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- end tab-content -->
+      </div> <!-- end card-box-->
+    </div> <!-- end col -->
+  </div>
+</div>

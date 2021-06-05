@@ -19,6 +19,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  goToCourier() {
+    this.router.navigate(['/courier-panel']);
+  }
+
   logout() {
     this.authService.logout().subscribe(res => {
       this.router.navigate(['/login']);

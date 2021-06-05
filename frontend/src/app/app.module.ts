@@ -20,9 +20,23 @@ import {SignupComponent} from './signup';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
 import {MatIconRegistry} from '@angular/material/icon';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {CourierPanelComponent} from './component/courier-panel';
+import {SupportComponent} from './component/courier-panel/support/support.component';
+import {ShowScheduleComponent} from './component/courier-panel/Schedule/show-schedule/show-schedule.component';
+import {ProfileComponent} from './component/courier-panel/profile/profile.component';
+import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
+import {OrderlistComponent} from './component/courier-panel/orderlist';
 
 @NgModule({
   declarations: [
+    CourierPanelComponent,         // COURIER PANEL COMPONENTS {
+    SupportComponent,              //
+    ShowScheduleComponent,         //
+    ProfileComponent,              //
+    CourierOrderhistoryComponent,  //
+    OrderlistComponent,            // }
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -45,7 +59,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    NgbModule,
+    FontAwesomeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

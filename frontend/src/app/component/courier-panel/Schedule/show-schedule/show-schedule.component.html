@@ -1,0 +1,73 @@
+<div class="content" fxLayout="row" fxLayoutAlign="center none">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 float-left">
+        <div class="left-navbar text-center">
+          <h4 class="mb-0"> Witaj Kurierze!</h4>
+          <nav>
+            <button class="start-shift"><fa-icon [icon]="['far', 'play-circle']"> </fa-icon> Zacznij zmianę</button>
+            <hr/>
+            <ul ngbNav>
+              <li class="btn-block border-white" [ngbNavItem]="link.fragment" *ngFor="let link of links">
+
+                <a ngbNavLink data-toggle="collapse" [routerLink]="[link.fragment]" routerLinkActive="active" class="float-left">
+                  <fa-icon class="float-left" icon="{{ link.icon }}"> </fa-icon> {{ link.title }}
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <router-outlet> </router-outlet>
+
+        </div>
+      </div>
+
+      <!-- content -->
+      <div class="col-lg-9">
+        <div class="card-box col-lg-9">
+            <div class="container">
+              <h3 class="text-center">
+                <fa-icon [icon]="['fas', 'chevron-circle-left']" class="px-3" (click)="scrollWeekSchedule(-1)"> </fa-icon>
+                Grafik (tydzień {{ weekNumber }})
+                <fa-icon [icon]="['fas', 'chevron-circle-right']" class="px-3" (click)="scrollWeekSchedule(1)"> </fa-icon>
+              </h3>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="panel panel-default">
+                    <div class="panel panel-primary">
+
+                      <div class="panel">
+
+                        <table class="table table-striped table-hover">
+                          <thead class="thead-dark">
+                          <tr>
+                            <th scope="col" class="text-sm-center">Dzień</th>
+                            <th scope="col" class="text-sm-center">Start</th>
+                            <th scope="col" class="text-sm-center">Koniec</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let day of weeklyCourierSchedule" >
+
+                              <td class="col-sm-6">{{ day.fullDate | date: 'EEEE, MMMM d' }}</td>
+
+                              <td class="badge-success text-sm-center font-weight-bolder">{{day.startTime}}</td>
+                              <td class="badge-primary text-sm-center font-weight-bolder">{{day.endTime}}</td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+        </div> <!-- end tab-content -->
+      </div> <!-- end card-box-->
+    </div> <!-- end col -->
+  </div>
+</div>
