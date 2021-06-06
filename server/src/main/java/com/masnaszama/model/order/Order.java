@@ -35,8 +35,15 @@ public class Order {
 //        this.orderStatus = orderStatus;
 //    }
 
+    public Order(Long orderId)
+    {
+        this.orderId = orderId;
+    }
+
+    public Order() { }
+
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
     @ManyToOne
@@ -45,30 +52,33 @@ public class Order {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="customer_id", nullable=false)
+    @JoinColumn(name="customer_id")//, nullable=false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
-    public Set<OrdersMeals> getOrdersMeals() {
-        return ordersMeals;
-    }
-
-    @OneToOne
-    @JoinColumn(name="payment_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="payment_id", referencedColumnName = "payment_id")
     private Payment payment;
 
     @OneToOne
     @JoinColumn(name="status_id")
     private Status orderStatus;
 
-    public void setOrdersMeals(Set<OrdersMeals> ordersMeals) {
-        this.ordersMeals = ordersMeals;
+    @JsonProperty(value = "orderMeals")
+    public Set<OrdersMeals> getOrdersMeals() {
+        return ordersMeals;
     }
 
-    public Order(){
+    @JsonProperty(value = "orderMeals")
+    public void setOrdersMeals(Set<OrdersMeals> ordersMeals) {
 
+        this.ordersMeals = ordersMeals;
+
+        for (OrdersMeals orderMeal : ordersMeals) {
+            orderMeal.setOrder(this);
+        }
     }
 
     public Long getOrderId() {

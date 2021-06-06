@@ -8,6 +8,10 @@ import {NotFoundComponent} from './not-found';
 import {ChangePasswordComponent} from './change-password';
 import {ForbiddenComponent} from './forbidden';
 import {SignupComponent} from './signup';
+import {RestaurantMenuComponent} from "./Restaurant/restaurant-menu/restaurant-menu.component";
+import {OrderCheckoutComponent} from "./Restaurant/order-checkout/order-checkout.component";
+import {RestaurantOrdersComponent} from "./Restaurant/restaurant-orders/restaurant-orders.component";
+import {RestaurantSummaryComponent} from "./Restaurant/restaurant-summary/restaurant-summary.component";
 
 export const routes: Routes = [
   {
@@ -47,6 +51,21 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: '/404'
+  },
+  {
+    path: 'restaurant-orders',
+    component: RestaurantOrdersComponent
+  },
+  {
+    path: 'order-checkout',
+    component: OrderCheckoutComponent},
+  {
+    path: 'restaurant-menu/:id',
+    component: RestaurantMenuComponent
+  },
+  {
+    path: 'restaurant-summary',
+    component: RestaurantSummaryComponent
   }
 ];
 

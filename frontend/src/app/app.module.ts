@@ -20,6 +20,10 @@ import {SignupComponent} from './signup';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
 import {MatIconRegistry} from '@angular/material/icon';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {RestaurantOrdersComponent} from "./Restaurant/restaurant-orders/restaurant-orders.component";
+import {RestaurantMenuComponent} from "./Restaurant/restaurant-menu/restaurant-menu.component";
+import {RestaurantSummaryComponent} from "./Restaurant/restaurant-summary/restaurant-summary.component";
+import {OrderCheckoutComponent} from "./Restaurant/order-checkout/order-checkout.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ChangePasswordComponent,
     ForbiddenComponent,
     AdminComponent,
-    SignupComponent
+    SignupComponent,
+    RestaurantSummaryComponent,
+    RestaurantMenuComponent,
+    RestaurantOrdersComponent,
+    OrderCheckoutComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,7 +53,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FontAwesomeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

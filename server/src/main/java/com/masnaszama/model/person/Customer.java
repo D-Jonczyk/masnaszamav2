@@ -10,9 +10,7 @@ import java.util.Set;
 @Table(name = "customer")
 public class Customer extends Person{
 
-    public Customer() {
-
-    }
+    public Customer() { super(); }
 
     @OneToOne
     @JoinColumn(name = "address_id", nullable = false)
