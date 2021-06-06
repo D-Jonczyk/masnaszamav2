@@ -19,13 +19,12 @@ import {ClientPanelService} from '../client-panel-service';
 export class FavoriteRestaurantComponent implements OnInit {
   public clientName = this.clientPanelService.clientName;
   public clientSurname = this.clientPanelService.clientSurname;
-
   titel = 'Ulubione restauracje';
   faCoffee = faCoffee;
   fas = 'fas';
   links = LINKS;
-  accountIcon:string = 'assets/image/account-icon.png';
-
+  accountIcon = 'assets/image/account-icon.png';
+  // asd
   constructor(public route: ActivatedRoute, public library: FaIconLibrary,
               public clientPanelService: ClientPanelService,
   ) {

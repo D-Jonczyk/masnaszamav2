@@ -34,11 +34,9 @@
 // }
 
 import { Injectable } from '@angular/core';
-import {Order} from "../model/Order";
-import { catchError } from 'rxjs/operators';
-import {HttpClient, HttpHeaders, HttpErrorResponse, HttpEvent} from '@angular/common/http';
-import { Observable, throwError, of} from 'rxjs';
-import {CourierProfile} from "../../../../../../../ISI/projekt/MasnaSzama/MasnaSzama/src/main/view/MasnaSzama/src/app/courier-panel/profile/courier-profile";
+import {Order} from '../model/Order';
+import {HttpClient} from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'

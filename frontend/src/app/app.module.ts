@@ -37,6 +37,7 @@ import {ClientProfileComponent} from './component/client-panel/client-profile/cl
 import {OrderHistoryComponent} from './component/client-panel/order-history/order-history.component';
 import {ClientPanelComponent} from './component/client-panel/client-panel.component';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant/favorite-restaurant.component';
+import {AngularFireModule} from '@angular/fire';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import {FavoriteRestaurantComponent} from './component/client-panel/favorite-res
     FlexLayoutModule,
     AngularMaterialModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AngularFireModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
