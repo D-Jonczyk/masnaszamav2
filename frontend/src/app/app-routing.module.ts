@@ -14,16 +14,17 @@ import {SupportComponent} from './component/courier-panel/support/support.compon
 import {ProfileComponent} from './component/courier-panel/profile/profile.component';
 import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
 import {ShowScheduleComponent} from './component/courier-panel/Schedule/show-schedule/show-schedule.component';
-import {OrderCheckoutComponent} from './component/restaurant/order-checkout/order-checkout.component';
+import {RestaurantSummaryComponent} from './component/restaurant/restaurant-summary/restaurant-summary.component';
 import {RestaurantMenuComponent} from './component/restaurant/restaurant-menu/restaurant-menu.component';
 import {RestaurantOrdersComponent} from './component/restaurant/restaurant-orders/restaurant-orders.component';
-import {RestaurantSummaryComponent} from './component/restaurant/restaurant-summary/restaurant-summary.component';
+import {OrderCheckoutComponent} from './component/restaurant/order-checkout/order-checkout.component';
+import {MainComponent} from './component/main/main.component';
 
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: MainComponent,
     pathMatch: 'full'
   },
   {
@@ -65,6 +66,7 @@ export const routes: Routes = [
   {path: 'restaurant-orders', component: RestaurantOrdersComponent},
   {path: 'restaurant-menu/:id', component: RestaurantMenuComponent},
   {path: 'restaurant-summary', component: RestaurantSummaryComponent},
+  {path: 'main', component: MainComponent},
   {
     path: 'signup',
     component: SignupComponent,

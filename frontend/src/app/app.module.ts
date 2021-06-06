@@ -28,10 +28,6 @@ import {ShowScheduleComponent} from './component/courier-panel/Schedule/show-sch
 import {ProfileComponent} from './component/courier-panel/profile/profile.component';
 import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
 import {OrderlistComponent} from './component/courier-panel/orderlist';
-import {OrderCheckoutComponent} from './component/restaurant/order-checkout/order-checkout.component';
-import {RestaurantMenuComponent} from './component/restaurant/restaurant-menu/restaurant-menu.component';
-import {RestaurantOrdersComponent} from './component/restaurant/restaurant-orders/restaurant-orders.component';
-import {RestaurantSummaryComponent} from './component/restaurant/restaurant-summary/restaurant-summary.component';
 import {ClientAdressComponent} from './component/client-panel/client-adress/client-adress.component';
 import {ClientProfileComponent} from './component/client-panel/client-profile/client-profile.component';
 import {OrderHistoryComponent} from './component/client-panel/order-history/order-history.component';
@@ -39,6 +35,11 @@ import {ClientPanelComponent} from './component/client-panel/client-panel.compon
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant/favorite-restaurant.component';
 import {AngularFireModule} from '@angular/fire';
 import {WeekPipe} from './component/courier-panel/Schedule/show-schedule/week.pipe';
+import {MainComponent} from './component/main/main.component';
+import {OrderCheckoutComponent} from './component/restaurant/order-checkout/order-checkout.component';
+import {RestaurantMenuComponent} from './component/restaurant/restaurant-menu/restaurant-menu.component';
+import {RestaurantSummaryComponent} from './component/restaurant/restaurant-summary/restaurant-summary.component';
+import {RestaurantOrdersComponent} from './component/restaurant/restaurant-orders/restaurant-orders.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {WeekPipe} from './component/courier-panel/Schedule/show-schedule/week.pi
     OrderHistoryComponent,          //
     ClientProfileComponent,         //
     FavoriteRestaurantComponent,    // }
+    MainComponent,
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -71,7 +73,7 @@ import {WeekPipe} from './component/courier-panel/Schedule/show-schedule/week.pi
     RestaurantMenuComponent,
     RestaurantOrdersComponent,
     RestaurantSummaryComponent,
-    WeekPipe
+    WeekPipe,
   ],
   imports: [
     BrowserAnimationsModule,

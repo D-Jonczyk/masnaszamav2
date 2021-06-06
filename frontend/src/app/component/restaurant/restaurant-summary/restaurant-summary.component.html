@@ -54,7 +54,7 @@
         <tr *ngFor="let restaurant of restaurants$ | async"
             (click)="gotoRestaurantMenu(restaurant.id, restaurant.minOrderCost)">
 
-          <td class="align-middle"><img src="favicon.ico"></td>
+          <td class="align-middle"><img src="../../../../favicon.ico"></td>
           <td class="align-middle">{{restaurant.name}}</td>
           <td class="align-middle">{{restaurant.description}}</td>
           <td class="align-middle">{{restaurant.averageOpinion}}</td>

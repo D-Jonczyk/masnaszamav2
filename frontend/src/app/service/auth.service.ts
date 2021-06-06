@@ -5,7 +5,6 @@ import {UserService} from './user.service';
 import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import {User} from '../component';
-import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -15,8 +14,7 @@ export class AuthService {
   constructor(
     private apiService: ApiService,
     private userService: UserService,
-    private config: ConfigService,
-    private router: Router
+    private config: ConfigService
   ) {
   }
 
@@ -30,7 +28,6 @@ export class AuthService {
       .pipe(map(() => {
         console.log('Login success');
         this.userService.getMyInfo().subscribe();
-        // this.router.navigate([this.getRolePanelUrl(this.userService.currentUser)]);
       }));
   }
 
@@ -55,16 +52,4 @@ export class AuthService {
   changePassowrd(passwordChanger) {
     return this.apiService.post(this.config.changePasswordUrl, passwordChanger);
   }
-
-  getRolePanelUrl(user: User): string {
-    for (const authority of user.authorities) {
-      if(authority.authority === 'ROLE_USER'){
-        return '/';
-      }
-      else if (authority.authority === 'ROLE_COURIER') {
-        return '/courier-panel';
-      }
-    }
-  }
-
 }
