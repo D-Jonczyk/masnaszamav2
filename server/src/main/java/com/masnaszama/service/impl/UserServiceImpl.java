@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserService {
         user.setPerson(person);
         user.setUsername(userRequest.getUsername());
         user.setPassword(getBCryptPasswordEncoder().encode(userRequest.getPassword()));
+        user.setImgUrl(userRequest.getImgUrl());
         List<Authority> auth = authService.findByName(UserRoleName.ROLE_USER);
         user.setAuthorities(auth);
         return userRepository.save(user);

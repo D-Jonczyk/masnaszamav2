@@ -38,6 +38,7 @@ import {OrderHistoryComponent} from './component/client-panel/order-history/orde
 import {ClientPanelComponent} from './component/client-panel/client-panel.component';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant/favorite-restaurant.component';
 import {AngularFireModule} from '@angular/fire';
+import {WeekPipe} from './component/courier-panel/Schedule/show-schedule/week.pipe';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import {AngularFireModule} from '@angular/fire';
     OrderCheckoutComponent,
     RestaurantMenuComponent,
     RestaurantOrdersComponent,
-    RestaurantSummaryComponent
+    RestaurantSummaryComponent,
+    WeekPipe
   ],
   imports: [
     BrowserAnimationsModule,

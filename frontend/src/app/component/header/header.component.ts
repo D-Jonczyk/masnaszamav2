@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService, UserService} from '../../service';
 import {Router} from '@angular/router';
+import {Authority} from '../Person/authority';
+import {auth} from 'firebase';
 
 @Component({
   selector: 'app-header',
@@ -19,10 +21,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToCourier() {
-    this.router.navigate(['/courier-panel']);
-  }
-
   logout() {
     this.authService.logout().subscribe(res => {
       this.router.navigate(['/login']);
@@ -38,4 +36,16 @@ export class HeaderComponent implements OnInit {
     return user.firstname + ' ' + user.lastname;
   }
 
+  printRole(): string {
+    const user = this.userService.currentUser;
+    for (const authority of user.authorities) {
+      if(authority.authority === 'ROLE_USER'){
+        return 'Klient';
+      }
+      else if (authority.authority === 'ROLE_COURIER') {
+        return 'Kurier';
+      }
+    }
+    return '';
+  }
 }
