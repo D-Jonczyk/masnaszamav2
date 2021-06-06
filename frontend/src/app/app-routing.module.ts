@@ -14,6 +14,10 @@ import {SupportComponent} from './component/courier-panel/support/support.compon
 import {ProfileComponent} from './component/courier-panel/profile/profile.component';
 import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
 import {ShowScheduleComponent} from './component/courier-panel/Schedule/show-schedule/show-schedule.component';
+import {OrderCheckoutComponent} from './component/restaurant/order-checkout/order-checkout.component';
+import {RestaurantMenuComponent} from './component/restaurant/restaurant-menu/restaurant-menu.component';
+import {RestaurantOrdersComponent} from './component/restaurant/restaurant-orders/restaurant-orders.component';
+import {RestaurantSummaryComponent} from './component/restaurant/restaurant-summary/restaurant-summary.component';
 
 export const routes: Routes = [
   {
@@ -56,6 +60,10 @@ export const routes: Routes = [
     component: ShowScheduleComponent,
     pathMatch: 'full'
   },
+  {path: 'order-checkout', component: OrderCheckoutComponent},
+  {path: 'restaurant-orders', component: RestaurantOrdersComponent},
+  {path: 'restaurant-menu/:id', component: RestaurantMenuComponent},
+  {path: 'restaurant-summary', component: RestaurantSummaryComponent},
   {
     path: 'signup',
     component: SignupComponent,

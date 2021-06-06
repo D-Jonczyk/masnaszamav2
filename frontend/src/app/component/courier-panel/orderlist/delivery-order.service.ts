@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DeliveryOrder} from './delivery-order';
 import {Observable} from 'rxjs';
-import {Order} from '../../../../../../../../../IdeaProjects/MasnaSzama/MasnaSzama/src/main/view/MasnaSzama/src/app/Order/order';
 
 @Injectable({
   providedIn: 'root'

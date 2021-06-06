@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "address_id")
     private Long addressId;
 
     @OneToOne(mappedBy = "address")

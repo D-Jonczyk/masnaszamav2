@@ -18,7 +18,7 @@ import { LINKS } from '../courier-panel.component';
 import {DeliveryOrder} from './delivery-order';
 import {DeliveryOrderService} from './delivery-order.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {Order} from '../../../../../../../../../IdeaProjects/MasnaSzama/MasnaSzama/src/main/view/MasnaSzama/src/app/Order/order';
+import {Order} from '../../Order/order';
 
 @Component({
   selector: 'app-orderlist',

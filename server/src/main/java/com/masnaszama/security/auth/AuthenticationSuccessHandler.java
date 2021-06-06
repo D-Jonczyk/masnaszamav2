@@ -53,6 +53,7 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
         authCookie.setPath("/");
         // Add cookie to response
         response.addCookie(authCookie);
+        response.addHeader("Access-Control-Allow-Origin", "*");
 
         // JWT is also in the response
         UserTokenState userTokenState = new UserTokenState(jws, EXPIRES_IN);

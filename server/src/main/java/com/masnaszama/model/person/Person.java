@@ -2,6 +2,8 @@ package com.masnaszama.model.person;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.User;
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +12,7 @@ import java.util.Set;
 
 
 @Entity
+@Polymorphism(type = PolymorphismType.EXPLICIT)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person implements Serializable {
 

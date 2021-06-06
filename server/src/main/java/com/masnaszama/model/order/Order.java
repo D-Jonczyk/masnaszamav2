@@ -3,7 +3,6 @@ package com.masnaszama.model.order;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.masnaszama.model.payment.Payment;
 import com.masnaszama.model.person.Customer;
-import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.model.restaurant.Restaurant;
 
 import javax.persistence.*;
@@ -55,8 +54,8 @@ public class Order {
         return ordersMeals;
     }
 
-    @OneToOne
-    @JoinColumn(name="payment_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="payment_id", referencedColumnName = "payment_id")
     private Payment payment;
 
     @OneToOne

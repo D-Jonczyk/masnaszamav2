@@ -19,7 +19,4 @@ public class Request {
     @JoinColumn (name= "admin_id", nullable=false)
     private Admin admin;
 
-    @OneToOne
-    @JoinColumn(name = "meal_id", nullable = false)
-    private Meal meal;
 }
