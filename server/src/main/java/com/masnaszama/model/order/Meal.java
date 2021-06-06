@@ -1,5 +1,7 @@
 package com.masnaszama.model.order;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.masnaszama.model.restaurant.Restaurant;
 import com.masnaszama.model.restaurant.RestaurantsMeals;
 
 import javax.persistence.*;
@@ -9,6 +11,9 @@ import java.util.Set;
 
 @Entity
 public class Meal {
+
+    public Meal() { }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mealId;
@@ -17,10 +22,13 @@ public class Meal {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "meal")
-    private Set<OrdersMeals> ordersMeals = new HashSet<>();
+    private Set<RestaurantsMeals> restaurantsMeals = new HashSet<>();
+
+//    @OneToOne(mappedBy = "meal")
+//    private Request request;
 
     @OneToMany(mappedBy = "meal")
-    private Set<RestaurantsMeals> restaurantsMeals = new HashSet<>();
+    private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
     public Set<OrdersMeals> getOrdersMeals() {
         return ordersMeals;
@@ -30,22 +38,32 @@ public class Meal {
         this.ordersMeals = ordersMeals;
     }
 
+    @JsonProperty(value = "mealId")
     public Long getMealId() {
         return mealId;
     }
 
+    @JsonProperty(value = "mealId")
+    public void setMealId(Long mealId) {
+        this.mealId = mealId;
+    }
+
+    @JsonProperty(value = "mealName")
     public String getMealName() {
         return mealName;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
+    @JsonProperty(value = "mealName")
     public void setMealName(String mealName) {
         this.mealName = mealName;
     }
 
+    @JsonProperty(value = "price")
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    @JsonProperty(value = "price")
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
@@ -57,4 +75,12 @@ public class Meal {
     public void setRestaurantsMeals(Set<RestaurantsMeals> restaurantsMeals) {
         this.restaurantsMeals = restaurantsMeals;
     }
+
+    /*    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
+    }*/
 }

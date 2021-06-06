@@ -8,7 +8,7 @@ public class Opinion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long opinionId;
 
-    @OneToOne(mappedBy="opinion")
+    @OneToOne(mappedBy="opinion", cascade = CascadeType.ALL, orphanRemoval = true)
     private OrdersMeals ordersMeals;
 
     private int rating;

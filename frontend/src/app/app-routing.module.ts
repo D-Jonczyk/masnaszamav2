@@ -19,6 +19,7 @@ import {RestaurantMenuComponent} from './component/restaurant/restaurant-menu/re
 import {RestaurantOrdersComponent} from './component/restaurant/restaurant-orders/restaurant-orders.component';
 import {RestaurantSummaryComponent} from './component/restaurant/restaurant-summary/restaurant-summary.component';
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -96,6 +97,21 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: '/404'
+  },
+  {
+    path: 'restaurant-orders',
+    component: RestaurantOrdersComponent
+  },
+  {
+    path: 'order-checkout',
+    component: OrderCheckoutComponent},
+  {
+    path: 'restaurant-menu/:id',
+    component: RestaurantMenuComponent
+  },
+  {
+    path: 'restaurant-summary',
+    component: RestaurantSummaryComponent
   }
 ];
 

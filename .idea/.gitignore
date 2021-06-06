@@ -2,7 +2,9 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../../../:\Users\Daniel\Documents\project-starter\angular-spring-starter\.idea/dataSources/
+
+.idea
+
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/

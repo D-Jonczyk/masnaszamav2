@@ -13,9 +13,7 @@ import java.util.Set;
 @Polymorphism(type = PolymorphismType.EXPLICIT)
 public class Customer extends Person{
 
-    public Customer() {
-
-    }
+    public Customer() { super(); }
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", nullable = false, referencedColumnName = "address_id")

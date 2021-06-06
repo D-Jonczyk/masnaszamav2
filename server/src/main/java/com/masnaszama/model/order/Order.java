@@ -18,24 +18,15 @@ public class Order {
     private String orderedTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
     private String desiredDeliveryTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
 
+    public Order(Long orderId)
+    {
+        this.orderId = orderId;
+    }
 
-//    public Order(Integer tip, Integer orderPrice, String orderedTime,
-//                 String desiredDeliveryTime, Long orderId,
-//                 Restaurant restaurant, Customer customer,
-//                 Payment payment, Status orderStatus) {
-//        this.tip = tip;
-//        this.orderPrice = orderPrice;
-//        this.orderedTime = orderedTime;
-//        this.desiredDeliveryTime = desiredDeliveryTime;
-//        this.orderId = orderId;
-//        this.restaurant = restaurant;
-//        this.customer = customer;
-//        this.payment = payment;
-//        this.orderStatus = orderStatus;
-//    }
+    public Order() { }
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
     @ManyToOne
@@ -44,17 +35,14 @@ public class Order {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="customer_id", nullable=false)
+    @JoinColumn(name="customer_id")//, nullable=false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
-    public Set<OrdersMeals> getOrdersMeals() {
-        return ordersMeals;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
+    // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="payment_id", referencedColumnName = "payment_id")
     private Payment payment;
 
@@ -62,12 +50,19 @@ public class Order {
     @JoinColumn(name="status_id")
     private Status orderStatus;
 
-    public void setOrdersMeals(Set<OrdersMeals> ordersMeals) {
-        this.ordersMeals = ordersMeals;
+    @JsonProperty(value = "orderMeals")
+    public Set<OrdersMeals> getOrdersMeals() {
+        return ordersMeals;
     }
 
-    public Order(){
+    @JsonProperty(value = "orderMeals")
+    public void setOrdersMeals(Set<OrdersMeals> ordersMeals) {
 
+        this.ordersMeals = ordersMeals;
+
+        for (OrdersMeals orderMeal : ordersMeals) {
+            orderMeal.setOrder(this);
+        }
     }
 
     public Long getOrderId() {
