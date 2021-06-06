@@ -1,7 +1,6 @@
 package com.masnaszama.model.order;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.masnaszama.model.request.Request;
 import com.masnaszama.model.restaurant.Restaurant;
 import com.masnaszama.model.restaurant.RestaurantsMeals;
 

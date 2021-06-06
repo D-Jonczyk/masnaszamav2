@@ -2,18 +2,21 @@ package com.masnaszama.model.person;
 
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.order.Order;
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "customer")
+@Polymorphism(type = PolymorphismType.EXPLICIT)
 public class Customer extends Person{
 
     public Customer() { super(); }
 
-    @OneToOne
-    @JoinColumn(name = "address_id", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", nullable = false, referencedColumnName = "address_id")
     private Address address;
 
     @OneToMany(mappedBy="customer", fetch = FetchType.EAGER)

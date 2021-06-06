@@ -16,7 +16,7 @@ public interface CourierRepo extends CrudRepository<Courier, Long> {
     "(c.firstName, c.lastName, c.phonenumber, c.averageDeliveryTime, c.numberOfDeliveries ) " +
     "FROM Courier c " +
     "WHERE c.id = ?1")
-    Optional<Courier> findCourierByPersonId(Long personId);
+    Optional<Courier> findCourierById(Long personId);
 
     @Query(value = "SELECT new com.masnaszama.model.views.CourierSchedules " +
             "(cs.scheduleId, cs.startTime, cs.endTime, cs.fullDate, cs.courierId) " +

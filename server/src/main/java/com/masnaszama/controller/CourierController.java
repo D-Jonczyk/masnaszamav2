@@ -6,6 +6,7 @@ import com.masnaszama.model.views.OrdersFinished;
 import com.masnaszama.service.impl.CourierService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class CourierController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Courier> getCourierByPersonId(@PathVariable("id") Long personId){
+    public ResponseEntity<Courier> getCourierById(@PathVariable("id") Long personId){
         Courier courier = courierService.findCourierById(personId);
         return new ResponseEntity<>(courier, HttpStatus.OK);
     }
@@ -55,9 +56,4 @@ public class CourierController {
         return new ResponseEntity<>(updatedCourier, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCourier(@PathVariable("id") Long id) {
-        courierService.deleteCourier(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

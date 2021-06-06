@@ -10,6 +10,7 @@ import java.util.Date;
 public class Payment {
 
     @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "payment_id")
     private Long paymentId;
 
@@ -23,12 +24,12 @@ public class Payment {
 
     public Payment(Long paymentId, Order orders, Date paymentDate) {
         this.paymentId = paymentId;
-        this.orders = orders;
+        this.order = orders;
         this.paymentDate = paymentDate;
     }
 
     @OneToOne(mappedBy="payment")
-    private Order orders;
+    private Order order;
 
     private Date paymentDate;
 
@@ -41,11 +42,11 @@ public class Payment {
     }
 
     public Order getOrders() {
-        return orders;
+        return order;
     }
 
     public void setOrders(Order orders) {
-        this.orders = orders;
+        this.order = orders;
     }
 
     public Date getPaymentDate() {

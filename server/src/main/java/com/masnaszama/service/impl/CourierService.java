@@ -25,9 +25,9 @@ public class CourierService {
         return courierRepo.save(courier);
     }
 
-    public Courier findCourierById(Long personId){
-        return courierRepo.findCourierByPersonId(personId)
-                .orElseThrow(() -> new UserNotFoundException("User by id " + personId + "was not found."));
+    public Courier findCourierById(Long id){
+        return courierRepo.findCourierById(id)
+                .orElseThrow(() -> new UserNotFoundException("User by id " + id + "was not found."));
     }
 
     public void deleteCourier(Long id) {

@@ -22,7 +22,7 @@ public class Restaurant {
         this.restaurantId = restaurantId;
     }
 
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long restaurantId;
 

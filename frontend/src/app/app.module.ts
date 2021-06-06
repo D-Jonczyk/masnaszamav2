@@ -20,13 +20,38 @@ import {SignupComponent} from './signup';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
 import {MatIconRegistry} from '@angular/material/icon';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {RestaurantOrdersComponent} from "./Restaurant/restaurant-orders/restaurant-orders.component";
-import {RestaurantMenuComponent} from "./Restaurant/restaurant-menu/restaurant-menu.component";
-import {RestaurantSummaryComponent} from "./Restaurant/restaurant-summary/restaurant-summary.component";
-import {OrderCheckoutComponent} from "./Restaurant/order-checkout/order-checkout.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {CourierPanelComponent} from './component/courier-panel';
+import {SupportComponent} from './component/courier-panel/support/support.component';
+import {ShowScheduleComponent} from './component/courier-panel/Schedule/show-schedule/show-schedule.component';
+import {ProfileComponent} from './component/courier-panel/profile/profile.component';
+import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
+import {OrderlistComponent} from './component/courier-panel/orderlist';
+import {OrderCheckoutComponent} from './component/restaurant/order-checkout/order-checkout.component';
+import {RestaurantMenuComponent} from './component/restaurant/restaurant-menu/restaurant-menu.component';
+import {RestaurantOrdersComponent} from './component/restaurant/restaurant-orders/restaurant-orders.component';
+import {RestaurantSummaryComponent} from './component/restaurant/restaurant-summary/restaurant-summary.component';
+import {ClientAdressComponent} from './component/client-panel/client-adress/client-adress.component';
+import {ClientProfileComponent} from './component/client-panel/client-profile/client-profile.component';
+import {OrderHistoryComponent} from './component/client-panel/order-history/order-history.component';
+import {ClientPanelComponent} from './component/client-panel/client-panel.component';
+import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant/favorite-restaurant.component';
+
 
 @NgModule({
   declarations: [
+    CourierPanelComponent,         // COURIER PANEL COMPONENTS {
+    SupportComponent,              //
+    ShowScheduleComponent,         //
+    ProfileComponent,              //
+    CourierOrderhistoryComponent,  //
+    OrderlistComponent,            // }
+    ClientAdressComponent,          // CLIENT PANEL COMPONENTS {
+    ClientPanelComponent,           //
+    OrderHistoryComponent,          //
+    ClientProfileComponent,         //
+    FavoriteRestaurantComponent,    // }
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -40,10 +65,10 @@ import {OrderCheckoutComponent} from "./Restaurant/order-checkout/order-checkout
     ForbiddenComponent,
     AdminComponent,
     SignupComponent,
-    RestaurantSummaryComponent,
+    OrderCheckoutComponent,
     RestaurantMenuComponent,
     RestaurantOrdersComponent,
-    OrderCheckoutComponent,
+    RestaurantSummaryComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -54,6 +79,7 @@ import {OrderCheckoutComponent} from "./Restaurant/order-checkout/order-checkout
     ReactiveFormsModule,
     FlexLayoutModule,
     AngularMaterialModule,
+    NgbModule,
     FontAwesomeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

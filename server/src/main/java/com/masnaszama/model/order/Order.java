@@ -3,7 +3,6 @@ package com.masnaszama.model.order;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.masnaszama.model.payment.Payment;
 import com.masnaszama.model.person.Customer;
-import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.model.restaurant.Restaurant;
 
 import javax.persistence.*;
@@ -18,22 +17,6 @@ public class Order {
 
     private String orderedTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
     private String desiredDeliveryTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
-
-
-//    public Order(Integer tip, Integer orderPrice, String orderedTime,
-//                 String desiredDeliveryTime, Long orderId,
-//                 Restaurant restaurant, Customer customer,
-//                 Payment payment, Status orderStatus) {
-//        this.tip = tip;
-//        this.orderPrice = orderPrice;
-//        this.orderedTime = orderedTime;
-//        this.desiredDeliveryTime = desiredDeliveryTime;
-//        this.orderId = orderId;
-//        this.restaurant = restaurant;
-//        this.customer = customer;
-//        this.payment = payment;
-//        this.orderStatus = orderStatus;
-//    }
 
     public Order(Long orderId)
     {
@@ -58,6 +41,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
+    // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="payment_id", referencedColumnName = "payment_id")
     private Payment payment;
