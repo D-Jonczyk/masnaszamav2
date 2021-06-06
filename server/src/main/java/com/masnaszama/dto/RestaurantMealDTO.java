@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public class RestaurantMealDTO {
 
-    private Long id;
-    private String name;
-    private BigDecimal price;
+    private final Long id;
+    private final String name;
+    private final BigDecimal price;
 
     public RestaurantMealDTO(Long id, String name, BigDecimal price) {
         this.id = id;

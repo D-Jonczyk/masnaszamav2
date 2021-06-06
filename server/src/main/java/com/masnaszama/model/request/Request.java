@@ -1,10 +1,11 @@
 package com.masnaszama.model.request;
 
-import com.masnaszama.model.order.Meal;
 import com.masnaszama.model.person.Admin;
-import org.hibernate.type.StringType;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity

@@ -1,9 +1,9 @@
 package com.masnaszama.security.auth;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.masnaszama.model.User;
 import com.masnaszama.model.UserTokenState;
 import com.masnaszama.security.TokenHelper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Meal} from '../model/meal.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantMenuService {
 
-  private mealUrl = 'http://localhost:8080/restaurant/getmeals?id=';
+  private mealUrl = environment.apiBaseUrl + '/restaurant/getmeals?id=';
   totalCost: number;
   minOrderCost: number;
 

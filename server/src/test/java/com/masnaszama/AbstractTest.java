@@ -1,12 +1,12 @@
 package com.masnaszama;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
 import com.masnaszama.model.UserRoleName;
 import com.masnaszama.repository.UserRepository;
 import com.masnaszama.security.auth.AnonAuthentication;
 import com.masnaszama.security.auth.TokenBasedAuthentication;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;

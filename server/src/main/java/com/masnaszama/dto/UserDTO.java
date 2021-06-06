@@ -1,8 +1,8 @@
 package com.masnaszama.dto;
 
 public class UserDTO {
-    private String userName;
-    private String userPassword;
+    private final String userName;
+    private final String userPassword;
     private String userRole;
 
     public UserDTO(String userName, String password, String userRole) {

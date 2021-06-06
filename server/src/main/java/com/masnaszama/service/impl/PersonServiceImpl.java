@@ -1,6 +1,5 @@
 package com.masnaszama.service.impl;
 
-import com.masnaszama.model.User;
 import com.masnaszama.model.person.Person;
 import com.masnaszama.model.person.PersonRequest;
 import com.masnaszama.repository.PersonRepository;
@@ -9,8 +8,6 @@ import com.masnaszama.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
 
 @Service
 public class PersonServiceImpl implements PersonService {

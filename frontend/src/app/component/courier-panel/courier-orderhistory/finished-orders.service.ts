@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FinishedOrders} from './finished-orders';
+import {environment} from '../../../../environments/environment';
 
 @Injectable( {
   providedIn: 'root'
 })
 export class FinishedOrdersService {
 
-  private finishedOrdersUrl = 'http://localhost:8080/courier/getDeliveryHistory/';
+  private finishedOrdersUrl = environment.apiBaseUrl + '/courier/getDeliveryHistory/';
 
   constructor(private http: HttpClient) {
 

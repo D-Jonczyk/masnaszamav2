@@ -2,15 +2,16 @@ import {Injectable} from '@angular/core';
 import {ClientProfile} from './client-profile';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientProfileService {
 
-  private clientProfileUrl = 'http://localhost:8080/client/find/';
-  private editProfileUrl = 'http://localhost:8080/client/update';
-  private loadImageUrl = 'http://localhost:8080/client/loadImage';
+  private clientProfileUrl = environment.apiBaseUrl + '/client/find/';
+  private editProfileUrl = environment.apiBaseUrl + '/client/update';
+  private loadImageUrl = environment.apiBaseUrl + '/client/loadImage';
   constructor(private http: HttpClient) {
   }
 

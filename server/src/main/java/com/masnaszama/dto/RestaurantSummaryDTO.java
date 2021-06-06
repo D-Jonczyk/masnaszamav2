@@ -2,13 +2,13 @@ package com.masnaszama.dto;
 
 public class RestaurantSummaryDTO {
 
-    private Long id;
-    private String name;
-    private String description;
-    private int averageOpinion;
-    private int deliveryTime;
-    private int deliveryCost;
-    private int minOrderCost;
+    private final Long id;
+    private final String name;
+    private final String description;
+    private final int averageOpinion;
+    private final int deliveryTime;
+    private final int deliveryCost;
+    private final int minOrderCost;
 
     public RestaurantSummaryDTO(Long id, String name, String description, int averageOpinion, int deliveryTime, int deliveryCost, int minOrderCost) {
         this.id = id;

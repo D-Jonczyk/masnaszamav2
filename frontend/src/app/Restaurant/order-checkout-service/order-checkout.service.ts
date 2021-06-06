@@ -10,7 +10,7 @@
 // })
 // export class OrderCheckoutService {
 //
-//   private orderUrl = 'http://localhost:8080/order/createNewOrder';
+//   private orderUrl = environment.apiBaseUrl + '/order/createNewOrder';
 //
 //   constructor(
 //     private http: HttpClient) {
@@ -36,6 +36,7 @@
 import { Injectable } from '@angular/core';
 import {Order} from '../model/Order';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 
 @Injectable({
@@ -43,7 +44,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class OrderCheckoutService {
 
-  private orderUrl = 'http://localhost:8080/order/createNewOrder';
+  private orderUrl = environment.apiBaseUrl + '/order/createNewOrder';
 
   constructor(
     private http: HttpClient) {

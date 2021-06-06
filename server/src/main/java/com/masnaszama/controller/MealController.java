@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/meal")
+@RequestMapping(value = "/api/meal", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MealController {
 
     private final MealRestaurantsRepo mealRestaurantsRepo;

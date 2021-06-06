@@ -4,11 +4,9 @@ package com.masnaszama.repository;
 import com.masnaszama.dto.RestaurantMealDTO;
 import com.masnaszama.dto.RestaurantSummaryDTO;
 import com.masnaszama.model.restaurant.Restaurant;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {

@@ -1,12 +1,9 @@
 package com.masnaszama.model.restaurant;
 
 import com.masnaszama.model.address.Address;
-import com.masnaszama.model.order.Meal;
 import com.masnaszama.model.order.Order;
-import com.masnaszama.model.order.OrdersMeals;
 
 import javax.persistence.*;
-import java.lang.Long;
 import java.util.HashSet;
 import java.util.Set;
 

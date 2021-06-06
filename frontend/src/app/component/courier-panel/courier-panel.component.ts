@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Courier} from '../../../../../../../../IdeaProjects/MasnaSzama/MasnaSzama/src/main/view/MasnaSzama/src/app/Person/Employee/courier';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faPlayCircle} from '@fortawesome/free-regular-svg-icons';
 import {
@@ -14,6 +13,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
 import {DisplayMessage} from '../../shared/models/display-message';
 import {Subject} from 'rxjs';
+import {Courier} from '../Person/Employee/courier';
 
 
 export const LINKS: object[] = [
