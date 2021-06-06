@@ -12,6 +12,8 @@ public class UserRequest {
     private String password;
     private String firstname;
     private String lastname;
+    private String imgUrl;
+
     private Long phonenumber;
     private List<Authority> authorities;
 
@@ -69,6 +71,14 @@ public class UserRequest {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
 }

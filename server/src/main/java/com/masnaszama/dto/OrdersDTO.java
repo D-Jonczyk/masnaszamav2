@@ -1,9 +1,9 @@
 package com.masnaszama.dto;
 
 public class OrdersDTO {
-    private Long orderId;
-    private Integer tip;
-    private Long customerId;
+    private final Long orderId;
+    private final Integer tip;
+    private final Long customerId;
 
     public OrdersDTO(Long orderId, Integer tip, Long customerId) {
         this.orderId = orderId;

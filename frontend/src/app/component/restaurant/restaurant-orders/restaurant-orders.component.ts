@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
-import {RestaurantOrders} from '../model/restaurant-orders.model';
-import {RestaurantOrdersService} from '../restaurant-orders-service/restaurant-orders.service';
-import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {Observable} from "rxjs";
+import {RestaurantOrders} from "../model/restaurant-orders.model";
+import {RestaurantOrdersService} from "../restaurant-orders-service/restaurant-orders.service";
+import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-restaurant-orders',
@@ -26,9 +26,9 @@ export class RestaurantOrdersComponent implements OnInit {
   }
 
   getOrders(): void {
-    // const id = +this.route.snapshot.paramMap.get('id');
-    // zmienić na id dla zalogowanej restauracji
-    // this.restaurantOrders$ = this.restaurantOrdersService.getOrders(42);
+    //const id = +this.route.snapshot.paramMap.get('id');
+    //zmienić na id dla zalogowanej restauracji
+    //this.restaurantOrders$ = this.restaurantOrdersService.getOrders(42);
     this.restaurantOrdersService.getOrders(42).subscribe
     (results => {
       results = results.reduce((acc, {orderId, name}) => {
@@ -44,12 +44,12 @@ export class RestaurantOrdersComponent implements OnInit {
     } );
 
 
-    // console.log(this.restaurantOrders);
-    // this.mergeOrders();
+    //console.log(this.restaurantOrders);
+    //this.mergeOrders();
   }
 
   setDone(id): void {
-    const removeIndex  = this.restaurantOrders.findIndex(order => order.orderId === id);
+    let removeIndex  = this.restaurantOrders.findIndex(order => order.orderId === id);
     this.restaurantOrders.splice(removeIndex, 1);
   }
 }

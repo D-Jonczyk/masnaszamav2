@@ -5,14 +5,14 @@ import com.masnaszama.model.views.CourierSchedules;
 import com.masnaszama.model.views.OrdersFinished;
 import com.masnaszama.service.impl.CourierService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/courier")
+@RequestMapping(value = "/api/courier", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CourierController {
     private final CourierService courierService;
 

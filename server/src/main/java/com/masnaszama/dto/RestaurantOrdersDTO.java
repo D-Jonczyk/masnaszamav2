@@ -2,8 +2,8 @@ package com.masnaszama.dto;
 
 public class RestaurantOrdersDTO {
 
-    private Long orderId;
-    private String name;
+    private final Long orderId;
+    private final String name;
 
     public RestaurantOrdersDTO(Long orderId, String name) {
         this.orderId = orderId;

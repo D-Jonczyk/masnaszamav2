@@ -2,14 +2,15 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DeliveryOrder} from './delivery-order';
 import {Observable} from 'rxjs';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeliveryOrderService {
 
-  private deliveryOrdersUrl = 'http://localhost:8080/order/getDeliveryByCourierId?courierId=';
-  private updateOrderUrl = 'http://localhost:8080/order/updateDeliveryOrderStatus?orderId=';
+  private deliveryOrdersUrl = environment.apiBaseUrl + '/order/getDeliveryByCourierId?courierId=';
+  private updateOrderUrl = environment.apiBaseUrl + '/order/updateDeliveryOrderStatus?orderId=';
 
   constructor(private http: HttpClient) {
   }

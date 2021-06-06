@@ -5,7 +5,6 @@ import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
 import com.masnaszama.model.UserRequest;
 import com.masnaszama.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -66,6 +65,7 @@ public class UserController {
         }
         User user = this.userService.save(userRequest);
         HttpHeaders headers = new HttpHeaders();
+
         headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(user.getId()).toUri());
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
@@ -75,7 +75,7 @@ public class UserController {
      * sure that the user has role "ROLE_USER" to access this endpoint.
      */
     @RequestMapping("/whoami")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER', 'COURIER')")
     public UserRequest user() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserRequest userRequest = new UserRequest();
@@ -84,6 +84,7 @@ public class UserController {
         userRequest.setUsername(user.getUsername());
         userRequest.setPhonenumber(user.getPerson().getPhonenumber());
         userRequest.setId(user.getId());
+        userRequest.setImgUrl(user.getImgUrl());
         userRequest.setAuthorities((List<Authority>) user.getAuthorities());
         return userRequest;
     }

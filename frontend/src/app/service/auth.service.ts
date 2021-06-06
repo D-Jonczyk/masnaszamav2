@@ -4,14 +4,17 @@ import {ApiService} from './api.service';
 import {UserService} from './user.service';
 import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
+import {User} from '../component';
 
 @Injectable()
 export class AuthService {
 
+  user: User;
+
   constructor(
     private apiService: ApiService,
     private userService: UserService,
-    private config: ConfigService,
+    private config: ConfigService
   ) {
   }
 
@@ -49,5 +52,4 @@ export class AuthService {
   changePassowrd(passwordChanger) {
     return this.apiService.post(this.config.changePasswordUrl, passwordChanger);
   }
-
 }

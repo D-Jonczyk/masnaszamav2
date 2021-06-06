@@ -5,6 +5,7 @@ import {DisplayMessage} from '../shared/models/display-message';
 import {AuthService, UserService} from '../service';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {User} from '../component';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   title = 'Login';
   githubLink = 'https://github.com/bfwg/angular-spring-starter';
   form: FormGroup;
-
+  onSuccessLoginRedirectUrl: string;
   /**
    * Boolean used in telling the UI
    * that the form has been submitted
@@ -78,23 +79,31 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    /**
-     * Innocent until proven guilty
-     */
     this.notification = undefined;
     this.submitted = true;
 
     this.authService.login(this.form.value)
       .subscribe(data => {
-          this.userService.getMyInfo().subscribe();
-          this.router.navigate([this.returnUrl]);
+          this.userService.getMyInfo().subscribe(
+            (data1: User) => {
+              // 300 iq redirection function
+            this.router.navigate([this.getRedirectUrl(data1)]);
+          })
         },
         error => {
           this.submitted = false;
           this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
         });
-
   }
 
-
+  getRedirectUrl(user: User): string {
+    for (const authority of user.authorities) {
+      if(authority.authority === 'ROLE_USER'){
+        return '/';
+      }
+      else if (authority.authority === 'ROLE_COURIER') {
+        return '/courier-panel';
+      }
+    }
+  }
 }

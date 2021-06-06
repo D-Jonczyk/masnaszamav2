@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ClientPanel} from './client-panel';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class ClientPanelService {
   accLink:string;
   clientName:string;
   clientSurname:string;
-  private clientPanelUrl = 'http://localhost:8080/client/find/';
-  // private editProfileUrl = 'http://localhost:8080/client/update';
+  private clientPanelUrl = environment.apiBaseUrl + '/client/find/';
+  // private editProfileUrl = environment.apiBaseUrl + '/client/update';
   constructor(private http: HttpClient) {
   }
 

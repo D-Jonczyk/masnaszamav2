@@ -1,17 +1,14 @@
 <mat-toolbar class="app-navbar" color="primary">
   <button mat-button mat-ripple routerLink="/">
     <img alt="Angular-Spring-Starter" class="app-angular-logo" src="assets/image/angular-white-transparent.svg">
-    <span>Angular-Spring-Starter</span>
+    <span>Masna Szama</span>
   </button>
 
 
   <div class="right">
     <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="flex-end center">
-      <button mat-button mat-ripple routerLink="/courier-panel">
-        <span>Courier Panel</span>
-      </button>
       <button *ngIf="!hasSignedIn()" mat-button mat-ripple routerLink="/signup">
-        <span>Sign up</span>
+        <span>Rejestracja</span>
       </button>
       <button *ngIf="!hasSignedIn()" mat-button mat-ripple routerLink="/login">
         <span>Login</span>
@@ -21,7 +18,7 @@
         [matMenuTriggerFor]="accountMenu"
         class="greeting-button" mat-button
         mat-ripple>
-        <span>Aloha, {{userName()}}</span>
+        <span>Aloha, {{userName()}}, {{printRole()}}</span>
       </button>
       <button
         *ngIf="hasSignedIn()"

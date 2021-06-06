@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.SequenceGenerator;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,6 +81,7 @@ public class UserServiceImpl implements UserService {
         user.setPerson(person);
         user.setUsername(userRequest.getUsername());
         user.setPassword(getBCryptPasswordEncoder().encode(userRequest.getPassword()));
+        user.setImgUrl(userRequest.getImgUrl());
         List<Authority> auth = authService.findByName(UserRoleName.ROLE_USER);
         user.setAuthorities(auth);
         return userRepository.save(user);

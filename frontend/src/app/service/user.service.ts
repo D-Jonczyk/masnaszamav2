@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
+import {User} from '../component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  currentUser;
+  currentUser: User;
 
   constructor(
     private apiService: ApiService,
