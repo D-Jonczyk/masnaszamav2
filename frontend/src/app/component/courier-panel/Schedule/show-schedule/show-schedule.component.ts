@@ -24,7 +24,7 @@ import {WeekPipe} from './week.pipe';
   styleUrls: ['../../courier-panel.component.css', './show-schedule.component.css']
 })
 export class ShowScheduleComponent implements OnInit {
-  courierId = 201;
+  courierId = 222;
   closeResult = '';
   links = LINKS;
   startTime: NgbTimeStruct = {hour: 13, minute: 30, second: 0};

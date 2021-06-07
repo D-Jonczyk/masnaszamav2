@@ -20,8 +20,8 @@ export class CourierProfileService {
   }
 
   editCourierProfile(courier: CourierProfile): Observable<CourierProfile> {
-    console.log('personId: ', courier.personId, 'phoneNumber: ',
-      courier.phoneNumber, 'firstName', courier.firstName, 'lastName: ', courier.lastName);
+    console.log('courier.id: ', courier.id, 'phoneNumber: ',
+      courier.phonenumber, 'firstName', courier.firstName, 'lastName: ', courier.lastName);
     return this.http.put<CourierProfile>(this.editProfileUrl, courier);
   }
 }

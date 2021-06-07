@@ -19,6 +19,10 @@ import {RestaurantMenuComponent} from './component/restaurant/restaurant-menu/re
 import {RestaurantOrdersComponent} from './component/restaurant/restaurant-orders/restaurant-orders.component';
 import {OrderCheckoutComponent} from './component/restaurant/order-checkout/order-checkout.component';
 import {MainComponent} from './component/main/main.component';
+import {AdminPanelComponent} from './component/admin-panel/admin-panel.component';
+import {CategoriesComponent} from './component/admin-panel/categories/categories.component';
+import {RestaurantMenuUpdatePanelComponent} from './component/admin-panel/restaurant-menu-update-panel/restaurant-menu-update-panel.component';
+import {ListRestoComponent} from './component/admin-panel/list-resto/list-resto.component';
 
 
 export const routes: Routes = [
@@ -67,6 +71,10 @@ export const routes: Routes = [
   {path: 'restaurant-menu/:id', component: RestaurantMenuComponent},
   {path: 'restaurant-summary', component: RestaurantSummaryComponent},
   {path: 'main', component: MainComponent},
+  {path: 'admin-panel', component: AdminPanelComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'restaurant-menu-update-panel', component: RestaurantMenuUpdatePanelComponent},
+  {path: 'list-resto', component: ListRestoComponent},
   {
     path: 'signup',
     component: SignupComponent,

@@ -40,6 +40,15 @@ import {OrderCheckoutComponent} from './component/restaurant/order-checkout/orde
 import {RestaurantMenuComponent} from './component/restaurant/restaurant-menu/restaurant-menu.component';
 import {RestaurantSummaryComponent} from './component/restaurant/restaurant-summary/restaurant-summary.component';
 import {RestaurantOrdersComponent} from './component/restaurant/restaurant-orders/restaurant-orders.component';
+import {AdminPanelComponent} from './component/admin-panel/admin-panel.component';
+import {RestaurantMenuUpdatePanelComponent} from './component/admin-panel/restaurant-menu-update-panel/restaurant-menu-update-panel.component';
+import {MenusComponent} from './component/admin-panel/menus/menus.component';
+import {CategoriesComponent} from './component/admin-panel/categories/categories.component';
+import {HeroComponent} from './component/admin-panel/hero/hero.component';
+import {ItemsComponent} from './component/admin-panel/items/items.component';
+import {ListRestoComponent} from './component/admin-panel/list-resto/list-resto.component';
+import {OrderItemComponent} from './component/admin-panel/overview/order-item/order-item.component';
+import {OverviewComponent} from './component/admin-panel/overview/overview.component';
 
 
 @NgModule({
@@ -55,6 +64,15 @@ import {RestaurantOrdersComponent} from './component/restaurant/restaurant-order
     OrderHistoryComponent,          //
     ClientProfileComponent,         //
     FavoriteRestaurantComponent,    // }
+    AdminPanelComponent,                // ADMIN PANEL COMPONENTS {
+    RestaurantMenuUpdatePanelComponent, //
+    MenusComponent,                     //
+    CategoriesComponent,                //
+    ItemsComponent,                     //
+    HeroComponent,                      //
+    ListRestoComponent,                 //
+    OrderItemComponent,                 //
+    OverviewComponent,                  //
     MainComponent,
     AppComponent,
     HeaderComponent,

@@ -14,6 +14,8 @@ import {takeUntil} from 'rxjs/operators';
 import {DisplayMessage} from '../../shared/models/display-message';
 import {Subject} from 'rxjs';
 import {Courier} from '../Person/Employee/courier';
+import {User} from '../Person/user';
+import {UserService} from '../../service';
 
 
 export const LINKS: object[] = [
@@ -35,29 +37,19 @@ export class CourierPanelComponent implements OnInit {
   title = 'Panel kuriera';
   public courier: Courier[];
   links = LINKS;
-
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
-  notification: DisplayMessage;
-  returnUrl: string;
+  user: User;
 
   constructor(private library: FaIconLibrary,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private userService: UserService) {
     library.addIcons(faPlayCircle, faSearch,
       faListAlt, faLocationArrow, faCalendarAlt, faUserCircle, faQuestionCircle,
       faComments, faHistory);
   }
 
   ngOnInit(): void {
-    this.route.params
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((params: DisplayMessage) => {
-        this.notification = params;
-      });
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.user = this.userService.currentUser;
+    console.log('courier-panel this.user: ', this.user.id, this.user.firstname);
   }
+
 }
-
-
 

@@ -13,7 +13,7 @@ public interface CourierRepo extends CrudRepository<Courier, Long> {
     void deleteCourierById(Long personId);
 
     @Query(value = "SELECT new com.masnaszama.model.person.Employee.Courier" +
-    "(c.firstName, c.lastName, c.phonenumber, c.averageDeliveryTime, c.numberOfDeliveries ) " +
+    "(c.id, c.firstName, c.lastName, c.phonenumber, c.averageDeliveryTime, c.numberOfDeliveries ) " +
     "FROM Courier c " +
     "WHERE c.id = ?1")
     Optional<Courier> findCourierById(Long personId);

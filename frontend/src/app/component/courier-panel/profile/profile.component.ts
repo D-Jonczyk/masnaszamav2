@@ -58,6 +58,7 @@ export class ProfileComponent implements OnInit {
       (response: CourierProfile) => {
         this.courierProfile = response;
         this.editProfile = this.courierProfile;
+        console.log('courier profile id"', response.id, '" firstname: "', response.firstName,'" lastname "', response.lastName,'"');
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

@@ -1,8 +1,8 @@
 export class CourierProfile {
-  personId: number;
+  id: number;
   firstName: string;
   lastName: string;
-  phoneNumber: number;
+  phonenumber: number;
   averageDeliveryTime: number;
   numberOfDeliveries: number;
 }
