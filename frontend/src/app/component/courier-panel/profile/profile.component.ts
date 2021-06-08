@@ -13,8 +13,8 @@ import {
   faUserCircle
 } from '@fortawesome/free-solid-svg-icons';
 import {CourierProfileService} from './courier-profile.service';
-import {CourierProfile} from './courier-profile';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Courier} from '../../Person/Employee/courier';
 
 @Component({
   selector: 'app-profile',
@@ -25,9 +25,8 @@ export class ProfileComponent implements OnInit {
   isClicked = true;
   isWorking = false;
   links = LINKS;
-  public courierProfile = new CourierProfile();
-  public editProfile = new CourierProfile();
-  public courierId = COURIERID;
+  public courierProfile: Courier;
+  public editProfile: Courier;
 
   constructor(public route: ActivatedRoute, private library: FaIconLibrary,
               private courierProfileService: CourierProfileService) {
@@ -37,25 +36,24 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCourierProfile();
+    this.getCourierProfile(COURIERID);
   }
 
-  public onEditProfile(courier: CourierProfile): void {
+  public onEditProfile(courier: Courier): void {
     this.courierProfileService.editCourierProfile(courier).subscribe(
-      (response: CourierProfile) => {
+      (response: Courier) => {
         console.log(response);
-        this.getCourierProfile();
+        this.getCourierProfile(response.id);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        this.getCourierProfile();
       }
     );
   }
 
-  getCourierProfile(): void {
-    this.courierProfileService.getCourierProfile(this.courierId).subscribe(
-      (response: CourierProfile) => {
+  getCourierProfile(courierId): void {
+    this.courierProfileService.getCourierProfile(courierId).subscribe(
+      (response: Courier) => {
         this.courierProfile = response;
         this.editProfile = this.courierProfile;
         console.log('courier profile id"', response.id, '" firstname: "', response.firstName,'" lastname "', response.lastName,'"');
