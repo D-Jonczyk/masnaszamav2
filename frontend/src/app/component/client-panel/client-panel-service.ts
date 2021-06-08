@@ -7,6 +7,7 @@ import {UserService} from '../../service';
 import {User} from '../Person/user';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,12 +16,11 @@ export class ClientPanelService {
   clientLastName:string;
   accImgLink:string;
   user = this.userService.currentUser;
-  private clientProfileUrl = environment.apiBaseUrl + '/user/';
+  private clientProfileByIdUrl = environment.apiBaseUrl + '/user/findById/';
   constructor(private http: HttpClient,
               private userService: UserService,) {
   }
-  getClientProfile(id:number): Observable<User> {
-    return this.http.get<User>(this.clientProfileUrl + id);
+  getClientProfileById(id:number): Observable<User> {
+    return this.http.get<User>(this.clientProfileByIdUrl + id);
   }
-
 }

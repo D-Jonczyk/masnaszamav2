@@ -11,6 +11,7 @@
     <mat-card-content>
       <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
       <form (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+        <input type="hidden"  formControlName="imgUrl" >
         <mat-form-field>
           <label>Username:
             <input formControlName="username" matInput required>

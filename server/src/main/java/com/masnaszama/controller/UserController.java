@@ -3,6 +3,7 @@ package com.masnaszama.controller;
 import com.masnaszama.exception.ResourceConflictException;
 import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
+import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -11,10 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.HashMap;
@@ -38,9 +36,14 @@ public class UserController {
 
     @RequestMapping(method = GET, value = "/user/{userId}")
     public User loadById(@PathVariable Long userId) {
+
         return this.userService.findById(userId);
     }
-
+    @GetMapping("/user/findById/{id}")
+    public ResponseEntity<User> getCourierById(@PathVariable("id") Long userId){
+        User user = userService.findUserById(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
     @RequestMapping(method = GET, value = "/user/all")
     public List<User> loadAll() {
         return this.userService.findAll();

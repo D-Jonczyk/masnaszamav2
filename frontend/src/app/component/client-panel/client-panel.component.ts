@@ -66,8 +66,8 @@ export class ClientPanelComponent implements OnInit {
     this.userName()
     this.user = this.userService.currentUser;
     if(this.hasSignedIn()) {
-      console.log('client-panel this.user: ', this.user.id, this.user.firstName, this.user.phonenumber);
-      this.getClientProfile(this.user.id);
+      console.log('client-panel this.user: ', this.user);
+      this.getClientProfileById(this.user.id);
     }
   }
   userName() {
@@ -117,12 +117,11 @@ export class ClientPanelComponent implements OnInit {
     }
   }
 
-  getClientProfile(id): void {
-    this.clientPanelService.getClientProfile(id).subscribe(
+  getClientProfileById(id): void {
+    this.clientPanelService.getClientProfileById(id).subscribe(
       (response: User) => {
         this.user = response;
         CLIENTID = response.id;
-        console.log(response);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
