@@ -20,6 +20,14 @@ export class AccountMenuComponent implements OnInit {
   ) {
   }
 
+  hasRoleEmployee() {
+    const user = this.userService.currentUser;
+    if(user.authorities[0].authority !== null)
+    {
+      return user.authorities[0].authority === 'ROLE_EMPLOYEE';
+    }
+  }
+
   ngOnInit() {
     this.user = this.userService.currentUser;
   }

@@ -3,12 +3,15 @@
 INSERT INTO user (id, username, password, phonenumber, first_name, last_name) VALUES (1, 'user', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 123456789, 'kacper', 'Jurek');
 INSERT INTO user (id, username, password, phonenumber, first_name, last_name) VALUES (2, 'admin', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 987654321, 'daniel', 'Jończyk');
 INSERT INTO user (id, username, password, phonenumber, first_name, last_name) VALUES (3, 'kurier', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 987654321, 'daniel', 'Jończyk');
+INSERT INTO user (id, username, password, phonenumber, first_name, last_name) VALUES (4, 'employee', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 124324232, 'damian', 'linek');
 
 INSERT INTO authority (id, name) VALUES (1, 'ROLE_USER');
 INSERT INTO authority (id, name) VALUES (2, 'ROLE_ADMIN');
 INSERT INTO authority (id, name) VALUES (3, 'ROLE_COURIER');
+INSERT INTO authority (id, name) VALUES (4, 'ROLE_EMPLOYEE');
 
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
 INSERT INTO user_authority (user_id, authority_id) VALUES (3, 3);
+INSERT INTO user_authority (user_id, authority_id) VALUES (4, 4);

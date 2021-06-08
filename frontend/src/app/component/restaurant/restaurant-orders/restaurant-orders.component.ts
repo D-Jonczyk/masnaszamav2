@@ -26,10 +26,14 @@ export class RestaurantOrdersComponent implements OnInit {
   }
 
   getOrders(): void {
-    //const id = +this.route.snapshot.paramMap.get('id');
-    //zmienić na id dla zalogowanej restauracji
-    //this.restaurantOrders$ = this.restaurantOrdersService.getOrders(42);
-    this.restaurantOrdersService.getOrders(42).subscribe
+    // const id = +this.route.snapshot.paramMap.get('id');
+    // zmienić na id dla zalogowanej restauracji
+    // this.restaurantOrders$ = this.restaurantOrdersService.getOrders(42);
+    const restId = this.restaurantOrdersService.getRestaurantId();
+
+
+    // 42
+    this.restaurantOrdersService.getOrders(restId).subscribe
     (results => {
       results = results.reduce((acc, {orderId, name}) => {
         const existing = acc.find(i => i.orderId === orderId)
@@ -44,12 +48,13 @@ export class RestaurantOrdersComponent implements OnInit {
     } );
 
 
-    //console.log(this.restaurantOrders);
-    //this.mergeOrders();
+    // console.log(this.restaurantOrders);
+    // this.mergeOrders();
   }
 
   setDone(id): void {
-    let removeIndex  = this.restaurantOrders.findIndex(order => order.orderId === id);
+    // let
+    const removeIndex  = this.restaurantOrders.findIndex(order => order.orderId === id);
     this.restaurantOrders.splice(removeIndex, 1);
   }
 }

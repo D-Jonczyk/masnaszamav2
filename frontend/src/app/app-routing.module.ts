@@ -23,7 +23,11 @@ import {AdminPanelComponent} from './component/admin-panel/admin-panel.component
 import {CategoriesComponent} from './component/admin-panel/categories/categories.component';
 import {RestaurantMenuUpdatePanelComponent} from './component/admin-panel/restaurant-menu-update-panel/restaurant-menu-update-panel.component';
 import {ListRestoComponent} from './component/admin-panel/list-resto/list-resto.component';
-
+import {ClientPanelComponent} from './component/client-panel';
+import {ClientProfileComponent} from './component/client-panel/client-profile';
+import {ClientAdressComponent} from './component/client-panel/client-adress';
+import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
+import {OrderHistoryComponent} from './component/client-panel/order-history';
 
 export const routes: Routes = [
   {
@@ -75,6 +79,36 @@ export const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'restaurant-menu-update-panel', component: RestaurantMenuUpdatePanelComponent},
   {path: 'list-resto', component: ListRestoComponent},
+  {
+    // client
+    path: 'client-panel',
+    component: ClientPanelComponent,
+    pathMatch: 'full'
+  },
+  {
+    // client
+    path: 'client-profile',
+    component: ClientProfileComponent,
+    pathMatch: 'full'
+  },
+  {
+    // client
+    path: 'client-adress',
+    component: ClientAdressComponent,
+    pathMatch: 'full'
+  },
+  {
+    // client
+    path: 'favorite-restaurant',
+    component: FavoriteRestaurantComponent,
+    pathMatch: 'full'
+  },
+  {
+    // client
+    path: 'order-history',
+    component: OrderHistoryComponent,
+    pathMatch: 'full'
+  },
   {
     path: 'signup',
     component: SignupComponent,

@@ -45,6 +45,9 @@ export class HeaderComponent implements OnInit {
       else if (authority.authority === 'ROLE_COURIER') {
         return 'Kurier';
       }
+      else if (authority.authority === 'ROLE_EMPLOYEE') {
+        return 'Pracownik';
+      }
     }
     return '';
   }

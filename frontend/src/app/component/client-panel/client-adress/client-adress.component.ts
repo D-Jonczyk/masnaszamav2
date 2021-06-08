@@ -21,13 +21,11 @@ export class ClientAdressComponent implements OnInit {
 
   titel = 'Adresy klienta';
   public customers: Customer[];
-  public accountIcon = this.clientPanelService.accLink;
   public clientName = this.clientPanelService.clientName;
-  public clientSurname = this.clientPanelService.clientSurname;
   links=LINKS;
 
   constructor(private library: FaIconLibrary,
-              private clientPanelService:ClientPanelService ) {
+              public clientPanelService:ClientPanelService ) {
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
       faClipboardList, faHeadset, faPhoneAlt, faCheckCircle, faPlayCircle, faListAlt, faLocationArrow,
       faCalendarAlt, faUserCircle, faQuestionCircle, faComments, faHistory,faSignOutAlt,faCrown);

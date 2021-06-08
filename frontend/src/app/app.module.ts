@@ -28,11 +28,11 @@ import {ShowScheduleComponent} from './component/courier-panel/Schedule/show-sch
 import {ProfileComponent} from './component/courier-panel/profile/profile.component';
 import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
 import {OrderlistComponent} from './component/courier-panel/orderlist';
-import {ClientAdressComponent} from './component/client-panel/client-adress/client-adress.component';
-import {ClientProfileComponent} from './component/client-panel/client-profile/client-profile.component';
-import {OrderHistoryComponent} from './component/client-panel/order-history/order-history.component';
-import {ClientPanelComponent} from './component/client-panel/client-panel.component';
-import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant/favorite-restaurant.component';
+import {ClientPanelComponent} from './component/client-panel';
+import {ClientProfileComponent} from './component/client-panel/client-profile';
+import {ClientAdressComponent} from './component/client-panel/client-adress';
+import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
+import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {AngularFireModule} from '@angular/fire';
 import {WeekPipe} from './component/courier-panel/Schedule/show-schedule/week.pipe';
 import {MainComponent} from './component/main/main.component';
@@ -49,6 +49,7 @@ import {ItemsComponent} from './component/admin-panel/items/items.component';
 import {ListRestoComponent} from './component/admin-panel/list-resto/list-resto.component';
 import {OrderItemComponent} from './component/admin-panel/overview/order-item/order-item.component';
 import {OverviewComponent} from './component/admin-panel/overview/overview.component';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 
 @NgModule({
@@ -104,7 +105,17 @@ import {OverviewComponent} from './component/admin-panel/overview/overview.compo
     AngularMaterialModule,
     NgbModule,
     FontAwesomeModule,
-    AngularFireModule
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyC7CWGYVLRrx4jwmsC426nkEw99Wj9jEgs",
+      authDomain: "masnaszamcia.firebaseapp.com",
+      databaseURL: "https://masnaszamcia-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "masnaszamcia",
+      storageBucket: "masnaszamcia.appspot.com",
+      messagingSenderId: "833793167737",
+      appId: "1:833793167737:web:6367af96965d4cc78d1fa8",
+      measurementId: "G-Y8L2GJBD96"
+    }),
+    AngularFireStorageModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

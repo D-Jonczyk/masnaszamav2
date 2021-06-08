@@ -2,6 +2,7 @@ package com.masnaszama.model.person;
 
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.order.Order;
+import com.masnaszama.model.restaurant.Restaurant;
 import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
 
@@ -21,7 +22,6 @@ public class Customer extends Person{
 
     @OneToMany(mappedBy="customer", fetch = FetchType.EAGER)
     private Set<Order> orders;
-
 
     public Customer(String firstName, String lastName){
         this.firstName = firstName;
@@ -43,4 +43,5 @@ public class Customer extends Person{
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
+
 }

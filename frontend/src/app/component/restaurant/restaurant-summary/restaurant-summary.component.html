@@ -10,8 +10,9 @@
         <div class="form-row align-items-center">
           <div class="col-auto my-1">
             <label class="mr-sm-2" for="inlineFormCustomSelect">Sortuj</label>
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-              <option value="topRated" selected>Najwyżej oceniane</option>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" (change)="selectFilter($event)">
+              <option value="topRated" selected>Sortuj</option>
+              <option value="topRated">Najwyżej oceniane</option>
               <option value="minOrderPrice">Minimalna kwota zamówienia</option>
               <option value="deliveryTime">Przewidywany czas dostawy</option>
               <option value="alpha">Alfabetycznie</option>
@@ -21,12 +22,12 @@
         </div>
 
         <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="openedNow">
+          <input [checked]="openedCheckbox" type="checkbox" class="custom-control-input" id="openedNow" (change)="getOpened($event)">
           <label class="custom-control-label" for="openedNow">Otwarte teraz</label>
         </div>
 
         <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="freeDelivery">
+          <input [checked]="freeDeliveryCheckbox" type="checkbox" class="custom-control-input" id="freeDelivery" (change)="getFreeDelivery($event)">
           <label class="custom-control-label" for="freeDelivery">Bezpłatna dostawa</label>
         </div>
 

@@ -1,2 +1,4 @@
+<button *ngIf="hasRoleEmployee()" [routerLink]="['/restaurant-orders']" mat-menu-item>RESTAURANTS ORDERS</button>
 <button [routerLink]="['/change-password']" mat-menu-item>CHANGE PASSWORD</button>
+<button [routerLink]="['/client-panel']" mat-menu-item>Zobacz swoj profil</button>
 <button (click)="logout()" mat-menu-item>SIGN OUT</button>

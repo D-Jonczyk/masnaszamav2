@@ -75,7 +75,7 @@ public class UserController {
      * sure that the user has role "ROLE_USER" to access this endpoint.
      */
     @RequestMapping("/whoami")
-    @PreAuthorize("hasAnyRole('USER', 'COURIER')")
+    @PreAuthorize("hasAnyRole('USER', 'COURIER', 'EMPLOYEE')")
     public UserRequest user() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserRequest userRequest = new UserRequest();
