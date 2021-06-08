@@ -5,16 +5,25 @@ import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.model.views.CourierSchedules;
 import com.masnaszama.model.views.OrdersFinished;
 import com.masnaszama.repository.CourierRepo;
+import com.masnaszama.service.CourierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class CourierService {
+public class CourierServiceImpl implements CourierService {
+
     private final CourierRepo courierRepo;
 
     @Autowired
-    public CourierService(CourierRepo courierRepo) {
+    public CourierServiceImpl(CourierRepo courierRepo) {
         this.courierRepo = courierRepo;
+    }
+
+    @Override
+    public Courier findCourierByPhonenumber(Long phonenumber) {
+        return courierRepo.findCourierByPhonenumber(phonenumber);
     }
 
     public Iterable<Courier> findAllCouriers() {

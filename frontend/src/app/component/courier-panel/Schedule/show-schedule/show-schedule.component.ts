@@ -12,7 +12,7 @@ import {
   faSearch,
   faUserCircle
 } from '@fortawesome/free-solid-svg-icons';
-import { LINKS } from '../../courier-panel.component';
+import {COURIERID, LINKS} from '../../courier-panel.component';
 import {DaySchedule} from './day-schedule';
 import {CourierScheduleService} from './courier-schedule.service';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -24,7 +24,7 @@ import {WeekPipe} from './week.pipe';
   styleUrls: ['../../courier-panel.component.css', './show-schedule.component.css']
 })
 export class ShowScheduleComponent implements OnInit {
-  courierId = 222;
+  courierId = COURIERID;
   closeResult = '';
   links = LINKS;
   startTime: NgbTimeStruct = {hour: 13, minute: 30, second: 0};

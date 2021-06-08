@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faPauseCircle, faPlayCircle} from '@fortawesome/free-regular-svg-icons';
-import {LINKS} from '../courier-panel.component';
+import {COURIERID, LINKS} from '../courier-panel.component';
 import {
   faCalendarAlt,
   faComments,
@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   links = LINKS;
   public courierProfile = new CourierProfile();
   public editProfile = new CourierProfile();
-  public courierId = 201;
+  public courierId = COURIERID;
 
   constructor(public route: ActivatedRoute, private library: FaIconLibrary,
               private courierProfileService: CourierProfileService) {

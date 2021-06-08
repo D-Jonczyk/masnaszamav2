@@ -85,6 +85,7 @@ public class UserController {
         userRequest.setId(user.getId());
         userRequest.setImgUrl(user.getImgUrl());
         userRequest.setAuthorities((List<Authority>) user.getAuthorities());
+        userRequest.setPhonenumber(user.getPhonenumber());
         return userRequest;
     }
 

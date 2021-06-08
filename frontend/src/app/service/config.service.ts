@@ -38,6 +38,12 @@ export class ConfigService {
     return this._whoamiUrl;
   }
 
+  private courierUrl = this.apiUrl + '/courier/findByPhone';
+
+  get courierProfileUrl(): string {
+    return this.courierUrl;
+  }
+
   private _usersUrl = this.userUrl + '/all';
 
   get usersUrl(): string {

@@ -3,20 +3,21 @@ package com.masnaszama.controller;
 import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.model.views.CourierSchedules;
 import com.masnaszama.model.views.OrdersFinished;
-import com.masnaszama.service.impl.CourierService;
+import com.masnaszama.service.impl.CourierServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/courier", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CourierController {
-    private final CourierService courierService;
+    private final CourierServiceImpl courierService;
 
-    public CourierController(CourierService courierService) {
+    public CourierController(CourierServiceImpl courierService) {
         this.courierService = courierService;
     }
 
@@ -29,6 +30,12 @@ public class CourierController {
     @GetMapping("/find/{id}")
     public ResponseEntity<Courier> getCourierById(@PathVariable("id") Long personId){
         Courier courier = courierService.findCourierById(personId);
+        return new ResponseEntity<>(courier, HttpStatus.OK);
+    }
+
+    @GetMapping("/findByPhone/{phonenumber}")
+    public ResponseEntity<Courier> getCourierByPhonenumber(@PathVariable("phonenumber") Long phonenumber){
+        Courier courier = courierService.findCourierByPhonenumber(phonenumber);
         return new ResponseEntity<>(courier, HttpStatus.OK);
     }
 
