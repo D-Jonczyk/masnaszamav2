@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {CourierProfile} from './courier-profile';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
+import {Courier} from '../../Person/Employee/courier';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +15,14 @@ export class CourierProfileService {
   constructor(private http: HttpClient) {
   }
 
-  getCourierProfile(courierId): Observable<CourierProfile> {
-    return this.http.get<CourierProfile>(this.courierProfileUrl + courierId);
+  getCourierProfile(courierId): Observable<Courier> {
+    return this.http.get<Courier>(this.courierProfileUrl + courierId);
   }
 
-  editCourierProfile(courier: CourierProfile): Observable<CourierProfile> {
+  editCourierProfile(courier: Courier): Observable<Courier> {
     console.log('courier.id: ', courier.id, 'phoneNumber: ',
       courier.phonenumber, 'firstName', courier.firstName, 'lastName: ', courier.lastName);
-    return this.http.put<CourierProfile>(this.editProfileUrl, courier);
+    return this.http.put<Courier>(this.editProfileUrl, courier);
   }
 }
 
