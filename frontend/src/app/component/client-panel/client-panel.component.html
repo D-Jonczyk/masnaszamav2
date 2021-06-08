@@ -13,11 +13,10 @@
     <div class="col-lg-3 float-left">
       <div class="left-navbar text-center">
 
-        <!-- <a [routerLink]="['/courier-panel']"> -->
         <nav>
           <img class="displayed" [src]="clientPanelService.accImgLink" alt="accountIcon">
           <h4>Witaj</h4>
-          <h4 class="mb-0"> {{userName()}}!</h4>
+          <h4 class="mb-0"> {{this.clientPanelService.clientName}} {{this.clientPanelService.clientLastName}} !</h4>
           <hr/>
           <ul ngbNav>
             <li class="btn-block border-white" [ngbNavItem]="link.fragment" *ngFor="let link of links">
@@ -36,19 +35,104 @@
     <!-- content -->
     <div class="col-lg-9">
       <div class="card-box col-lg-9">
-
-
-
         <div class="tab-content" id="ngbNav">
-          <div class="tab-pane fade show active"  role="tabpanel">
-            <h3>Witaj na Masna Szama!</h3>
-
-
+          <div class="tab-pane fade show active" id="schedule" role="tabpanel">
+            <h1 class="display-1 text-center">Edytowanie profilu</h1>
+            <hr>
+            <div class="container">
+              <p class="display-4 text-center astext" (click)="open(changeImg)">Edytuj swoj awatar</p>
+              <p></p>
+              <hr>
+              <p class="display-4 text-center astext" (click)="open(changeData); ">Edytuj swoje dane</p>
+              <p></p>
+              <hr>
+            </div>
           </div>
         </div>
       </div> <!-- end tab-content -->
     </div> <!-- end card-box-->
   </div> <!-- end col -->
 </div>
+
+<!--change image -->
+<ng-template #changeImg let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Wybierz zdjęcie które checsz  dodać!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click');">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="displayed" [src]="accPomLink" alt="accountIcon">
+    <input type="file" (change)="upload($event); openImage($event) " accept=".png,.jpg" />
+    <button type="button" class="btn btn-outline-dark" (click)=" uploadImage(); ">Zapisz zdjecie</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click');">Wroc</button>
+  </div>
+</ng-template>
+<!--finish change image -->
+
+<!--change data -->
+<ng-template #changeData let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Zmien swoje dane, a nastepnie zapisz!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-lg-8">
+      <form class="form-horizontal" role="form" #editForm="ngForm">
+        <input type="hidden" ngModel="{{editProfile?.personId}}" name="personId" class="form-control" id="personId">
+        <input type="hidden" ngModel="{{editProfile?.userPassword}}" name="userPassword" class="form-control" id="userPassword">
+        <input type="hidden" ngModel="{{editProfile?.imgUrl}}" name="imgUrl"  class="form-control" id="imgUrl" >
+
+        <div class="form-group">
+          <label class="col-lg-8 control-label">Imię:</label>
+          <div class="col-lg-8">
+            <label>
+              <input class="form-control" ngModel="{{editProfile?.firstName}}" id="firstName" name="firstName" type="text" required>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-8 control-label">Nazwisko:</label>
+          <div class="col-lg-8">
+            <label>
+              <input class="form-control" ngModel="{{editProfile?.lastName}}" id="lastName" name="lastName" type="text" required>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-8 control-label">Nazwa użytkownika:</label>
+          <div class="col-lg-8">
+            <label>
+              <input class="form-control" ngModel="{{editProfile?.userName}}" id="userName" name="userName"  type="text" required>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-8 control-label">Numer telefonu:</label>
+          <div class="col-lg-8">
+            <label>
+              <input class="form-control" value="{{clientProfile.phoneNumber}}" ngModel="{{editProfile?.phoneNumber}}" id="phoneNumber" name="phoneNumber" type="text" required>
+            </label>
+          </div>
+        </div>
+        <div class="form-check-label col-lg-8">
+          <button class="btn btn-outline-primary">Zatwierdź zmiany</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Zakoncz</button>
+  </div>
+</ng-template>
+
+<!-- finish change data -->
 </body>
 </html>

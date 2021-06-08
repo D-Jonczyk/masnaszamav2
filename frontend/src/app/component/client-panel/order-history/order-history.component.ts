@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {
-  faCalendarAlt,  faCheckSquare, faClipboardList,  faCoffee, faComments, faFingerprint, faHandMiddleFinger,
-  faHeadset, faHistory,  faInfo, faListAlt,  faLocationArrow,  faMapMarkerAlt, faPhoneAlt, faQuestionCircle, faSearch,
-  faSquare,  faTruckLoading, faUserCircle, faSignOutAlt,faCrown
+  faCalendarAlt, faCheckSquare, faClipboardList, faCoffee, faComments, faFingerprint, faHandMiddleFinger,
+  faHeadset, faHistory, faInfo, faListAlt, faLocationArrow, faMapMarkerAlt, faPhoneAlt, faQuestionCircle, faSearch,
+  faSquare, faTruckLoading, faUserCircle, faSignOutAlt, faCrown, faQuestion
 } from '@fortawesome/free-solid-svg-icons';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
@@ -23,7 +23,6 @@ export class OrderHistoryComponent implements OnInit {
   links=LINKS;
 
 
-  public clientName = this.clientPanelService.clientName;
 
 
   constructor(public route: ActivatedRoute,
@@ -32,7 +31,7 @@ export class OrderHistoryComponent implements OnInit {
               ) {
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
       faClipboardList, faHeadset, faPhoneAlt, faCheckCircle, faPlayCircle, faListAlt, faLocationArrow,
-      faCalendarAlt, faUserCircle, faQuestionCircle, faComments, faHistory,faSignOutAlt,faCrown);
+      faCalendarAlt, faUserCircle, faQuestionCircle, faComments, faHistory,faSignOutAlt,faCrown,faQuestion);
   }
 
   ngOnInit(): void {

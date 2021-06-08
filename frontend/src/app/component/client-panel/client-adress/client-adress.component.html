@@ -17,7 +17,7 @@
         <nav>
           <img class="displayed" [src]="clientPanelService.accImgLink" alt="accountIcon">
           <h4>Witaj</h4>
-          <h4 class="mb-0"> {{clientName}}!</h4>
+          <h4 class="mb-0"> {{this.clientPanelService.clientName}} {{this.clientPanelService.clientLastName}} !</h4>
           <hr/>
           <ul ngbNav>
             <li class="btn-block border-white" [ngbNavItem]="link.fragment" *ngFor="let link of links">
