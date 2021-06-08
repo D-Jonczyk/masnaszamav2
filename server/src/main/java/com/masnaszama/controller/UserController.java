@@ -3,7 +3,6 @@ package com.masnaszama.controller;
 import com.masnaszama.exception.ResourceConflictException;
 import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
-import com.masnaszama.model.UserRequest;
 import com.masnaszama.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -56,9 +55,10 @@ public class UserController {
     }
 
     @RequestMapping(method = POST, value = "/signup")
-    public ResponseEntity<?> addUser(@RequestBody UserRequest userRequest,
+    public ResponseEntity<?> addUser(@RequestBody User userRequest,
                                      UriComponentsBuilder ucBuilder) {
 
+        System.out.println("userRequest" + userRequest);
         User existUser = this.userService.findByUsername(userRequest.getUsername());
         if (existUser != null) {
             throw new ResourceConflictException(userRequest.getId(), "Username already exists");
@@ -75,13 +75,13 @@ public class UserController {
      * sure that the user has role "ROLE_USER" to access this endpoint.
      */
     @RequestMapping("/whoami")
-    @PreAuthorize("hasAnyRole('USER', 'COURIER', 'EMPLOYEE')")
-    public UserRequest user() {
+    @PreAuthorize("hasAnyRole('USER', 'COURIER', 'EMPLOYEE', 'ADMIN')")
+    public User user() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserRequest userRequest = new UserRequest();
+        User userRequest = new User();
         userRequest.setUsername(user.getUsername());
-        userRequest.setFirstname(user.getFirstName());
-        userRequest.setLastname(user.getLastName());
+        userRequest.setFirstName(user.getFirstName());
+        userRequest.setLastName(user.getLastName());
         userRequest.setId(user.getId());
         userRequest.setImgUrl(user.getImgUrl());
         userRequest.setAuthorities((List<Authority>) user.getAuthorities());

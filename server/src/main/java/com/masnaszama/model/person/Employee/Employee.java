@@ -35,6 +35,8 @@ public class Employee extends Person {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="restaurant_id")//, nullable=false)
     private Restaurant myRestaurant;
+    @Id
+    private Long id;
 
     public Restaurant getMyRestaurant() {
         return myRestaurant;
@@ -42,5 +44,13 @@ public class Employee extends Person {
 
     public void setMyRestaurant(Restaurant myRestaurant) {
         this.myRestaurant = myRestaurant;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

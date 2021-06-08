@@ -53,8 +53,8 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
-      firstname: [''],
-      lastname: [''],
+      firstName: [''],
+      lastName: [''],
       phonenumber: ['', Validators.compose([Validators.required, Validators.minLength(9), Validators.maxLength(9)])]
     });
   }
@@ -62,10 +62,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
-  }
-
-  repository() {
-    window.location.href = this.githubLink;
   }
 
   onSubmit() {

@@ -45,7 +45,7 @@ export class CourierPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.currentUser;
-    console.log('courier-panel this.user: ', this.user.id, this.user.firstname, this.user.personId);
+    console.log('courier-panel this.user: ', this.user.id, this.user.firstName, this.user.id);
   }
 
 }
