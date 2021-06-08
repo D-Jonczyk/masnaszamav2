@@ -25,7 +25,8 @@ public class Courier extends Employee {
     public Courier(){
     }
 
-    public Courier(String firstName, String lastName, Long phoneNumber, Integer averageDeliveryTime, Integer numberOfDeliveries){
+    public Courier(Long id, String firstName, String lastName, Long phoneNumber, Integer averageDeliveryTime, Integer numberOfDeliveries){
+        this.setId(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.phonenumber = phoneNumber;

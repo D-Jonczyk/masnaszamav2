@@ -39,7 +39,7 @@
                 </div>
 
                 <form class="form-horizontal" role="form" #editForm="ngForm">
-                  <input type="hidden" ngModel="{{editProfile?.personId}}" name="personId" class="form-control" id="personId">
+                  <input type="hidden" ngModel="{{editProfile?.id}}" name="id" class="form-control" id="id">
                   <input type="hidden" ngModel="{{editProfile?.numberOfDeliveries}}" name="numberOfDeliveries" class="form-control" id="numberOfDeliveries">
                   <input type="hidden" ngModel="{{editProfile?.averageDeliveryTime}}" name="averageDeliveryTime" class="form-control" id="averageDeliveryTime">
                   <div class="form-group">
@@ -62,7 +62,7 @@
                     <label class="col-lg-8 control-label">Numer telefonu:</label>
                     <div class="col-lg-8">
                       <label>
-                        <input class="form-control" value="{{courierProfile.phoneNumber}}" ngModel="{{editProfile?.phoneNumber}}" id="phoneNumber" name="phoneNumber" type="text" required>
+                        <input class="form-control" value="{{courierProfile.phonenumber}}" ngModel="{{editProfile?.phonenumber}}" id="phonenumber" name="phonenumber" type="text" required>
                       </label>
                     </div>
                   </div>
