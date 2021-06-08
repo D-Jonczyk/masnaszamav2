@@ -2,30 +2,17 @@ package com.masnaszama.model.person;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.User;
-import org.hibernate.annotations.Polymorphism;
-import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-
-@Entity
-@Polymorphism(type = PolymorphismType.EXPLICIT)
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public class Person implements Serializable {
 
-    @SequenceGenerator(
-            name = "person_sequence",
-            sequenceName = "person_sequence",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "person_sequence"
-    )
+    @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
@@ -33,10 +20,6 @@ public class Person implements Serializable {
     protected String lastName;
     @Column(nullable = false)
     protected Long phonenumber;
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    private Set<User> userAccounts = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -61,11 +44,5 @@ public class Person implements Serializable {
     }
     public void setPhonenumber(Long phoneNumber) {
         this.phonenumber = phoneNumber;
-    }
-    public Set<User> getUserAccounts() {
-        return userAccounts;
-    }
-    public void setUserAccounts(Set<User> userAccounts) {
-        this.userAccounts = userAccounts;
     }
 }

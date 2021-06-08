@@ -9,10 +9,7 @@ import {
   faSearch,
   faUserCircle
 } from '@fortawesome/free-solid-svg-icons';
-import {ActivatedRoute, Router} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
-import {DisplayMessage} from '../../shared/models/display-message';
-import {Subject} from 'rxjs';
+
 import {Courier} from '../Person/Employee/courier';
 import {User} from '../Person/user';
 import {UserService} from '../../service';
@@ -48,7 +45,7 @@ export class CourierPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.currentUser;
-    console.log('courier-panel this.user: ', this.user.id, this.user.firstname);
+    console.log('courier-panel this.user: ', this.user.id, this.user.firstname, this.user.personId);
   }
 
 }

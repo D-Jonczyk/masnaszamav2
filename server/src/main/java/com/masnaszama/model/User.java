@@ -1,6 +1,5 @@
 package com.masnaszama.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.masnaszama.model.person.Person;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "USER")
-public class User implements UserDetails, Serializable {
+public class User extends Person implements UserDetails, Serializable  {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +20,6 @@ public class User implements UserDetails, Serializable {
 
     @Column(name = "username")
     private String username;
-
 
     @JsonIgnore
     @Column(name = "password")
@@ -35,11 +33,6 @@ public class User implements UserDetails, Serializable {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private List<Authority> authorities;
-
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id", nullable = false)
-    private Person person;
 
     public Long getId() {
         return id;
@@ -71,14 +64,6 @@ public class User implements UserDetails, Serializable {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     @Override

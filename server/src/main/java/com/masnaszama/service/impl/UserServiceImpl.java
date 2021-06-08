@@ -5,7 +5,6 @@ import com.masnaszama.model.User;
 import com.masnaszama.model.UserRequest;
 import com.masnaszama.model.UserRoleName;
 import com.masnaszama.model.person.Person;
-import com.masnaszama.repository.PersonRepository;
 import com.masnaszama.repository.UserRepository;
 import com.masnaszama.service.AuthorityService;
 import com.masnaszama.service.UserService;
@@ -27,14 +26,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final PersonRepository personRepository;
 
     private final AuthorityService authService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, PersonRepository personRepository, AuthorityService authService) {
+    public UserServiceImpl(UserRepository userRepository, AuthorityService authService) {
         this.userRepository = userRepository;
-        this.personRepository = personRepository;
         this.authService = authService;
     }
 
@@ -65,23 +62,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(UserRequest userRequest) {
         User user = new User();
-        Person person;
-        Optional<Person> optionalPerson = personRepository.findByPhonenumber(userRequest.getPhonenumber());
-        if(optionalPerson.isPresent()) {
-            person = optionalPerson.get();
-        }
-        else {
-            System.out.println("phone, last, first:" + userRequest.getPhonenumber() + "" + userRequest.getLastname() + "" + userRequest.getFirstname());
-            person = new Person();
-            person.setPhonenumber(userRequest.getPhonenumber());
-            person.setLastName(userRequest.getLastname());
-            person.setFirstName(userRequest.getFirstname());
-            personRepository.save(person);
-        }
-        user.setPerson(person);
         user.setUsername(userRequest.getUsername());
         user.setPassword(getBCryptPasswordEncoder().encode(userRequest.getPassword()));
         user.setImgUrl(userRequest.getImgUrl());
+        user.setFirstName(userRequest.getFirstname());
+        user.setLastName(userRequest.getLastname());
         List<Authority> auth = authService.findByName(UserRoleName.ROLE_USER);
         user.setAuthorities(auth);
         return userRepository.save(user);
