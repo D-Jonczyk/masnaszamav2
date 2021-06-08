@@ -28,7 +28,7 @@ public interface OrderRepo extends CrudRepository<Order, Long> {
     "WHERE o.customer.id = ?1")
     List<OrdersDTO> getOrderByCustomerId(Long customerId);
 
-    // Test
+     //Work fine
     @Query(value = "SELECT new com.masnaszama.dto.RestaurantOrdersDTO" +
                     "(o.orderId, m.mealName) " +
             "FROM Order o " +

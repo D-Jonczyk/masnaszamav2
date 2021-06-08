@@ -104,6 +104,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       else if (authority.authority === 'ROLE_COURIER') {
         return '/courier-panel';
       }
+      else if(authority.authority === 'ROLE_EMPLOYEE'){
+        return '/';
+      }
     }
   }
 }

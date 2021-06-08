@@ -2,6 +2,8 @@ package com.masnaszama.model.restaurant;
 
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.order.Order;
+import com.masnaszama.model.person.Customer;
+import com.masnaszama.model.person.Employee.Employee;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -29,6 +31,9 @@ public class Restaurant {
 
     @OneToOne(mappedBy = "restaurant")
     private OpeningHours openingHours;
+
+    @OneToMany(mappedBy = "myRestaurant")
+    private Set<Employee> employees;
 
     private String restaurantName;
     private String restaurantDescription;
@@ -101,5 +106,13 @@ public class Restaurant {
 
     public void setRestaurantsMeals(Set<RestaurantsMeals> restaurantsMeals) {
         this.restaurantsMeals = restaurantsMeals;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 }

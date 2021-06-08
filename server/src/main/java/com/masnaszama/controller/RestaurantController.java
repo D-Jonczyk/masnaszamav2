@@ -30,6 +30,48 @@ public class RestaurantController {
         return restaurantService.getRestaurantsByCity(city);
     }
 
+    @GetMapping(path = "/getOpened")
+    public List<RestaurantSummaryDTO> getOpenedRestaurant(@RequestParam String city){
+
+        return restaurantService.getOpenedRestaurants(city);
+    }
+
+    @GetMapping(path = "/getFreeDelivery")
+    public List<RestaurantSummaryDTO> getFreeDeliveryRestaurant(@RequestParam String city){
+
+        return restaurantService.getFreeDeliveryRestaurants(city);
+    }
+
+    @GetMapping(path = "/sortByRating")
+    public List<RestaurantSummaryDTO> getRestaurantsByRating(@RequestParam String city){
+
+        return restaurantService.getRestaurantsByRating(city);
+    }
+
+    @GetMapping(path = "/sortByOrderPrice")
+    public List<RestaurantSummaryDTO> getRestaurantsByOrderPrice(@RequestParam String city){
+
+        return restaurantService.getRestaurantsByOrderPrice(city);
+    }
+
+    @GetMapping(path = "/sortByDeliveryTime")
+    public List<RestaurantSummaryDTO> getRestaurantsByDeliveryTime(@RequestParam String city){
+
+        return restaurantService.getRestaurantsByDeliveryTime(city);
+    }
+
+    @GetMapping(path = "/sortAlpha")
+    public List<RestaurantSummaryDTO> getRestaurantsAlpha(@RequestParam String city){
+
+        return restaurantService.getRestaurantsAlpha(city);
+    }
+
+    @GetMapping(path = "/sortByDeliveryCost")
+    public List<RestaurantSummaryDTO> getRestaurantsByDeliveryCost(@RequestParam String city){
+
+        return restaurantService.getRestaurantsByDeliveryCost(city);
+    }
+
     @GetMapping(path = "/getmeals")
     public List<RestaurantMealDTO> getMeals(@RequestParam Long id){
 

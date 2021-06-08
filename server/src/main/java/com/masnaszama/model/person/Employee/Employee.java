@@ -1,6 +1,7 @@
 package com.masnaszama.model.person.Employee;
 
 import com.masnaszama.model.person.Person;
+import com.masnaszama.model.restaurant.Restaurant;
 import com.masnaszama.model.schedule.Schedule;
 import com.masnaszama.model.schedule.Timesheet;
 import org.hibernate.annotations.Polymorphism;
@@ -29,4 +30,16 @@ public class Employee extends Person {
             inverseJoinColumns = { @JoinColumn(name = "timesheet_id")}
     )
     Set<Timesheet> timesheets = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="restaurant_id")//, nullable=false)
+    private Restaurant myRestaurant;
+
+    public Restaurant getMyRestaurant() {
+        return myRestaurant;
+    }
+
+    public void setMyRestaurant(Restaurant myRestaurant) {
+        this.myRestaurant = myRestaurant;
+    }
 }
