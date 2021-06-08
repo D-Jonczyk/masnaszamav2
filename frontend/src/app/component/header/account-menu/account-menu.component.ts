@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService, ConfigService, UserService} from '../../../service';
 import {Router} from '@angular/router';
 import {User} from '../../Person/user';
+import {AccountRoles} from '../../../shared/models/account-roles';
 
 @Component({
   selector: 'app-account-menu',
@@ -21,11 +22,14 @@ export class AccountMenuComponent implements OnInit {
   }
 
   hasRoleEmployee() {
-    const user = this.userService.currentUser;
-    if(user.authorities[0].authority !== null)
-    {
-      return user.authorities[0].authority === 'ROLE_EMPLOYEE';
+    if (this.userService.currentUser){
+      for (const authority of this.userService.currentUser.authorities) {
+        if(authority.authority === AccountRoles.employee) {
+          return true;
+        }
+      }
     }
+    return false;
   }
 
   ngOnInit() {

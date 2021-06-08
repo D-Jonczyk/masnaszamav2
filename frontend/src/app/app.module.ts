@@ -106,14 +106,14 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
     NgbModule,
     FontAwesomeModule,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyC7CWGYVLRrx4jwmsC426nkEw99Wj9jEgs",
-      authDomain: "masnaszamcia.firebaseapp.com",
-      databaseURL: "https://masnaszamcia-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "masnaszamcia",
-      storageBucket: "masnaszamcia.appspot.com",
-      messagingSenderId: "833793167737",
-      appId: "1:833793167737:web:6367af96965d4cc78d1fa8",
-      measurementId: "G-Y8L2GJBD96"
+      apiKey: 'AIzaSyC7CWGYVLRrx4jwmsC426nkEw99Wj9jEgs',
+      authDomain: 'masnaszamcia.firebaseapp.com',
+      databaseURL: 'https://masnaszamcia-default-rtdb.europe-west1.firebasedatabase.app',
+      projectId: 'masnaszamcia',
+      storageBucket: 'masnaszamcia.appspot.com',
+      messagingSenderId: '833793167737',
+      appId: '1:833793167737:web:6367af96965d4cc78d1fa8',
+      measurementId: 'G-Y8L2GJBD96'
     }),
     AngularFireStorageModule,
   ],

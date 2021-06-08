@@ -13,6 +13,9 @@
       <button *ngIf="!hasSignedIn()" mat-button mat-ripple routerLink="/login">
         <span>Login</span>
       </button>
+      <button *ngIf="isCourier()" mat-button mat-ripple routerLink="/courier-panel">
+        <span>Panel kuriera</span>
+      </button>
       <button
         *ngIf="hasSignedIn()"
         [matMenuTriggerFor]="accountMenu"

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService, UserService} from '../../service';
 import {Router} from '@angular/router';
-import {Authority} from '../Person/authority';
+import {AccountRoles} from '../../shared/models/account-roles';
 import {auth} from 'firebase';
 
 @Component({
@@ -31,6 +31,17 @@ export class HeaderComponent implements OnInit {
     return !!this.userService.currentUser;
   }
 
+  isCourier() {
+    if(this.hasSignedIn()) {
+      for (const authority of this.userService.currentUser.authorities) {
+        if(authority.authority === AccountRoles.courier) {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+
   userName() {
     const user = this.userService.currentUser;
     return user.firstname + ' ' + user.lastname;
@@ -39,13 +50,13 @@ export class HeaderComponent implements OnInit {
   printRole(): string {
     const user = this.userService.currentUser;
     for (const authority of user.authorities) {
-      if(authority.authority === 'ROLE_USER'){
+      if(authority.authority === AccountRoles.user){
         return 'Klient';
       }
-      else if (authority.authority === 'ROLE_COURIER') {
+      else if (authority.authority === AccountRoles.courier) {
         return 'Kurier';
       }
-      else if (authority.authority === 'ROLE_EMPLOYEE') {
+      else if (authority.authority === AccountRoles.employee) {
         return 'Pracownik';
       }
     }
