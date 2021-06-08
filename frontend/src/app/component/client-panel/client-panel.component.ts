@@ -51,7 +51,7 @@ export class ClientPanelComponent implements OnInit {
   }
   userName() {
     const user = this.userService.currentUser;
-    this.clientPanelService.clientName = user.firstname + ' ' + user.lastname;
+    this.clientPanelService.clientName = user.firstName + ' ' + user.lastName;
     return this.clientPanelService.clientName;
   }
   loadImage(){

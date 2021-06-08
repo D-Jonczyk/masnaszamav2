@@ -5,6 +5,7 @@ import org.hibernate.annotations.Polymorphism;
 import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +16,8 @@ public class Admin extends Person{
 
     @OneToMany(mappedBy = "admin")
     private Set<Request> request = new HashSet<>();
+    @Id
+    private Long id;
 
     public Set<Request> getRequest() {
         return request;
@@ -22,5 +25,13 @@ public class Admin extends Person{
 
     public void setRequest(Set<Request> request) {
         this.request = request;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

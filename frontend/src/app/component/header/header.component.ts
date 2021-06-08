@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService, UserService} from '../../service';
 import {Router} from '@angular/router';
 import {AccountRoles} from '../../shared/models/account-roles';
-import {auth} from 'firebase';
+import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
+import {faShippingFast} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,10 @@ export class HeaderComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private library: FaIconLibrary
   ) {
+    library.addIcons(faShippingFast)
   }
 
   ngOnInit() {
@@ -44,7 +47,7 @@ export class HeaderComponent implements OnInit {
 
   userName() {
     const user = this.userService.currentUser;
-    return user.firstname + ' ' + user.lastname;
+    return user.firstName + ' ' + user.lastName;
   }
 
   printRole(): string {

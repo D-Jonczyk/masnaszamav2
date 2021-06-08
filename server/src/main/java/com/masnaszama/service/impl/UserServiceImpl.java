@@ -60,13 +60,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(UserRequest userRequest) {
+    public User save(User userRequest) {
         User user = new User();
         user.setUsername(userRequest.getUsername());
+        // System.out.println("userRequest: " + userRequest.getId() + userRequest.getUsername() + userRequest.getLastName());
         user.setPassword(getBCryptPasswordEncoder().encode(userRequest.getPassword()));
         user.setImgUrl(userRequest.getImgUrl());
-        user.setFirstName(userRequest.getFirstname());
-        user.setLastName(userRequest.getLastname());
+        user.setFirstName(userRequest.getFirstName());
+        user.setLastName(userRequest.getLastName());
+        user.setPhonenumber(userRequest.getPhonenumber());
         List<Authority> auth = authService.findByName(UserRoleName.ROLE_USER);
         user.setAuthorities(auth);
         return userRepository.save(user);

@@ -11,8 +11,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "customer")
-@Polymorphism(type = PolymorphismType.EXPLICIT)
 public class Customer extends Person{
+
+    @Id
+    private Long id;
 
     public Customer() { super(); }
 
@@ -44,4 +46,11 @@ public class Customer extends Person{
         this.orders = orders;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

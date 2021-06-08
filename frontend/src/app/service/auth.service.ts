@@ -32,6 +32,7 @@ export class AuthService {
   }
 
   signup(user) {
+    console.log('user in signup: ', user.password);
     const signupHeaders = new HttpHeaders({
       Accept: 'application/json',
       'Content-Type': 'application/json'

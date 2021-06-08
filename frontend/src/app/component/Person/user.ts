@@ -2,10 +2,10 @@ import {Authority} from './authority';
 
 export interface User {
   id: number;
-  personId: number,
   username: string;
-  firstname: string,
-  lastname: string,
+  password: string;
+  firstName: string,
+  lastName: string,
   imgUrl: string;
   authorities: Authority[];
 }

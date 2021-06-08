@@ -8,6 +8,10 @@ import java.util.Set;
 
 @Entity
 public class Courier extends Employee {
+
+    @Id
+    private Long id;
+
     Integer averageDeliveryTime;
     Integer numberOfDeliveries;
 
@@ -23,7 +27,6 @@ public class Courier extends Employee {
     }
 
     public Courier(Long id, String firstName, String lastName, Long phoneNumber, Integer averageDeliveryTime, Integer numberOfDeliveries){
-        this.setId(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.phonenumber = phoneNumber;
@@ -53,5 +56,13 @@ public class Courier extends Employee {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

@@ -12,8 +12,8 @@ public class UserRequest {
     private String firstname;
     private String lastname;
     private String imgUrl;
-
     private Long phonenumber;
+
     private List<Authority> authorities;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
