@@ -22,13 +22,13 @@ export class OrderHistoryComponent implements OnInit {
   fas = 'fas';
   links=LINKS;
 
-  public accountIcon = this.clientPanelService.accLink;
+
   public clientName = this.clientPanelService.clientName;
-  public clientSurname = this.clientPanelService.clientSurname;
+
 
   constructor(public route: ActivatedRoute,
               public library: FaIconLibrary,
-              private clientPanelService: ClientPanelService
+              public clientPanelService: ClientPanelService
               ) {
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
       faClipboardList, faHeadset, faPhoneAlt, faCheckCircle, faPlayCircle, faListAlt, faLocationArrow,

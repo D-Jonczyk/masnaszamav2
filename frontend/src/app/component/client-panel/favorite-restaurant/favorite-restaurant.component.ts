@@ -18,7 +18,6 @@ import {ClientPanelService} from '../client-panel-service';
 })
 export class FavoriteRestaurantComponent implements OnInit {
   public clientName = this.clientPanelService.clientName;
-  public clientSurname = this.clientPanelService.clientSurname;
   titel = 'Ulubione restauracje';
   faCoffee = faCoffee;
   fas = 'fas';

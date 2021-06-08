@@ -12,6 +12,7 @@ import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ClientPanel} from './client-panel';
 import {ClientPanelService} from './client-panel-service';
+import {UserService} from "../../service";
 
 export const LINKS: object[] = [
   { title: 'Moj profil', fragment: '/client-profile', icon: 'user-circle' },
@@ -21,7 +22,7 @@ export const LINKS: object[] = [
   { title: 'Wyloguj', fragment: '/logout', icon: 'sign-out-alt'},
 ];
 
-export const accLink = 'assets/image/account-icon.png';
+export const accLink = 'assets/image/user.png';
 
 @Component({
   selector: 'app-client-panel',
@@ -32,16 +33,11 @@ export const accLink = 'assets/image/account-icon.png';
 
 export class ClientPanelComponent implements OnInit {
   titel = 'Panel Klienta';
-  public customers: Customer[];
-  public clientPanel = new ClientPanel();
-  public editPanel = new ClientPanel();
-  public clientId = 301;
-  public accountIcon = null;
-
   links=LINKS;
 
   constructor(private library: FaIconLibrary,
-              private clientPanelService: ClientPanelService,
+              public clientPanelService: ClientPanelService,
+              private userService: UserService,
 
               ) {
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
@@ -50,22 +46,18 @@ export class ClientPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getClientProfile();
-  }
+    this.loadImage()
 
-  getClientProfile(): void {
-    this.clientPanelService.getClientProfile(this.clientId).subscribe(
-      (response: ClientPanel) => {
-        this.clientPanel = response;
-        this.accountIcon = this.clientPanel.imgUrl;
-        this.clientPanelService.accLink=this.clientPanel.imgUrl;
-        this.clientPanelService.clientName=this.clientPanel.firstName;
-        this.clientPanelService.clientSurname=this.clientPanel.lastName;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+  }
+  userName() {
+    const user = this.userService.currentUser;
+    this.clientPanelService.clientName = user.firstname + ' ' + user.lastname;
+    return this.clientPanelService.clientName;
+  }
+  loadImage(){
+    const user = this.userService.currentUser;
+    this.clientPanelService.accImgLink = user.imgUrl;
+    return this.clientPanelService.accImgLink;
   }
 
 }
