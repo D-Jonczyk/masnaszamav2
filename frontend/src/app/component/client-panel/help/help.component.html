@@ -13,8 +13,8 @@
     <div class="col-lg-3 float-left">
       <div class="left-navbar text-center">
 
+        <!-- <a [routerLink]="['/courier-panel']"> -->
         <nav>
-
           <img class="displayed" [src]="clientPanelService.accImgLink" alt="accountIcon">
           <h4>Witaj</h4>
           <h4 class="mb-0"> {{this.clientPanelService.clientName}} {{this.clientPanelService.clientLastName}} !</h4>
@@ -36,12 +36,15 @@
     <!-- content -->
     <div class="col-lg-9">
       <div class="card-box col-lg-9">
-
-
-
         <div class="tab-content" id="ngbNav">
-          <div class="tab-pane fade show active" id="schedule" role="tabpanel">Ulubione restauracje klienta
-
+          <div class="tab-pane fade show active"  role="tabpanel">
+            <h3>Witaj na Masna Szama!</h3>
+            <p></p>
+            <hr/>
+            <p>Znajdujesz się w profilu klienta, nasza strona oferuje wiele ciekawych funkcjonalności!</p>
+            <p>Użyj menu bocznego z lewej strony aby lepiej poznać naszą stornę.</p>
+            <p>Twoj Awatar został ustawiony automatycznie, możesz go jednak zmienić w swoim profilu.</p>
+            <p>Pomyliłeś się przy rejestracji i chcesz zmienić swoje dane? Możesz je bez problemu zmienić.</p>
           </div>
         </div>
       </div> <!-- end tab-content -->

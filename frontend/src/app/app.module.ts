@@ -28,7 +28,6 @@ import {ProfileComponent} from './component/courier-panel/profile/profile.compon
 import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
 import {OrderlistComponent} from './component/courier-panel/orderlist';
 import {ClientPanelComponent} from './component/client-panel';
-import {ClientProfileComponent} from './component/client-panel/client-profile';
 import {ClientAdressComponent} from './component/client-panel/client-adress';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
 import {OrderHistoryComponent} from './component/client-panel/order-history';
@@ -49,6 +48,7 @@ import {ListRestoComponent} from './component/admin-panel/list-resto/list-resto.
 import {OrderItemComponent} from './component/admin-panel/overview/order-item/order-item.component';
 import {OverviewComponent} from './component/admin-panel/overview/overview.component';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import { HelpComponent } from './component/client-panel/help';
 
 
 @NgModule({
@@ -62,7 +62,6 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
     ClientAdressComponent,          // CLIENT PANEL COMPONENTS {
     ClientPanelComponent,           //
     OrderHistoryComponent,          //
-    ClientProfileComponent,         //
     FavoriteRestaurantComponent,    // }
     AdminPanelComponent,                // ADMIN PANEL COMPONENTS {
     RestaurantMenuUpdatePanelComponent, //
@@ -91,6 +90,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
     RestaurantOrdersComponent,
     RestaurantSummaryComponent,
     WeekPipe,
+    HelpComponent,
   ],
   imports: [
     BrowserAnimationsModule,

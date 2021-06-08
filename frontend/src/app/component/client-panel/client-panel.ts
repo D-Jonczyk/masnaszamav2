@@ -1,10 +1,9 @@
 export class ClientPanel {
-  personId: number;
-  emailAddress: string;
+  id: number;
   firstName: string;
   lastName: string;
   phoneNumber: number;
-  password:string;
   imgUrl:string;
-
+  password:string;
+  userName:string;
 }
