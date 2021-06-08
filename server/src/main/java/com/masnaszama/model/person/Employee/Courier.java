@@ -1,15 +1,12 @@
 package com.masnaszama.model.person.Employee;
 
 import com.masnaszama.model.order.Order;
-import org.hibernate.annotations.Polymorphism;
-import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Polymorphism(type = PolymorphismType.EXPLICIT)
 public class Courier extends Employee {
     Integer averageDeliveryTime;
     Integer numberOfDeliveries;

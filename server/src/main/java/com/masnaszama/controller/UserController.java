@@ -79,10 +79,9 @@ public class UserController {
     public UserRequest user() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserRequest userRequest = new UserRequest();
-        userRequest.setLastname(user.getPerson().getLastName());
-        userRequest.setFirstname(user.getPerson().getFirstName());
         userRequest.setUsername(user.getUsername());
-        userRequest.setPhonenumber(user.getPerson().getPhonenumber());
+        userRequest.setFirstname(user.getFirstName());
+        userRequest.setLastname(user.getLastName());
         userRequest.setId(user.getId());
         userRequest.setImgUrl(user.getImgUrl());
         userRequest.setAuthorities((List<Authority>) user.getAuthorities());

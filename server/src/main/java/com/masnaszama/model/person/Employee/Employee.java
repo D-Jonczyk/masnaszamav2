@@ -12,7 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Polymorphism(type = PolymorphismType.EXPLICIT)
+@Table(name = "employee")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Employee extends Person {
 
     @ManyToMany(cascade = { CascadeType.ALL})

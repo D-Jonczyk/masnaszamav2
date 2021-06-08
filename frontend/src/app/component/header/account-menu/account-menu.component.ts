@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService, ConfigService, UserService} from '../../../service';
 import {Router} from '@angular/router';
+import {User} from '../../Person/user';
 
 @Component({
   selector: 'app-account-menu',
@@ -9,8 +10,7 @@ import {Router} from '@angular/router';
 })
 export class AccountMenuComponent implements OnInit {
 
-  // TODO define user interface
-  user: any;
+  user: User;
 
   constructor(
     private config: ConfigService,
