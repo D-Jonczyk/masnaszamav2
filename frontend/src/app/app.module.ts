@@ -49,6 +49,7 @@ import {OrderItemComponent} from './component/admin-panel/overview/order-item/or
 import {OverviewComponent} from './component/admin-panel/overview/overview.component';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { HelpComponent } from './component/client-panel/help';
+import { UserListComponent } from './component/admin-panel/user-list/user-list.component';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { HelpComponent } from './component/client-panel/help';
     RestaurantSummaryComponent,
     WeekPipe,
     HelpComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserAnimationsModule,

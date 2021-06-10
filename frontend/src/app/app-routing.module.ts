@@ -27,6 +27,7 @@ import {ClientAdressComponent} from './component/client-panel/client-adress';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
 import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {HelpComponent} from './component/client-panel/help';
+import {UserListComponent} from './component/admin-panel/user-list/user-list.component';
 
 export const routes: Routes = [
   {
@@ -78,6 +79,7 @@ export const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'restaurant-menu-update-panel', component: RestaurantMenuUpdatePanelComponent},
   {path: 'list-resto', component: ListRestoComponent},
+  {path: 'user-list', component: UserListComponent},
   {
     // client
     path: 'client-panel',

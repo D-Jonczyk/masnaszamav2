@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.getOne(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+   // @PreAuthorize("hasRole('ADMIN')")
     public List<User> findAll() throws AccessDeniedException {
         return userRepository.findAll();
     }
