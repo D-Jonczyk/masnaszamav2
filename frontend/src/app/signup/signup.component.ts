@@ -55,7 +55,8 @@ export class SignupComponent implements OnInit, OnDestroy {
       password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
       firstName: [''],
       lastName: [''],
-      phonenumber: ['', Validators.compose([Validators.required, Validators.minLength(9), Validators.maxLength(9)])]
+      phonenumber: ['', Validators.compose([Validators.required, Validators.minLength(9), Validators.maxLength(9)])],
+      imgUrl:['https://firebasestorage.googleapis.com/v0/b/masnaszamcia.appspot.com/o/accImg%2Fuser.png?alt=media&token=8bde7c6f-0899-4ac0-aced-3cb2f742483b']
     });
   }
 

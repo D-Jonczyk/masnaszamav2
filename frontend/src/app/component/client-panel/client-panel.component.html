@@ -16,7 +16,7 @@
         <nav>
           <img class="displayed" [src]="clientPanelService.accImgLink" alt="accountIcon">
           <h4>Witaj</h4>
-          <h4 class="mb-0"> {{this.clientPanelService.clientName}} {{this.clientPanelService.clientLastName}} !</h4>
+          <h4 class="mb-0"> {{userName()}} !</h4>
           <hr/>
           <ul ngbNav>
             <li class="btn-block border-white" [ngbNavItem]="link.fragment" *ngFor="let link of links">
@@ -84,13 +84,13 @@
   <div class="modal-body">
     <div class="col-lg-8">
       <form class="form-horizontal" role="form" #editForm="ngForm">
-        <input type="hidden" ngModel="{{editProfile?.imgUrl}}" name="imgUrl"  class="form-control" id="imgUrl" >
+        <input type="hidden" ngModel="{{this.user.imgUrl}}" name="imgUrl"  class="form-control" id="imgUrl" >
 
         <div class="form-group">
           <label class="col-lg-8 control-label">Imię:</label>
           <div class="col-lg-8">
             <label>
-              <input class="form-control" ngModel="{{editProfile?.firstName}}" id="firstName" name="firstName" type="text" required>
+              <input class="form-control" ngModel="{{this.user.firstName}}" id="firstName" name="firstName" type="text" required>
             </label>
           </div>
         </div>
@@ -98,7 +98,7 @@
           <label class="col-lg-8 control-label">Nazwisko:</label>
           <div class="col-lg-8">
             <label>
-              <input class="form-control" ngModel="{{editProfile?.lastName}}" id="lastName" name="lastName" type="text" required>
+              <input class="form-control" ngModel="{{this.user.lastName}}" id="lastName" name="lastName" type="text" required>
             </label>
           </div>
         </div>
@@ -106,7 +106,7 @@
           <label class="col-lg-8 control-label">Nazwa użytkownika:</label>
           <div class="col-lg-8">
             <label>
-              <input class="form-control" ngModel="{{editProfile?.userName}}" id="userName" name="userName"  type="text" required>
+              <input class="form-control" ngModel="{{this.user.username}}" id="userName" name="userName"  type="text" required>
             </label>
           </div>
         </div>
@@ -114,7 +114,7 @@
           <label class="col-lg-8 control-label">Numer telefonu:</label>
           <div class="col-lg-8">
             <label>
-              <input class="form-control" value="{{clientProfile.phoneNumber}}" ngModel="{{editProfile?.phoneNumber}}" id="phoneNumber" name="phoneNumber" type="text" required>
+              <input class="form-control" value="{{this.user.phonenumber}}" ngModel="{{this.user.phonenumber}}" id="phoneNumber" name="phoneNumber" type="text" required>
             </label>
           </div>
         </div>
