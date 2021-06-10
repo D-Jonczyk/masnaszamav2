@@ -35,8 +35,7 @@ public class CourierServiceImpl implements CourierService {
     }
 
     public Courier findCourierById(Long id){
-        return courierRepo.findCourierById(id)
-                .orElseThrow(() -> new UserNotFoundException("User by id " + id + "was not found."));
+        return courierRepo.findCourierById(id);
     }
 
     public void deleteCourier(Long id) {

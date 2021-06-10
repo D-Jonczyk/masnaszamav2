@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping(value = "/api/courier", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,8 +28,8 @@ public class CourierController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Courier> getCourierById(@PathVariable("id") Long personId){
-        Courier courier = courierService.findCourierById(personId);
+    public ResponseEntity<Courier> getCourierById(@PathVariable("id") Long id){
+        Courier courier = courierService.findCourierById(id);
         return new ResponseEntity<>(courier, HttpStatus.OK);
     }
 

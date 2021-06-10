@@ -13,7 +13,6 @@ import {
 import {Courier} from '../Person/Employee/courier';
 import {User} from '../Person/user';
 import {UserService} from '../../service';
-import {CourierService} from '../../service/courier.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {CourierPanelService} from './courier-panel.service';
 

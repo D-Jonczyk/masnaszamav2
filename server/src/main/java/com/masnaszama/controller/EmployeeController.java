@@ -21,7 +21,6 @@ public class EmployeeController {
 
     @GetMapping("/getRestaurantId")
     public Optional<Long> getRestaurantId(@RequestParam Long employeeId) {
-        Optional<Long> restaurantId = employeeRepo.getRestaurantIdByEmployeeId(employeeId);
-        return restaurantId;
+        return employeeRepo.getRestaurantIdByEmployeeId(employeeId);
     }
 }
