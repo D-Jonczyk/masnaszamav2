@@ -25,8 +25,7 @@ export class ProfileComponent implements OnInit {
   isClicked = true;
   isWorking = false;
   links = LINKS;
-  courier: Courier;
-  editProfile: Courier;
+  courier: any = '';
 
   constructor(public route: ActivatedRoute, private library: FaIconLibrary,
               private courierProfileService: CourierProfileService) {
@@ -40,11 +39,11 @@ export class ProfileComponent implements OnInit {
       (response: Courier) => {
         console.log('inside oninit courier:', response.id, response.firstName);
         this.courier = response;
-        this.editProfile = response;
       }
     )
   }
 
+  /*
   public onEditProfile(courier: Courier): void {
     this.courierProfileService.editCourierProfile(courier).subscribe(
       (response: Courier) => {
@@ -55,7 +54,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
+*/
   toggleDisplay(): void {
     this.isClicked = !this.isClicked;
   }

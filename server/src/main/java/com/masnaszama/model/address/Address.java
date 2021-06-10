@@ -1,6 +1,7 @@
 package com.masnaszama.model.address;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.person.Customer;
 import com.masnaszama.model.restaurant.Restaurant;
 
@@ -13,12 +14,12 @@ public class Address {
     @Column(name = "address_id")
     private Long addressId;
 
-    @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Customer customer;
 
-    @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Restaurant restaurant;
 
     private String city;

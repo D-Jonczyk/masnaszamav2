@@ -15,9 +15,9 @@ export class CourierProfileService {
   constructor(private http: HttpClient) {
   }
 
-  getCourierProfile(courierId): Observable<Courier> {
-    console.log("courier service id:", courierId);
-    return this.http.get<Courier>(this.courierProfileUrl + courierId);
+  getCourierProfile(courierId) {
+    console.log('courier service id:', courierId);
+    return this.http.get(this.courierProfileUrl + courierId);
   }
 
   editCourierProfile(courier: Courier): Observable<Courier> {

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
-import {Meal} from '../model/meal.model';
 import {User} from '../../Person/user';
 import {UserListService} from './user-list.service';
-import {Restaurant} from '../model/restaurant-summary.model';
 
 @Component({
   selector: 'app-user-list',
