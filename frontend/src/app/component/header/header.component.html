@@ -19,6 +19,10 @@
         <span>Panel kuriera</span>
         <span><fa-icon class="px-1" icon="shipping-fast"> </fa-icon></span>
       </button>
+      <button *ngIf="isUser()" mat-button mat-ripple routerLink="/client-panel">
+        <span><fa-icon class="px-1" icon="user"> </fa-icon></span>
+        <span>Panel Klienta</span>
+      </button>
 
       <button *ngIf="isAdmin()" mat-button mat-ripple routerLink="/admin-panel">
         <span>Panel admina</span>

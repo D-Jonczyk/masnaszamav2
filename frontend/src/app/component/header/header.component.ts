@@ -3,7 +3,7 @@ import {AuthService, UserService} from '../../service';
 import {Router} from '@angular/router';
 import {AccountRoles} from '../../shared/models/account-roles';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
-import {faShippingFast, faUserShield} from '@fortawesome/free-solid-svg-icons';
+import {faShippingFast,faUser,faUserShield} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private library: FaIconLibrary
   ) {
-    library.addIcons(faShippingFast, faUserShield)
+    library.addIcons(faShippingFast,faUser,faUserShield)
   }
 
   ngOnInit() {
@@ -44,7 +44,16 @@ export class HeaderComponent implements OnInit {
       return false;
     }
   }
-
+  isUser() {
+    if(this.hasSignedIn()) {
+      for (const authority of this.userService.currentUser.authorities) {
+        if(authority.authority === AccountRoles.user) {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
   userName() {
     const user = this.userService.currentUser;
     return user.firstName + ' ' + user.lastName;
