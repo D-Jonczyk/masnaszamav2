@@ -1,7 +1,8 @@
 export interface Courier{
-  personId: number;
-  emailAddress: string;
+  id: number;
   firstName: string;
   lastName: string;
-  phoneNumber: number;
+  phonenumber: number;
+  averageDeliveryTime: number;
+  numberOfDeliveries: number;
 }

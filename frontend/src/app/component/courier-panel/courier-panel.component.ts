@@ -13,7 +13,8 @@ import {
 import {Courier} from '../Person/Employee/courier';
 import {User} from '../Person/user';
 import {UserService} from '../../service';
-
+import {HttpErrorResponse} from '@angular/common/http';
+import {CourierPanelService} from './courier-panel.service';
 
 export const LINKS: object[] = [
   { title: 'Nawigacja', fragment: '/courier/navigation', icon: 'location-arrow' },
@@ -25,6 +26,8 @@ export const LINKS: object[] = [
   { title: 'Wsparcie kuriera', fragment: '/courier/support', icon: 'question-circle'}
 ];
 
+export let COURIERID;
+
 @Component({
   selector: 'app-courier-panel',
   templateUrl: './courier-panel.component.html',
@@ -32,12 +35,13 @@ export const LINKS: object[] = [
 })
 export class CourierPanelComponent implements OnInit {
   title = 'Panel kuriera';
-  public courier: Courier[];
   links = LINKS;
   user: User;
+  courier: Courier;
 
   constructor(private library: FaIconLibrary,
-              private userService: UserService) {
+              private userService: UserService,
+              private courierPanelService: CourierPanelService) {
     library.addIcons(faPlayCircle, faSearch,
       faListAlt, faLocationArrow, faCalendarAlt, faUserCircle, faQuestionCircle,
       faComments, faHistory);
@@ -45,8 +49,28 @@ export class CourierPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.currentUser;
-    console.log('courier-panel this.user: ', this.user.id, this.user.firstName, this.user.id);
+    if(this.hasSignedIn()) {
+      console.log('courier-panel this.user: ', this.user.id, this.user.firstName, this.user.phonenumber);
+      this.getCourierProfile(this.user.phonenumber);
+    }
   }
 
+  hasSignedIn() {
+    return !!this.userService.currentUser;
+  }
+
+  getCourierProfile(phonenumber): void {
+    this.courierPanelService.getCourierProfileByPhone(phonenumber).subscribe(
+      (response: Courier) => {
+        console.log('phonenumber in arrow:', phonenumber);
+        this.courier = response;
+        console.log('courier profile id"', response.id, '" firstname: "', response.firstName,'" lastname "', response.lastName,'"');
+        COURIERID = response.id;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 }
 

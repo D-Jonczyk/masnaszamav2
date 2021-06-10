@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FinishedOrdersService} from './finished-orders.service';
 import {FinishedOrders} from './finished-orders';
 import {HttpErrorResponse} from '@angular/common/http';
-import {LINKS} from '../courier-panel.component';
+import {COURIERID, LINKS} from '../courier-panel.component';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {
   faCheckCircle,
@@ -24,8 +24,7 @@ import {faClock, faPlayCircle} from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['../courier-panel.component.css', './courier-orderhistory.component.css']
 })
 export class CourierOrderhistoryComponent implements OnInit {
-  courierId = 227;
-
+  courierId = COURIERID;
   links = LINKS;
 
   public finishedOrders: FinishedOrders[];

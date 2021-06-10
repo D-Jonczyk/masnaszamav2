@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faPauseCircle, faPlayCircle} from '@fortawesome/free-regular-svg-icons';
-import {LINKS} from '../courier-panel.component';
+import {COURIERID, LINKS} from '../courier-panel.component';
 import {
   faCalendarAlt,
   faComments,
@@ -13,8 +13,8 @@ import {
   faUserCircle
 } from '@fortawesome/free-solid-svg-icons';
 import {CourierProfileService} from './courier-profile.service';
-import {CourierProfile} from './courier-profile';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Courier} from '../../Person/Employee/courier';
 
 @Component({
   selector: 'app-profile',
@@ -25,9 +25,8 @@ export class ProfileComponent implements OnInit {
   isClicked = true;
   isWorking = false;
   links = LINKS;
-  public courierProfile = new CourierProfile();
-  public editProfile = new CourierProfile();
-  public courierId = 201;
+  courier: Courier;
+  editProfile: Courier;
 
   constructor(public route: ActivatedRoute, private library: FaIconLibrary,
               private courierProfileService: CourierProfileService) {
@@ -37,30 +36,21 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCourierProfile();
-  }
-
-  public onEditProfile(courier: CourierProfile): void {
-    this.courierProfileService.editCourierProfile(courier).subscribe(
-      (response: CourierProfile) => {
-        console.log(response);
-        this.getCourierProfile();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        this.getCourierProfile();
+    this.courierProfileService.getCourierProfile(COURIERID).subscribe(
+      (response: Courier) => {
+        console.log('inside oninit courier:', response.id, response.firstName);
+        this.courier = response;
+        this.editProfile = response;
       }
-    );
+    )
   }
 
-  getCourierProfile(): void {
-    this.courierProfileService.getCourierProfile(this.courierId).subscribe(
-      (response: CourierProfile) => {
-        this.courierProfile = response;
-        this.editProfile = this.courierProfile;
-        console.log('courier profile id"', response.id, '" firstname: "', response.firstName,'" lastname "', response.lastName,'"');
+  public onEditProfile(courier: Courier): void {
+    this.courierProfileService.editCourierProfile(courier).subscribe(
+      (response: Courier) => {
       },
       (error: HttpErrorResponse) => {
+        alert('error w oneditprofile');
         alert(error.message);
       }
     );

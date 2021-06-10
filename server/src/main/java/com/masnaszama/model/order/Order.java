@@ -1,5 +1,7 @@
 package com.masnaszama.model.order;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.masnaszama.model.payment.Payment;
 import com.masnaszama.model.person.Customer;
@@ -31,19 +33,22 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
+    @JsonBackReference
     private Restaurant restaurant;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="customer_id")//, nullable=false)
+    @ManyToOne
+    @JoinColumn(name="customer_id")
+    @JsonBackReference
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
     // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="payment_id", referencedColumnName = "payment_id")
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Payment payment;
 
     @OneToOne

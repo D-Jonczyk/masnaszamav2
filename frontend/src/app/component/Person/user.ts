@@ -6,6 +6,7 @@ export interface User {
   password: string;
   firstName: string,
   lastName: string,
+  phonenumber: number;
   imgUrl: string;
   authorities: Authority[];
 }

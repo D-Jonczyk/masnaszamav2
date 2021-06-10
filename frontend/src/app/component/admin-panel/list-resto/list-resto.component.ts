@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CommonService } from '../common.service';
+import {Restaurant} from '../model/restaurant-summary.model';
 
 @Component({
   selector: 'app-list-restaurant',
@@ -8,15 +9,17 @@ import {CommonService } from '../common.service';
 })
 export class ListRestoComponent implements OnInit {
   alert = false;
-public collection:any= [];
+  collection: any = [];
   constructor(private commonService:CommonService) { }
 
   ngOnInit(): void {
-    this.commonService.getRestoList().subscribe((result)=>{
-      this.collection= result;
-      console.log(this.collection)
+    this.commonService.getRestoList().subscribe((result: Restaurant) => {
+      this.collection = result;
+      console.log('resto list response: ', result);
     });
   }
+
+/*
   deleteResto(resto){
     this.collection.splice(resto.id,-1)
     this.commonService.deleteResto(resto).subscribe((result)=>{
@@ -24,6 +27,8 @@ public collection:any= [];
       this.alert= true;
     })
   }
+*/
+
   closeAlert(){
     this.alert= false;
   }

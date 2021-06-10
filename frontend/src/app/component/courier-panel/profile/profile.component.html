@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-3 float-left">
         <div class="left-navbar text-center">
-          <h4 class="mb-0"> Witaj {{courierProfile.firstName}}!</h4>
+          <h4 class="mb-0"> Witaj {{courier.firstName}}!</h4>
           <nav>
             <button class="start-shift" [hidden]="isWorking" (click)="toggleShiftButton()"><fa-icon [icon]="['far', 'play-circle']"  > </fa-icon> Zacznij zmianę</button>
             <button class="start-shift" [hidden]="!isWorking" (click)="toggleShiftButton()"><fa-icon [icon]="['far', 'pause-circle']"  > </fa-icon> Zakończ zmianę</button>
@@ -39,14 +39,12 @@
                 </div>
 
                 <form class="form-horizontal" role="form" #editForm="ngForm">
-                  <input type="hidden" ngModel="{{editProfile?.id}}" name="id" class="form-control" id="id">
-                  <input type="hidden" ngModel="{{editProfile?.numberOfDeliveries}}" name="numberOfDeliveries" class="form-control" id="numberOfDeliveries">
-                  <input type="hidden" ngModel="{{editProfile?.averageDeliveryTime}}" name="averageDeliveryTime" class="form-control" id="averageDeliveryTime">
+                  <input type="hidden" ngModel="{{courier?.id}}" name="id" class="form-control" id="id">
                   <div class="form-group">
                     <label class="col-lg-8 control-label">Imię:</label>
                     <div class="col-lg-8">
                       <label>
-                        <input class="form-control" ngModel="{{editProfile?.firstName}}" id="firstName" name="firstName" type="text" required>
+                        <input class="form-control" ngModel="{{courier?.firstName}}" id="firstName" name="firstName" type="text" required>
                       </label>
                     </div>
                   </div>
@@ -54,7 +52,7 @@
                     <label class="col-lg-8 control-label">Nazwisko:</label>
                     <div class="col-lg-8">
                       <label>
-                        <input class="form-control" ngModel="{{editProfile?.lastName}}" id="lastName" name="lastName" type="text" required>
+                        <input class="form-control" ngModel="{{courier?.lastName}}" id="lastName" name="lastName" type="text" required>
                       </label>
                     </div>
                   </div>
@@ -62,7 +60,7 @@
                     <label class="col-lg-8 control-label">Numer telefonu:</label>
                     <div class="col-lg-8">
                       <label>
-                        <input class="form-control" value="{{courierProfile.phonenumber}}" ngModel="{{editProfile?.phonenumber}}" id="phonenumber" name="phonenumber" type="text" required>
+                        <input class="form-control" value="{{courier.phonenumber}}" ngModel="{{courier?.phonenumber}}" id="phonenumber" name="phonenumber" type="text" required>
                       </label>
                     </div>
                   </div>
@@ -77,7 +75,7 @@
                   <label class="col-lg-12 control-label">Średni czas dostaw:</label>
                   <div class="col-lg-8">
                     <label>
-                      <input class="form-control" ngModel="{{courierProfile?.averageDeliveryTime}}" name="averageDeliveryTime" type="text" readonly>
+                      <input class="form-control" ngModel="{{courier?.averageDeliveryTime}}" name="averageDeliveryTime" type="text" readonly>
                     </label>
                   </div>
                 </div>
@@ -86,7 +84,7 @@
                   <label class="col-lg-12 control-label">Liczba wszystkich dostaw:</label>
                   <div class="col-lg-8">
                     <label>
-                      <input class="form-control" ngModel="{{courierProfile?.numberOfDeliveries}}" name="numberOfDeliveries" type="text" readonly>
+                      <input class="form-control" ngModel="{{courier?.numberOfDeliveries}}" name="numberOfDeliveries" type="text" readonly>
                     </label>
                   </div>
                 </div>

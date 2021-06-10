@@ -4,6 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {UserService} from '../../service';
+import {User} from '../Person/user';
+
 
 
 @Injectable({
@@ -14,18 +16,11 @@ export class ClientPanelService {
   clientLastName:string;
   accImgLink:string;
   user = this.userService.currentUser;
-  userId =this.user.id;
-  private clientProfileUrl = environment.apiBaseUrl + '/client/find/';
-  private editClientProfileUrl = environment.apiBaseUrl + '/client/update';
+  private clientProfileByIdUrl = environment.apiBaseUrl + '/user/findById/';
   constructor(private http: HttpClient,
               private userService: UserService,) {
   }
-  getClientProfile(userId): Observable<ClientPanel> {
-    return this.http.get<ClientPanel>(this.clientProfileUrl + userId);
+  getClientProfileById(id:number): Observable<User> {
+    return this.http.get<User>(this.clientProfileByIdUrl + id);
   }
-
-  editClientProfile(client: ClientPanel): Observable<ClientPanel> {
-    return this.http.put<ClientPanel>(this.editClientProfileUrl, client);
-  }
-
 }

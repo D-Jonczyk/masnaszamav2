@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 
+    List<Restaurant> findAll();
+
     @Query(value =  "SELECT new com.masnaszama.dto.RestaurantSummaryDTO " +
                     "(r.restaurantId, r.restaurantName, r.restaurantDescription, " +
                     "r.averageOpinion, r.deliveryTime, r.deliveryCost, r.minOrderCost)" +

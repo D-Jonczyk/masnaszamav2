@@ -16,15 +16,16 @@ import {UserService} from '../../service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {finalize} from 'rxjs/operators';
-
+import {User} from '../Person/user';
 export const LINKS: object[] = [
   { title: 'Moj profil', fragment: '/client-panel', icon: 'user-circle' },
   { title: 'Lista Adresow', fragment: '/client-adress', icon: 'list-alt'},
-  { title: 'Historia zamowien', fragment: '/order-history', icon: 'history'},
+  { title: 'Zamowienia', fragment: '/order-history', icon: 'history'},
   { title: 'Ulubione', fragment: '/favorite-restaurant', icon: 'crown'},
   { title: 'Pomoc', fragment: '/help', icon: 'question-circle'},
 ];
 
+export let CLIENTID;
 
 
 @Component({
@@ -44,6 +45,7 @@ export class ClientPanelComponent implements OnInit {
   public clientProfile = new ClientPanel();
   public editProfile = new ClientPanel();
   public guard = 0;
+  user:User;
   constructor(private library: FaIconLibrary,
               public clientPanelService: ClientPanelService,
               private userService: UserService,
@@ -62,6 +64,11 @@ export class ClientPanelComponent implements OnInit {
   ngOnInit(): void {
     this.loadImage()
     this.userName()
+    this.user = this.userService.currentUser;
+    if(this.hasSignedIn()) {
+      console.log('client-panel this.user: ', this.user);
+      this.getClientProfileById(this.user.id);
+    }
   }
   userName() {
     const user = this.userService.currentUser;
@@ -72,9 +79,12 @@ export class ClientPanelComponent implements OnInit {
   loadImage(){
     const user = this.userService.currentUser;
     this.clientPanelService.accImgLink = user.imgUrl;
+    this.accPomLink = user.imgUrl;
     return this.clientPanelService.accImgLink;
   }
-
+  hasSignedIn() {
+    return !!this.userService.currentUser;
+  }
   upload(event) {
     this.filePath = event.target.files[0];
     this.guard = 1;
@@ -107,24 +117,11 @@ export class ClientPanelComponent implements OnInit {
     }
   }
 
-  public onEditClientProfile(client: ClientPanel): void {
-    this.clientPanelService.editClientProfile(client).subscribe(
-      (response: ClientPanel) => {
-        console.log(response);
-        this.getClientProfile();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        this.getClientProfile();
-      }
-    );
-  }
-
-  getClientProfile(): void {
-    this.clientPanelService.getClientProfile(this.clientPanelService.userId).subscribe(
-      (response: ClientPanel) => {
-        this.clientProfile = response;
-        this.editProfile = this.clientProfile;
+  getClientProfileById(id): void {
+    this.clientPanelService.getClientProfileById(id).subscribe(
+      (response: User) => {
+        this.user = response;
+        CLIENTID = response.id;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

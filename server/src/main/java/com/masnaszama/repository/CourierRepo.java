@@ -7,16 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CourierRepo extends CrudRepository<Courier, Long> {
     void deleteCourierById(Long personId);
 
-    @Query(value = "SELECT new com.masnaszama.model.person.Employee.Courier" +
-    "(c.id, c.firstName, c.lastName, c.phonenumber, c.averageDeliveryTime, c.numberOfDeliveries ) " +
-    "FROM Courier c " +
-    "WHERE c.id = ?1")
-    Optional<Courier> findCourierById(Long personId);
+    Courier findCourierByPhonenumber(Long phonenumber);
+    Courier findCourierById(Long id);
 
     @Query(value = "SELECT new com.masnaszama.model.views.CourierSchedules " +
             "(cs.scheduleId, cs.startTime, cs.endTime, cs.fullDate, cs.courierId) " +

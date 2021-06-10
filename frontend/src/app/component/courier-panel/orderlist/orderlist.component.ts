@@ -14,7 +14,7 @@ import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
 import {faCheckCircle, faClock, faPlayCircle} from '@fortawesome/free-regular-svg-icons';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { LINKS } from '../courier-panel.component';
+import {COURIERID, LINKS} from '../courier-panel.component';
 import {DeliveryOrder} from './delivery-order';
 import {DeliveryOrderService} from './delivery-order.service';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -31,7 +31,7 @@ export class OrderlistComponent implements OnInit {
   closeResult = '';
   fas = 'fas';
   links = LINKS;
-  courierId = 227;
+  courierId = COURIERID;
   public orders: DeliveryOrder[];
   public completedOrder: Order;
 

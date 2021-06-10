@@ -1,5 +1,6 @@
 package com.masnaszama.model.order;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.masnaszama.model.restaurant.RestaurantsMeals;
 
@@ -26,7 +27,8 @@ public class Meal {
 //    @OneToOne(mappedBy = "meal")
 //    private Request request;
 
-    @OneToMany(mappedBy = "meal")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
     public Set<OrdersMeals> getOrdersMeals() {
