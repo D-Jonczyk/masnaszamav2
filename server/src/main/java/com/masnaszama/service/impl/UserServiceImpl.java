@@ -2,10 +2,7 @@ package com.masnaszama.service.impl;
 
 import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
-import com.masnaszama.model.UserRequest;
 import com.masnaszama.model.UserRoleName;
-import com.masnaszama.model.person.Employee.Courier;
-import com.masnaszama.model.person.Person;
 import com.masnaszama.repository.UserRepository;
 import com.masnaszama.service.AuthorityService;
 import com.masnaszama.service.UserService;
@@ -17,11 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-
-/**
- * Created by fan.jin on 2016-10-15.
- */
 
 @Service
 public class UserServiceImpl implements UserService {

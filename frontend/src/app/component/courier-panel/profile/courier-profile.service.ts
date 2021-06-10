@@ -16,6 +16,7 @@ export class CourierProfileService {
   }
 
   getCourierProfile(courierId): Observable<Courier> {
+    console.log("courier service id:", courierId);
     return this.http.get<Courier>(this.courierProfileUrl + courierId);
   }
 

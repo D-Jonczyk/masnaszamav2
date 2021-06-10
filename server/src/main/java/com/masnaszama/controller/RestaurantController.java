@@ -2,7 +2,8 @@ package com.masnaszama.controller;
 
 import com.masnaszama.dto.RestaurantMealDTO;
 import com.masnaszama.dto.RestaurantSummaryDTO;
-import com.masnaszama.service.impl.RestaurantService;
+import com.masnaszama.model.restaurant.Restaurant;
+import com.masnaszama.service.impl.RestaurantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,66 +17,71 @@ import java.util.List;
 @RequestMapping(value = "/api/restaurant", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantController {
 
-    private final RestaurantService restaurantService;
+    private final RestaurantServiceImpl restaurantServiceImpl;
 
     @Autowired
-    public RestaurantController(RestaurantService restaurantService) {
+    public RestaurantController(RestaurantServiceImpl restaurantServiceImpl) {
 
-        this.restaurantService = restaurantService;
+        this.restaurantServiceImpl = restaurantServiceImpl;
+    }
+
+    @GetMapping(path = "/getAllRestos")
+    public List<Restaurant> getAllRestaurants() {
+        return restaurantServiceImpl.findAllRestaurants();
     }
 
     @GetMapping(path = "/getbycity")
     public List<RestaurantSummaryDTO> getRestaurantByCity(@RequestParam String city){
 
-        return restaurantService.getRestaurantsByCity(city);
+        return restaurantServiceImpl.getRestaurantsByCity(city);
     }
 
     @GetMapping(path = "/getOpened")
     public List<RestaurantSummaryDTO> getOpenedRestaurant(@RequestParam String city){
 
-        return restaurantService.getOpenedRestaurants(city);
+        return restaurantServiceImpl.getOpenedRestaurants(city);
     }
 
     @GetMapping(path = "/getFreeDelivery")
     public List<RestaurantSummaryDTO> getFreeDeliveryRestaurant(@RequestParam String city){
 
-        return restaurantService.getFreeDeliveryRestaurants(city);
+        return restaurantServiceImpl.getFreeDeliveryRestaurants(city);
     }
 
     @GetMapping(path = "/sortByRating")
     public List<RestaurantSummaryDTO> getRestaurantsByRating(@RequestParam String city){
 
-        return restaurantService.getRestaurantsByRating(city);
+        return restaurantServiceImpl.getRestaurantsByRating(city);
     }
 
     @GetMapping(path = "/sortByOrderPrice")
     public List<RestaurantSummaryDTO> getRestaurantsByOrderPrice(@RequestParam String city){
 
-        return restaurantService.getRestaurantsByOrderPrice(city);
+        return restaurantServiceImpl.getRestaurantsByOrderPrice(city);
     }
 
     @GetMapping(path = "/sortByDeliveryTime")
     public List<RestaurantSummaryDTO> getRestaurantsByDeliveryTime(@RequestParam String city){
 
-        return restaurantService.getRestaurantsByDeliveryTime(city);
+        return restaurantServiceImpl.getRestaurantsByDeliveryTime(city);
     }
 
     @GetMapping(path = "/sortAlpha")
     public List<RestaurantSummaryDTO> getRestaurantsAlpha(@RequestParam String city){
 
-        return restaurantService.getRestaurantsAlpha(city);
+        return restaurantServiceImpl.getRestaurantsAlpha(city);
     }
 
     @GetMapping(path = "/sortByDeliveryCost")
     public List<RestaurantSummaryDTO> getRestaurantsByDeliveryCost(@RequestParam String city){
 
-        return restaurantService.getRestaurantsByDeliveryCost(city);
+        return restaurantServiceImpl.getRestaurantsByDeliveryCost(city);
     }
 
     @GetMapping(path = "/getmeals")
     public List<RestaurantMealDTO> getMeals(@RequestParam Long id){
 
-        return restaurantService.getMealsByRestaurantId(id);
+        return restaurantServiceImpl.getMealsByRestaurantId(id);
     }
 
 }

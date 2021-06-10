@@ -25,8 +25,8 @@ export class ProfileComponent implements OnInit {
   isClicked = true;
   isWorking = false;
   links = LINKS;
-  public courierProfile: Courier;
-  public editProfile: Courier;
+  courier: Courier;
+  editProfile: Courier;
 
   constructor(public route: ActivatedRoute, private library: FaIconLibrary,
               private courierProfileService: CourierProfileService) {
@@ -36,29 +36,21 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCourierProfile(COURIERID);
+    this.courierProfileService.getCourierProfile(COURIERID).subscribe(
+      (response: Courier) => {
+        console.log('inside oninit courier:', response.id, response.firstName);
+        this.courier = response;
+        this.editProfile = response;
+      }
+    )
   }
 
   public onEditProfile(courier: Courier): void {
     this.courierProfileService.editCourierProfile(courier).subscribe(
       (response: Courier) => {
-        console.log(response);
-        this.getCourierProfile(response.id);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  getCourierProfile(courierId): void {
-    this.courierProfileService.getCourierProfile(courierId).subscribe(
-      (response: Courier) => {
-        this.courierProfile = response;
-        this.editProfile = this.courierProfile;
-        console.log('courier profile id"', response.id, '" firstname: "', response.firstName,'" lastname "', response.lastName,'"');
-      },
-      (error: HttpErrorResponse) => {
+        alert('error w oneditprofile');
         alert(error.message);
       }
     );

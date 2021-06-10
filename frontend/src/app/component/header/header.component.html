@@ -20,6 +20,11 @@
         <span><fa-icon class="px-1" icon="shipping-fast"> </fa-icon></span>
       </button>
 
+      <button *ngIf="isAdmin()" mat-button mat-ripple routerLink="/admin-panel">
+        <span>Panel admina</span>
+        <span><fa-icon class="px-1" icon="user-shield"> </fa-icon></span>
+      </button>
+
       <button *ngIf="hasSignedIn()"
         [matMenuTriggerFor]="accountMenu"
         class="greeting-button" mat-button
