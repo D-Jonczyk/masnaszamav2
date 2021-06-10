@@ -13,6 +13,8 @@ import {faCheck} from "@fortawesome/free-solid-svg-icons";
 export class RestaurantOrdersComponent implements OnInit {
 
   restaurantOrders$: Observable<RestaurantOrders[]>;
+  myMap: Map<number, number>;
+  restId: number;
 
   constructor(private restaurantOrdersService: RestaurantOrdersService,
               public library: FaIconLibrary) {
@@ -23,17 +25,19 @@ export class RestaurantOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrders();
+    this.myMap = new Map();
+    this.setCounters();
   }
 
   getOrders(): void {
     // const id = +this.route.snapshot.paramMap.get('id');
     // zmienić na id dla zalogowanej restauracji
     // this.restaurantOrders$ = this.restaurantOrdersService.getOrders(42);
-    const restId = this.restaurantOrdersService.getRestaurantId();
+    // this.restId = this.restaurantOrdersService.getRestaurantId();
 
-
+  console.log('restId: ' + this.restId);
     // 42
-    this.restaurantOrdersService.getOrders(restId).subscribe
+    this.restaurantOrdersService.getOrders(this.restId).subscribe
     (results => {
       results = results.reduce((acc, {orderId, name}) => {
         const existing = acc.find(i => i.orderId === orderId)
@@ -52,9 +56,24 @@ export class RestaurantOrdersComponent implements OnInit {
     // this.mergeOrders();
   }
 
+  async getRestaurantId() {
+    // await this.restId = this.restaurantOrdersService.getRestaurantId();
+  }
+
   setDone(id): void {
     // let
     const removeIndex  = this.restaurantOrders.findIndex(order => order.orderId === id);
     this.restaurantOrders.splice(removeIndex, 1);
+  }
+
+  setCounters(): void {
+
+    for(const restOrder of this.restaurantOrders)
+    {
+      this.myMap.set(restOrder._orderId, 0);
+    }
+
+    console.log(this.myMap);
+
   }
 }

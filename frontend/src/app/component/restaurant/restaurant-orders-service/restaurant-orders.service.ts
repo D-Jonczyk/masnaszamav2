@@ -9,21 +9,34 @@ import {UserService} from '../../../service';
 })
 export class RestaurantOrdersService {
 
-  private restaurantOrdersUrl = environment.apiBaseUrl + '/order/getbyRestaurantId?restaurantId=';
-  private employeesRestaurantIdUrl = environment.apiBaseUrl + '/employee/getRestaurantId=';
-
+  private restaurantOrdersUrl: string = environment.apiBaseUrl + '/order/getbyRestaurantId?restaurantId=';
+  private employeesRestaurantIdUrl: string = environment.apiBaseUrl + '/employee/getRestaurantId?employeeId=';
+  employeeId: number;
+  restId: number;
   constructor(
     private http: HttpClient,
     private userService: UserService) {
   }
 
   getOrders(id) {
-    return this.http.get<RestaurantOrders[]>(this.restaurantOrdersUrl + id.toString());
+    return this.http.get<RestaurantOrders[]>(this.restaurantOrdersUrl + id);
   }
 
-  getRestaurantId() {
-    const employeeId = this.userService.currentUser.id;
-    return this.http.get<number>(this.employeesRestaurantIdUrl + employeeId.toString());
-  }
+  //getRestaurantId(): Promise<number> {
+    //this.employeeId = this.userService.currentUser.id;
+    // console.log(this.employeeId);
+    // console.log(this.employeesRestaurantIdUrl + this.employeeId);
+    // this.http.get<number>(this.employeesRestaurantIdUrl + this.employeeId)
+    //   .subscribe(id => { console.log('service id: ' + id); this.restId = id});
+    //
+    // console.log('service rest id: ' + this.restId);
+
+    //this.http.get<number>(this.employeesRestaurantIdUrl + this.employeeId)
+    //  .toPromise().then()
+
+    //return this.restId;
+  //}
+
+
 
 }
