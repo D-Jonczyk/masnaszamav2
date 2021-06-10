@@ -44,6 +44,7 @@ public class UserController {
         User user = userService.findUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
     @RequestMapping(method = GET, value = "/user/all")
     public List<User> loadAll() {
         return this.userService.findAll();

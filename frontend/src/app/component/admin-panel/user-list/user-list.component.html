@@ -1,0 +1,99 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item" routerLinkActive="active">
+
+          <a class="nav-link" routerLink="/">Zakończ sesję</a>
+        </li>
+        <!--  <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/menus">Menu&Kategoria</a>
+          </li> -->
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/categories">Dodaj restaurację</a>
+        </li>
+        <!-- <li class="nav-item" routerLinkActive="active">
+           <a class="nav-link" routerLink="/items">Dania</a>
+         </li>
+ -->
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/list-resto">Lista restauracji</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/restaurant-menu-update-panel">Edycja menu</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/user-list">Lista użytkowników</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+
+
+<header>
+  <!-- navigation -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+        Lista użytkowników
+    </div>
+  </nav>
+  <div class="banner"></div>
+</header>
+
+<!-- users list -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table no-wrap user-table mb-0">
+            <thead>
+            <tr>
+              <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+              <th scope="col" class="border-0 text-uppercase font-medium">Imię i nazwisko</th>
+              <th scope="col" class="border-0 text-uppercase font-medium">Nazwa użytkownika</th>
+              <th scope="col" class="border-0 text-uppercase font-medium">Telefon</th>
+              <th scope="col" class="border-0 text-uppercase font-medium">Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users">
+              <td class="pl-4">{{user.id}}</td>
+              <td>
+                <h5 class="font-medium mb-0">{{user.firstName}} {{user.lastName}}</h5>
+                <span class="text-muted"><!-- tutaj adres --></span>
+              </td>
+              <td>
+                <span class="text-muted">{{user.username}}</span><br>
+
+              </td>
+              <td>
+                <span class="text-muted">{{user.phonenumber}}</span><br>
+              </td>
+              <td>
+                <select class="form-control category-select" id="exampleFormControlSelect1">
+                  <option *ngFor="let role of user.authorities">{{role.authority}}</option>
+                </select>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
