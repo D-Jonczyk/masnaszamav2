@@ -1,5 +1,6 @@
 package com.masnaszama.model.order;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -13,14 +14,17 @@ public class OrdersMeals {
     @Column(name = "order_meal_id")
     private Long orderMealId;
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL) //cascade = CascadeType.ALL
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @ManyToOne() //cascade = CascadeType.ALL
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL) //cascade = CascadeType.ALL
     @JoinColumn(name = "meal_id")
     private Meal meal;
 
+    @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="opinion_id")
     private Opinion opinion;

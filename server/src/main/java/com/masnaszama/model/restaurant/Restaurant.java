@@ -1,5 +1,6 @@
 package com.masnaszama.model.restaurant;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.order.Order;
 import com.masnaszama.model.person.Customer;
@@ -25,8 +26,8 @@ public class Restaurant {
     @Id
     private Long restaurantId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", nullable = false)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Address address;
 
     @OneToOne(mappedBy = "restaurant")
@@ -42,7 +43,8 @@ public class Restaurant {
     private Integer deliveryCost;
     private Integer minOrderCost;
 
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders = new HashSet<>();
 
     @OneToMany(mappedBy = "restaurant")

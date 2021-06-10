@@ -1,5 +1,7 @@
 package com.masnaszama.model.order;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +10,9 @@ public class Opinion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long opinionId;
 
-    @OneToOne(mappedBy="opinion", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @JsonManagedReference
+    @OneToOne(mappedBy="opinion", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private OrdersMeals ordersMeals;
 
     private int rating;

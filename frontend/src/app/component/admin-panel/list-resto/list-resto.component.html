@@ -1,3 +1,44 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item" routerLinkActive="active">
+
+          <a class="nav-link" routerLink="/">Zakończ sesję</a>
+        </li>
+        <!--  <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/menus">Menu&Kategoria</a>
+          </li> -->
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/categories">Dodaj restaurację</a>
+        </li>
+        <!-- <li class="nav-item" routerLinkActive="active">
+           <a class="nav-link" routerLink="/items">Dania</a>
+         </li>
+ -->
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/list-resto">Lista restauracji</a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/restaurant-menu-update-panel">Edycja menu</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+
+
 <header>
   <!-- navigation -->
   <nav class="navbar navbar-light bg-light">
@@ -33,151 +74,22 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns">
-        <a href="/restaurants/1" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg" alt="Sababa 沙巴巴中東美食">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">Kebab Mahir</h6>
+
+      <div class="card-columns" >
+          <div class="card mb-3" *ngFor="let resto of collection">
+            <div class="card-body p-3" >
+              <h6 class="card-title mb-1">{{resto.restaurantName}}</h6>
 
               <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i>Kuchnia bliskowschodnia
+                <i class="fas fa-utensils pr-2"></i> {{resto.restaurantDescription}}
               </div>
 
               <span class="badge badge-pill badge-danger font-weight-normal">
-                4.1
+                Średnia ocen: {{resto.averageOpinion}}
                 <i class="fas fa-star fa-xs"></i>
               </span>
-
             </div>
           </div>
-        </a>
-        <a href="/restaurants/2" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5628/02.jpg" alt="Yami Sushi">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">Yami sushi</h6>
-
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i>Kuchnia japońska
-              </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                4.3
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-
-            </div>
-          </div>
-        </a>
-        <a href="/restaurants/3" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5629/03.jpg" alt="ZIGA ZIGA">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">Pub Boży</h6>
-
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> Puby i bary
-              </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                4.2
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-
-            </div>
-          </div>
-        </a>
-        <a href="/restaurants/4" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5630/04.jpg" alt="艾朋牛排餐酒館">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">Restauracja bistro włoska</h6>
-
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> Włoska
-              </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                4.2
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-
-            </div>
-          </div>
-        </a>
-        <a href="/restaurants/5" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5631/05.jpg" alt="Gusto Pizza">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">Gusto Pizza</h6>
-
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i>Włoska
-              </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                4.7
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-
-            </div>
-          </div>
-        </a>
-        <a href="/restaurants/6" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5632/06.jpg" alt="WXYZ Bar">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">Shisha Bar</h6>
-
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> Bar
-              </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                4.3
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-
-            </div>
-          </div>
-        </a>
-        <a href="/restaurants/7" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5633/07.jpg" alt="Fika Fika Cafe">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">Czarna Kawka</h6>
-
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> Kawiarnia
-              </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                4.3
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-
-            </div>
-          </div>
-        </a>
-        <a href="/restaurants/8" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5634/08.jpg" alt="布娜飛比利時啤酒餐廳">
-            <div class="card-body p-3">
-              <h6 class="card-title mb-1">Belgijska restauracja</h6>
-
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i>Kuchnia belgijska
-              </div>
-
-              <span class="badge badge-pill badge-danger font-weight-normal">
-                4.7
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-
-            </div>
-          </div>
-        </a>
       </div>
     </div>
   </div>

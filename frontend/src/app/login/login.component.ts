@@ -6,6 +6,7 @@ import {AuthService, UserService} from '../service';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {User} from '../component';
+import {AccountRoles} from '../shared/models/account-roles';
 
 @Component({
   selector: 'app-login',
@@ -98,13 +99,16 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   getRedirectUrl(user: User): string {
     for (const authority of user.authorities) {
-      if(authority.authority === 'ROLE_USER'){
+      if(authority.authority === AccountRoles.admin){
+        return '/admin-panel';
+      }
+      else if(authority.authority === AccountRoles.user){
         return '/';
       }
-      else if (authority.authority === 'ROLE_COURIER') {
+      else if (authority.authority === AccountRoles.courier) {
         return '/courier-panel';
       }
-      else if(authority.authority === 'ROLE_EMPLOYEE'){
+      else if(authority.authority === AccountRoles.employee){
         return '/';
       }
     }

@@ -9,7 +9,7 @@ import {UserService} from '../../../service';
 })
 export class RestaurantOrdersService {
 
-  private restaurantOrdersUrl = environment.apiBaseUrl + '/order/getbyRestaurantId?restaurantId=';
+  private restaurantOrdersUrl = environment.apiBaseUrl + '/order/getbyRestaurantId?restaurantId=24';
   private employeesRestaurantIdUrl = environment.apiBaseUrl + '/employee/getRestaurantId=';
 
   constructor(
@@ -18,7 +18,7 @@ export class RestaurantOrdersService {
   }
 
   getOrders(id) {
-    return this.http.get<RestaurantOrders[]>(this.restaurantOrdersUrl + id.toString());
+    return this.http.get<RestaurantOrders[]>(this.restaurantOrdersUrl);
   }
 
   getRestaurantId() {
