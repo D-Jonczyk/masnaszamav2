@@ -2,6 +2,7 @@ package com.masnaszama.repository;
 
 import com.masnaszama.dto.OrdersDTO;
 import com.masnaszama.dto.RestaurantOrdersDTO;
+import com.masnaszama.dto.UserOrdersDTO;
 import com.masnaszama.model.order.Order;
 import com.masnaszama.model.views.OrdersDelivery;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,6 +28,12 @@ public interface OrderRepo extends CrudRepository<Order, Long> {
     "FROM Order o " +
     "WHERE o.customer.id = ?1")
     List<OrdersDTO> getOrderByCustomerId(Long customerId);
+
+    @Query(value = "SELECT new com.masnaszama.dto.UserOrdersDTO" +
+            "(o.orderId, o.desiredDeliveryTime, o.orderPrice, o.orderedTime, o.tip, o.customer.id, o.orderStatus.statusId, o.restaurant.restaurantId, o.restaurant.restaurantName, o.customer.address.addressId) " +
+            "FROM Order o " +
+            "WHERE o.customer.id = ?1")
+    List<UserOrdersDTO> getOrderByUserId(Long customerId);
 
      //Work fine
     @Query(value = "SELECT new com.masnaszama.dto.RestaurantOrdersDTO" +

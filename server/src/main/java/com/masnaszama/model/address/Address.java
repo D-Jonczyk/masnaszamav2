@@ -2,10 +2,12 @@ package com.masnaszama.model.address;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.masnaszama.model.order.Order;
 import com.masnaszama.model.person.Customer;
 import com.masnaszama.model.restaurant.Restaurant;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Address {
@@ -13,6 +15,10 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "address_id")
     private Long addressId;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy="address", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Order> orders;
 
     @JsonManagedReference
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

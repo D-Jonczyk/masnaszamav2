@@ -1,9 +1,11 @@
 package com.masnaszama.model.payment;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.order.Order;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "payment")
@@ -14,6 +16,10 @@ public class Payment {
     @Column(name = "payment_id")
     private Long paymentId;
 
+    @JsonManagedReference
+    @OneToOne(mappedBy="payment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Order order;
+
     public Payment() {
 
     }
@@ -23,9 +29,6 @@ public class Payment {
         this.order = orders;
         this.paymentDate = paymentDate;
     }
-
-    @OneToOne(fetch = FetchType.LAZY)
-    private Order order;
 
     private Date paymentDate;
 

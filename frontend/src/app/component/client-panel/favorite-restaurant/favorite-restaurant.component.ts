@@ -8,7 +8,7 @@ import {
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
 import {faCheckCircle, faClock, faPlayCircle} from '@fortawesome/free-regular-svg-icons';
-import { LINKS } from '../client-panel.component';
+import {CLIENTID, LINKS} from '../client-panel.component';
 import {ClientPanelService} from '../client-panel-service';
 
 @Component({
@@ -22,6 +22,7 @@ export class FavoriteRestaurantComponent implements OnInit {
   faCoffee = faCoffee;
   fas = 'fas';
   links = LINKS;
+  clientId = CLIENTID;
   constructor(public route: ActivatedRoute, public library: FaIconLibrary,
               public clientPanelService: ClientPanelService,
   ) {
@@ -31,6 +32,7 @@ export class FavoriteRestaurantComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

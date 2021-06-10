@@ -8,8 +8,13 @@ import {
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
 import {faCheckCircle, faClock, faPlayCircle} from '@fortawesome/free-regular-svg-icons';
-import { LINKS } from '../client-panel.component';
+import {CLIENTID, LINKS} from '../client-panel.component';
 import {ClientPanelService} from '../client-panel-service';
+import {FinishedOrders} from '../../courier-panel/courier-orderhistory/finished-orders';
+import {HttpErrorResponse} from '@angular/common/http';
+import { OrderHistoryService} from './order-history-service';
+import {OrderHistory} from './order-history';
+import {User} from '../../Person/user';
 
 @Component({
   selector: 'app-order-history',
@@ -21,13 +26,14 @@ export class OrderHistoryComponent implements OnInit {
   faCoffee = faCoffee;
   fas = 'fas';
   links=LINKS;
+  clientId = CLIENTID;
 
-
-
+  public orderHistory: OrderHistory[];
 
   constructor(public route: ActivatedRoute,
               public library: FaIconLibrary,
-              public clientPanelService: ClientPanelService
+              public clientPanelService: ClientPanelService,
+              public orderHistoryService:OrderHistoryService,
               ) {
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
       faClipboardList, faHeadset, faPhoneAlt, faCheckCircle, faPlayCircle, faListAlt, faLocationArrow,
@@ -35,7 +41,17 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+this.getUserOrdersById();
   }
-
+  public getUserOrdersById(): void {
+    this.orderHistoryService.getUserOrdersById(this.clientId).subscribe(
+      (response: OrderHistory[]) => {
+        this.orderHistory = response;
+        console.log(this.orderHistory);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 }
