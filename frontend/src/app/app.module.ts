@@ -50,6 +50,7 @@ import {OverviewComponent} from './component/admin-panel/overview/overview.compo
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { HelpComponent } from './component/client-panel/help';
 import { UserListComponent } from './component/admin-panel/user-list/user-list.component';
+import { OpinionComponent } from './component/client-panel/opinion';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { UserListComponent } from './component/admin-panel/user-list/user-list.c
     WeekPipe,
     HelpComponent,
     UserListComponent,
+    OpinionComponent,
   ],
   imports: [
     BrowserAnimationsModule,

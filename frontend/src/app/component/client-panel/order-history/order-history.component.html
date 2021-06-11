@@ -52,20 +52,28 @@
                                 Data zamowienia: {{order.orderedTime}}
                                 </span>
                         <h6 class="mb-2">
-                          <fa-icon [icon]="['fas', 'location-arrow']"> </fa-icon>
-                          <a href="#" class="text-black">{{order.restaurantName}} </a>
+                          <fa-icon [icon]="['fas', 'utensils']"> </fa-icon>
+                          <a href="#" style="padding-left:35px" class="text-black">{{order.restaurantName}} </a>
                         </h6>
                         <hr/>
                         <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'map-marker-alt']"> </fa-icon> ul. Warszawska 99, 12-324
-                          <span class="float-right">
+                          <span style="padding-left:150px"  class="float-right">
                                 <fa-icon [icon]="['far', 'clock']"> </fa-icon>
                                   <span class="font-weight-bold">
-                                    Przewidywany odbior:{{order.desiredDeliveryTime}}
+                                    Przewidywana data odbioru:
                                   </span>
                               </span>
                         </p>
-                        <p class="text-gray mb-3"><fa-icon [icon]="['fas', 'clipboard-list']"> </fa-icon> Nr. zamówienia #{{order.orderId}} </p>
 
+                        <p class="text-gray mb-3"><fa-icon [icon]="['fas', 'clipboard-list']"> </fa-icon> Nr. zamówienia #{{order.orderId}}
+                          <span class="float-right">
+                                  <span class="font-weight-bold">
+                                    {{order.desiredDeliveryTime}}
+                                  </span>
+                              </span>
+                        </p>
+
+                        <p class="text-gray mb-3"><fa-icon [icon]="['fas', 'donate']"> </fa-icon> Napiwek dla kuriera: {{order.tip}} </p>
 
                         <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'info']" > </fa-icon>
                           <span class="text-info"> Poprosze hamburgera bez cebuli, i żeby było ciepłe!!!</span>
@@ -89,22 +97,7 @@
             </div>
           </div>
         </div>
-        <tbody>
-        <tr *ngFor="let order of orderHistory">
-          <td class="pl-4">{{order.orderId}}</td>
-          <td>
-            <h5 class="font-medium mb-0">{{order.desiredDeliveryTime}}</h5>
-            <span class="text-muted"><!-- tutaj adres --></span>
-          </td>
-          <td>
-            <span class="text-muted">{{order.orderPrice}}</span><br>
 
-          </td>
-          <td>
-            <span class="text-muted">{{order.tip}}</span><br>
-          </td>
-        </tr>
-        </tbody>
       </div> <!-- end tab-content -->
     </div> <!-- end card-box-->
   </div> <!-- end col -->

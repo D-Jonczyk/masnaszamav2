@@ -28,7 +28,7 @@ import {FavoriteRestaurantComponent} from './component/client-panel/favorite-res
 import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {HelpComponent} from './component/client-panel/help';
 import {UserListComponent} from './component/admin-panel/user-list/user-list.component';
-
+import { OpinionComponent } from './component/client-panel/opinion';
 export const routes: Routes = [
   {
     path: '',
@@ -96,6 +96,12 @@ export const routes: Routes = [
     // client
     path: 'favorite-restaurant',
     component: FavoriteRestaurantComponent,
+    pathMatch: 'full'
+  },
+  {
+    // client
+    path: 'opinion',
+    component: OpinionComponent,
     pathMatch: 'full'
   },
   {

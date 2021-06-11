@@ -13,13 +13,13 @@ import {ClientPanelService} from '../client-panel-service';
 
 
 @Component({
-  selector: 'app-client-adress',
-  templateUrl: './client-adress.component.html',
-  styleUrls: ['./client-adress.component.css']
+  selector: 'app-opinion',
+  templateUrl: './opinion.component.html',
+  styleUrls: ['./opinion.component.css']
 })
-export class ClientAdressComponent implements OnInit {
+export class OpinionComponent implements OnInit {
 
-  titel = 'Adresy klienta';
+  titel = 'Opinie klienta';
   public customers: Customer[];
   public clientName = this.clientPanelService.clientName;
   links=LINKS;
