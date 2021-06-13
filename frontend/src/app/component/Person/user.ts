@@ -9,6 +9,7 @@ export interface User {
   phonenumber: number;
   imgUrl: string;
   authorities: Authority[];
+  addressId:number;
 }
 
 // TODO: pobieranie kuriera z istniejącej sesji

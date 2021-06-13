@@ -1,5 +1,6 @@
 package com.masnaszama.repository;
 
+import com.masnaszama.dto.OrderMealsDTO;
 import com.masnaszama.dto.OrdersDTO;
 import com.masnaszama.dto.RestaurantOrdersDTO;
 import com.masnaszama.dto.UserOrdersDTO;
@@ -30,11 +31,18 @@ public interface OrderRepo extends CrudRepository<Order, Long> {
     List<OrdersDTO> getOrderByCustomerId(Long customerId);
 
     @Query(value = "SELECT new com.masnaszama.dto.UserOrdersDTO" +
-            "(o.orderId, o.desiredDeliveryTime, o.orderPrice, o.orderedTime, o.tip, o.customer.id, o.orderStatus.statusId, o.restaurant.restaurantId, o.restaurant.restaurantName, o.address.addressId, o.comment) " +
+            "(o.orderId, o.desiredDeliveryTime, o.orderPrice, o.orderedTime, o.tip," +
+            " o.customer.id, o.orderStatus.statusId, o.restaurant.restaurantId, o.restaurant.restaurantName," +
+            " o.address.addressId, o.comment) " +
             "FROM Order o " +
             "WHERE o.customer.id = ?1")
     List<UserOrdersDTO> getOrderByUserId(Long customerId);
 
+    @Query(value = "SELECT new com.masnaszama.dto.OrderMealsDTO" +
+            "(o.meal.mealName, o.opinion.opinionComment, o.opinion.rating) " +
+            "FROM OrdersMeals o " +
+            "WHERE o.order.orderId = ?1")
+    List<OrderMealsDTO> getOpinionMealsByOrderId(Long orderId);
      //Work fine
     @Query(value = "SELECT new com.masnaszama.dto.RestaurantOrdersDTO" +
                     "(o.orderId, m.mealName) " +

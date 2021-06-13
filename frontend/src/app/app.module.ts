@@ -28,7 +28,7 @@ import {ProfileComponent} from './component/courier-panel/profile/profile.compon
 import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
 import {OrderlistComponent} from './component/courier-panel/orderlist';
 import {ClientPanelComponent} from './component/client-panel';
-import {ClientAdressComponent} from './component/client-panel/client-adress';
+import {ClientAdressComponent} from './component/client-panel/client-adsress';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
 import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {AngularFireModule} from '@angular/fire';

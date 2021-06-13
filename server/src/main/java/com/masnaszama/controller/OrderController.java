@@ -1,5 +1,6 @@
 package com.masnaszama.controller;
 
+import com.masnaszama.dto.OrderMealsDTO;
 import com.masnaszama.dto.OrdersDTO;
 import com.masnaszama.dto.RestaurantOrdersDTO;
 import com.masnaszama.dto.UserOrdersDTO;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +39,10 @@ public class OrderController {
     @GetMapping(path = "/getbyuser/customer")
     public List<UserOrdersDTO> getOrderByUserId(@RequestParam Long customerId){
         return orderService.getOrderByUserId(customerId);
+    }
+    @GetMapping(path = "/getbyorder/order")
+    public List<OrderMealsDTO> getOpinionMealsByOrderId(@RequestParam Long orderId){
+        return orderService.getOpinionMealsByOrderId(orderId);
     }
 
     @GetMapping(path = "/getbyRestaurantId")

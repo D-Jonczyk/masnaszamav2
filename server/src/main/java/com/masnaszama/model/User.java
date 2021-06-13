@@ -1,6 +1,8 @@
 package com.masnaszama.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.masnaszama.model.address.Address;
 import com.masnaszama.model.person.Person;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +35,10 @@ public class User extends Person implements UserDetails, Serializable  {
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private List<Authority> authorities;
 
+    @JsonBackReference
+    @JoinColumn(name = "address_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Address address;
     public Long getId() {
         return id;
     }
@@ -63,6 +69,14 @@ public class User extends Person implements UserDetails, Serializable  {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

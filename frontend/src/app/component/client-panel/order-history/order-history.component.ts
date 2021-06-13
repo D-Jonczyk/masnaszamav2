@@ -16,6 +16,7 @@ import { OrderHistoryService} from './order-history-service';
 import {OrderHistory} from './order-history';
 import {User} from '../../Person/user';
 
+export let ORDERID;
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
@@ -47,7 +48,6 @@ this.getUserOrdersById();
     this.orderHistoryService.getUserOrdersById(this.clientId).subscribe(
       (response: OrderHistory[]) => {
         this.orderHistory = response;
-        console.log(this.orderHistory);
         if(response.length === 0)
         {
           this.empty = true;

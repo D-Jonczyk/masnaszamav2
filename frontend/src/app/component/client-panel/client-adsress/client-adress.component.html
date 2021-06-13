@@ -41,38 +41,17 @@
 
         <div class="tab-content" id="ngbNav">
           <div class="tab-content" id="ngbNav">
-            <h3>Lista zapisanych adresow: </h3>
+            <h3>Twój adres domyślny to: </h3>
             <nav>
-
-              <ol>
-                <li>Nazwa adresu 1
-                  <ul>
-                    <li>Miasto</li>
-                    <li>Ulica</li>
-                    <li>Numer bloku</li>
-                    <li>numer mieszkania</li>
-
-                  </ul>
-                </li>
-                <li>Nazwa adresu 3
-                  <ul>
-                    <li>Miasto</li>
-                    <li>Ulica</li>
-                    <li>Numer bloku</li>
-                    <li>numer mieszkania</li>
-
-                  </ul>
-                </li>
-                <li>Nazwa adresu 3
-                  <ul>
-                    <li>Miasto</li>
-                    <li>Ulica</li>
-                    <li>Numer bloku</li>
-                    <li>numer mieszkania</li>
-
-                  </ul>
-                </li>
-              </ol>
+              <tr *ngFor="let address of clientAddress">
+              <span class="float-right font-weight-bold">
+                Miasto:
+                {{address.city}}<br>
+                Ulica:
+                {{address.street}}<br>
+                Numer mieszkania:
+                {{address.flatNumber}}<br>
+              </span>
 
             </nav>
           </div>

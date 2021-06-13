@@ -1,5 +1,6 @@
 package com.masnaszama.service.impl;
 
+import com.masnaszama.dto.OrderMealsDTO;
 import com.masnaszama.dto.OrdersDTO;
 import com.masnaszama.dto.RestaurantOrdersDTO;
 import com.masnaszama.dto.UserOrdersDTO;
@@ -33,6 +34,9 @@ public class OrderService {
     }
     public List<UserOrdersDTO> getOrderByUserId(Long personId) {
         return orderRepo.getOrderByUserId(personId);
+    }
+    public List<OrderMealsDTO> getOpinionMealsByOrderId(Long orderId) {
+        return orderRepo.getOpinionMealsByOrderId(orderId);
     }
     public List<RestaurantOrdersDTO> getOrdersByRestaurantId(Long restaurantId) {
         return orderRepo.getOrdersByRestaurantId(restaurantId);

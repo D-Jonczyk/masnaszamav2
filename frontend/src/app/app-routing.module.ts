@@ -23,7 +23,7 @@ import {CategoriesComponent} from './component/admin-panel/categories/categories
 import {RestaurantMenuUpdatePanelComponent} from './component/admin-panel/restaurant-menu-update-panel/restaurant-menu-update-panel.component';
 import {ListRestoComponent} from './component/admin-panel/list-resto/list-resto.component';
 import {ClientPanelComponent} from './component/client-panel';
-import {ClientAdressComponent} from './component/client-panel/client-adress';
+import {ClientAdressComponent} from './component/client-panel/client-adsress';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
 import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {HelpComponent} from './component/client-panel/help';

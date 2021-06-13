@@ -10,6 +10,9 @@ import {Customer} from '../../Person/customer';
 import { LINKS } from '../client-panel.component';
 import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
 import {ClientPanelService} from '../client-panel-service';
+import {OrderHistory} from '../order-history/order-history';
+import {HttpErrorResponse} from '@angular/common/http';
+import {OpinionService} from './opinion-service';
 
 
 @Component({
@@ -25,6 +28,7 @@ export class OpinionComponent implements OnInit {
   links=LINKS;
 
   constructor(private library: FaIconLibrary,
+              public  opinionService:OpinionService,
               public clientPanelService:ClientPanelService ) {
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
       faClipboardList, faHeadset, faPhoneAlt, faCheckCircle, faPlayCircle, faListAlt, faLocationArrow,
@@ -33,5 +37,19 @@ export class OpinionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  // public getOpinionMealsByOrderId(): void {
+  //   this.opinionService.getOpinionMealsByOrderId(this.orderId).subscribe(
+  //     (response: OrderHistory[]) => {
+  //       this.orderHistory = response;
+  //       console.log(this.orderHistory);
+  //       if(response.length === 0)
+  //       {
+  //         this.empty = true;
+  //       }
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   );
+  // }
 }
