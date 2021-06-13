@@ -30,8 +30,6 @@ export class RestaurantOrdersComponent implements OnInit {
     // zmienić na id dla zalogowanej restauracji
     // this.restaurantOrders$ = this.restaurantOrdersService.getOrders(42);
     const restId = this.restaurantOrdersService.getRestaurantId();
-
-
     // 42
     this.restaurantOrdersService.getOrders(restId).subscribe
     (results => {
@@ -40,14 +38,11 @@ export class RestaurantOrdersComponent implements OnInit {
         if (existing) {
           existing.name.push(name) }
         else {acc.push({orderId, name: [name]})}
-
         return acc
       }, [])
       this.restaurantOrders = results;
       console.log(this.restaurantOrders);
     } );
-
-
     // console.log(this.restaurantOrders);
     // this.mergeOrders();
   }

@@ -1,5 +1,8 @@
 package com.masnaszama.dto;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 public class UserOrdersDTO {
     private final Long orderId;
     private final String desiredDeliveryTime;
@@ -15,10 +18,11 @@ public class UserOrdersDTO {
     private final String city;
     private final String street;
     private final Integer flatNumber;
-
+    private final String mealName;
+    private final BigDecimal price;
     public UserOrdersDTO(Long orderId, String desiredDeliveryTime,Integer orderPrice, String orderedTime,
                          Integer tip, Long customerId, Long statusId, Long restaurantId,String restaurantName,Long addressId,String comment,
-                         String city, String street, Integer flatNumber) {
+                         String city, String street, Integer flatNumber,String mealName,BigDecimal price) {
         this.orderId = orderId;
         this.desiredDeliveryTime = desiredDeliveryTime;
         this.orderPrice = orderPrice;
@@ -33,6 +37,8 @@ public class UserOrdersDTO {
         this.city = city;
         this.street=street;
         this.flatNumber=flatNumber;
+        this.mealName = mealName;
+        this.price = price;
     }
 
     public Long getOrderId() {
@@ -89,5 +95,11 @@ public class UserOrdersDTO {
 
     public String getCity() {
         return city;
+    }
+    public String getMealName() {
+        return mealName;
+    }
+    public BigDecimal getPrice() {
+        return price;
     }
 }

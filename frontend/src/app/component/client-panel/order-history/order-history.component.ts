@@ -29,7 +29,7 @@ import {
   faRoad,
   faListOl,
   faRetweet,
-  faCity
+  faCity, faHamburger, faDollarSign
 } from '@fortawesome/free-solid-svg-icons';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
@@ -43,6 +43,7 @@ import {OrderHistory} from './order-history';
 import {User} from '../../Person/user';
 import {OrderAddress} from './order-address';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Observable} from 'rxjs';
 
 export let ORDERID;
 @Component({
@@ -63,7 +64,8 @@ export class OrderHistoryComponent implements OnInit {
   street:string;
   flatNumber:number;
   element;
-  public orderHistory: OrderHistory[];
+  orderHistory$: OrderHistory[];
+  mealNumber= 0;
   constructor(public route: ActivatedRoute,
               public library: FaIconLibrary,
               public clientPanelService: ClientPanelService,
@@ -76,25 +78,31 @@ export class OrderHistoryComponent implements OnInit {
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
       faClipboardList, faHeadset, faPhoneAlt, faCheckCircle, faPlayCircle, faListAlt, faLocationArrow,
       faCalendarAlt, faUserCircle, faQuestionCircle, faComments, faHistory,faSignOutAlt,faCrown,faQuestion,faDonate,faBullhorn,faUtensils,
-      faRoad, faListOl,faCity,);
+      faRoad, faListOl,faCity, faHamburger, faDollarSign);
   }
 
   ngOnInit(): void {
 this.getUserOrdersById();
   }
   public getUserOrdersById(): void {
-    this.orderHistoryService.getUserOrdersById(this.clientId).subscribe(
-      (response: OrderHistory[]) => {
-        this.orderHistory = response;
-        if(response.length === 0)
-        {
-          this.empty = true;
-        }
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
+    this.orderHistoryService.getUserOrdersById(this.clientId).subscribe
+    (results => {
+      results = results.reduce((acc, {desiredDeliveryTime, orderPrice,
+       orderedTime, orderId, tip, customerId, restaurantId, statusId
+        ,restaurantName, comment, addressId, city, street, flatNumber,mealName,
+      price}) => {
+        const existing = acc.find(i => i.orderId === orderId)
+        if (existing) {
+          existing.mealName.push(mealName)
+          existing.price.push(price)}
+        else {acc.push({orderId, mealName: [mealName],desiredDeliveryTime, orderPrice,
+          orderedTime,tip, customerId, restaurantId, statusId
+          ,restaurantName, comment, addressId, city, street, flatNumber,price: [price]})}
+        return acc
+      }, [])
+      this.orderHistory$ = results;
+      console.log(this.orderHistory$);
+    } );
   }
   open(content) {
     this.modalService.open(content);

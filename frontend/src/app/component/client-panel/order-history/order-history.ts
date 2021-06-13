@@ -13,5 +13,7 @@ export interface OrderHistory{
   city:string;
   street:string;
   flatNumber:number;
+  mealName:string;
+  price:number;
 }
 
