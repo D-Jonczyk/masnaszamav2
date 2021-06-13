@@ -12,8 +12,13 @@ public class UserOrdersDTO {
     private final String restaurantName;
     private final Long addressId;
     private final String comment;
+    private final String city;
+    private final String street;
+    private final Integer flatNumber;
+
     public UserOrdersDTO(Long orderId, String desiredDeliveryTime,Integer orderPrice, String orderedTime,
-                         Integer tip, Long customerId, Long statusId, Long restaurantId,String restaurantName,Long addressId,String comment) {
+                         Integer tip, Long customerId, Long statusId, Long restaurantId,String restaurantName,Long addressId,String comment,
+                         String city, String street, Integer flatNumber) {
         this.orderId = orderId;
         this.desiredDeliveryTime = desiredDeliveryTime;
         this.orderPrice = orderPrice;
@@ -25,6 +30,9 @@ public class UserOrdersDTO {
         this.restaurantName = restaurantName;
         this.addressId=addressId;
         this.comment=comment;
+        this.city = city;
+        this.street=street;
+        this.flatNumber=flatNumber;
     }
 
     public Long getOrderId() {
@@ -69,5 +77,17 @@ public class UserOrdersDTO {
 
     public String getComment() {
         return comment;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public Integer getFlatNumber() {
+        return flatNumber;
+    }
+
+    public String getCity() {
+        return city;
     }
 }

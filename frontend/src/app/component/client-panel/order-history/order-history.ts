@@ -10,4 +10,8 @@ export interface OrderHistory{
   restaurantName: string;
   comment: string;
   addressId: number;
+  city:string;
+  street:string;
+  flatNumber:number;
 }
+

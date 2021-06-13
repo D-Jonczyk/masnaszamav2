@@ -2,15 +2,16 @@ package com.masnaszama.controller;
 
 import com.masnaszama.dto.AddressDTO;
 import com.masnaszama.dto.OrdersDTO;
+import com.masnaszama.model.address.Address;
+import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.service.impl.AddressService;
 
 import com.masnaszama.service.impl.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +25,12 @@ public class AddressController {
     }
 
     @GetMapping(path = "/getby/user")
-    public List<AddressDTO> getAddressByUserId(@RequestParam Long userId){
+    public AddressDTO getAddressByUserId(@RequestParam Long userId){
         return addressService.getAddressByUserId(userId);
+    }
+
+    @GetMapping(path = "/getby/customer")
+    public List<AddressDTO> getAddressByCustomerId(@RequestParam Long customerId){
+        return addressService.getAddressByCustomerId(customerId);
     }
 }

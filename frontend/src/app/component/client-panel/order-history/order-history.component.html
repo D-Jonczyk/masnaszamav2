@@ -44,12 +44,43 @@
                 <tbody>
                 <div style=" height: 900px; width: 1200px; overflow: scroll;">
                   <div *ngIf="this.empty"><p>Twoja historia jest pusta !</p></div>
-                <tr *ngFor="let order of orderHistory">
-                <div class="bg-white card mb-4 order-list shadow-sm">
+                <tr *ngFor="let order of orderHistory;">
+
+                  <!--show address -->
+                  <ng-template #showAddress let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">Adres wybranego zamówienia:</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click');">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="text-gray mb-1">
+                          <fa-icon [icon]="['fas', 'city']"> </fa-icon>
+                          Miasto:
+                          <span class="text-info">{{order.city}}</span><br>
+                        </p>
+                        <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'road']"> </fa-icon>
+                          Ulica:
+                          <span class="text-info">{{order.street}}</span><br>
+                        </p>
+                        <p class="text-gray mb-3">
+                          <fa-icon [icon]="['fas', 'list-ol']"> </fa-icon>
+                          Numer mieszkania:
+                          <span class="text-info">{{order.flatNumber}}</span><br>
+                        </p>
+                      </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Zakoncz</button>
+                    </div>
+                  </ng-template>
+                  <!--finish show address -->
+
+                  <div class="bg-white card mb-4 order-list shadow-sm">
                   <div class="gold-members p-3">
                     <div class="media">
                       <div class="media-body">
-                              <span class="float-right font-weight-bold">
+                              <span  class="float-right font-weight-bold">
                                 <fa-icon [icon]="['fas', 'truck-loading']"> </fa-icon>
                                 Data zamowienia:
                                 {{order.orderedTime}}
@@ -59,9 +90,8 @@
                           <a href="#" style="padding-left:35px" class="text-black">{{order.restaurantName}} </a>
                         </h6>
                         <hr/>
-                        <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'map-marker-alt']"> </fa-icon> Address:
-                          <span class="text-info">{{order.addressId}}</span>
-                          <span style="padding-left:150px"  class="float-right">
+                        <p class="text-gray mb-1">
+                          <span style="padding-left:250px"  class="float-right">
                                 <fa-icon [icon]="['far', 'clock']"> </fa-icon>
                                   <span class="font-weight-bold">
                                     Przewidywana data odbioru:
@@ -94,10 +124,12 @@
                         <hr/>
 
                         <div class="float-right">
-                          <a class="btn btn-sm btn-outline-primary" href="#"><fa-icon [icon]="['fas', 'headset']" > </fa-icon> Pomoc</a>
-                          <a class="btn btn-sm btn-primary btn-primary px-2" href="#"><fa-icon [icon]="['far', 'check-circle']" > </fa-icon> Potwierdź dostarczenie</a>
+                          <a class="btn btn-sm btn-outline-primary" href="#">
+                            <fa-icon [icon]="['fas', 'headset']" > </fa-icon> Pomoc</a>
+                          <a class="btn btn-sm btn-primary btn-primary px-2" href="#">
+                            <fa-icon [icon]="['far', 'check-circle']" > </fa-icon> Potwierdź dostarczenie</a>
                         </div>
-                        <a class="btn btn-sm btn-outline-primary px-2" href="#"><fa-icon [icon]="['fas', 'phone-alt']" > </fa-icon> Zadzwoń do klienta</a>
+                        <a class="btn btn-sm btn-outline-primary px-2"   (click)="open(showAddress)">Sprawdz adres zamowienia</a>
                       </div>
                     </div>
                   </div>
