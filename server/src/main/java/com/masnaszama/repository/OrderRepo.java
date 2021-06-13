@@ -34,7 +34,7 @@ public interface OrderRepo extends CrudRepository<Order, Long> {
             "FROM Order o " +
             "JOIN OrdersMeals om ON om.order.orderId = o.orderId " +
             "JOIN Meal m ON m.mealId = om.meal.mealId " +
-            "WHERE o.restaurant.restaurantId = ?1")
+            "WHERE o.restaurant.restaurantId = ?1 AND o.orderStatus.statusName = 'requested'")
     List<RestaurantOrdersDTO> getOrdersByRestaurantId(Long restaurantId);
 
     @Query(value = "SELECT new com.masnaszama.model.views.OrdersDelivery " +
@@ -50,5 +50,13 @@ public interface OrderRepo extends CrudRepository<Order, Long> {
             "set o.orderStatus.statusId = 4 " +
             "where o.orderId = ?1")
     void updateOrderStatus(Long orderId);
+
+    @Modifying
+    @Transactional
+    @Query("update Order o " +
+            "set o.orderStatus.statusId = 3 " +
+            "where o.orderId = ?1")
+    void setStatusToFinished(Long orderId);
+
 
 }

@@ -56,4 +56,10 @@ public class OrderController {
         orderService.createNewOrder(newOrder);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping(path = "/setStatusToFinished")
+    public void setStatus(@RequestParam Long orderId) {
+
+        orderService.setStatus(orderId);
+    }
 }
