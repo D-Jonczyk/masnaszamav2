@@ -34,7 +34,7 @@
 
     <!-- content -->
     <div class="col-lg-9">
-      <div class="card-box col-lg-9">
+      <div class="card-box col-lg-12">
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -42,6 +42,8 @@
 
                 <h4 class="font-weight-bold mt-0 mb-4">Historia zamowien</h4>
                 <tbody>
+                <div style=" height: 900px; width: 1200px; overflow: scroll;">
+                  <div *ngIf="this.empty"><p>Twoja historia jest pusta !</p></div>
                 <tr *ngFor="let order of orderHistory">
                 <div class="bg-white card mb-4 order-list shadow-sm">
                   <div class="gold-members p-3">
@@ -49,14 +51,16 @@
                       <div class="media-body">
                               <span class="float-right font-weight-bold">
                                 <fa-icon [icon]="['fas', 'truck-loading']"> </fa-icon>
-                                Data zamowienia: {{order.orderedTime}}
+                                Data zamowienia:
+                                {{order.orderedTime}}
                                 </span>
                         <h6 class="mb-2">
                           <fa-icon [icon]="['fas', 'utensils']"> </fa-icon>
                           <a href="#" style="padding-left:35px" class="text-black">{{order.restaurantName}} </a>
                         </h6>
                         <hr/>
-                        <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'map-marker-alt']"> </fa-icon> ul. Warszawska 99, 12-324
+                        <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'map-marker-alt']"> </fa-icon> Address:
+                          <span class="text-info">{{order.addressId}}</span>
                           <span style="padding-left:150px"  class="float-right">
                                 <fa-icon [icon]="['far', 'clock']"> </fa-icon>
                                   <span class="font-weight-bold">
@@ -65,20 +69,28 @@
                               </span>
                         </p>
 
-                        <p class="text-gray mb-3"><fa-icon [icon]="['fas', 'clipboard-list']"> </fa-icon> Nr. zamówienia #{{order.orderId}}
+                        <p class="text-gray mb-3"><fa-icon [icon]="['fas', 'clipboard-list']"> </fa-icon> Nr. zamówienia
+
+                          <span class="text-info">#{{order.orderId}}</span>
+
                           <span class="float-right">
                                   <span class="font-weight-bold">
                                     {{order.desiredDeliveryTime}}
                                   </span>
                               </span>
+
                         </p>
 
-                        <p class="text-gray mb-3"><fa-icon [icon]="['fas', 'donate']"> </fa-icon> Napiwek dla kuriera: {{order.tip}} </p>
+                        <p class="text-gray mb-3"><fa-icon [icon]="['fas', 'donate']"> </fa-icon> Napiwek dla kuriera:
+                          <span class="text-info">{{order.tip}}</span> </p>
 
                         <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'info']" > </fa-icon>
-                          <span class="text-info"> Poprosze hamburgera bez cebuli, i żeby było ciepłe!!!</span>
+                          <span class="text-gray"> Komentarz dla kuriera: </span>
                         </p>
+                        <p class="text-gray mb-1; comment" >
+                            <span class="text-info" > {{order.comment}} </span>
 
+                        </p>
                         <hr/>
 
                         <div class="float-right">
@@ -90,8 +102,7 @@
                     </div>
                   </div>
                 </div>
-
-
+                </div>
 
               </div>
             </div>

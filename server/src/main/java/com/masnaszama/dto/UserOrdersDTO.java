@@ -11,8 +11,9 @@ public class UserOrdersDTO {
     private final Long restaurantId;
     private final String restaurantName;
     private final Long addressId;
-
-    public UserOrdersDTO(Long orderId, String desiredDeliveryTime,Integer orderPrice, String orderedTime, Integer tip, Long customerId, Long statusId, Long restaurantId,String restaurantName,Long addressId) {
+    private final String comment;
+    public UserOrdersDTO(Long orderId, String desiredDeliveryTime,Integer orderPrice, String orderedTime,
+                         Integer tip, Long customerId, Long statusId, Long restaurantId,String restaurantName,Long addressId,String comment) {
         this.orderId = orderId;
         this.desiredDeliveryTime = desiredDeliveryTime;
         this.orderPrice = orderPrice;
@@ -23,6 +24,7 @@ public class UserOrdersDTO {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
         this.addressId=addressId;
+        this.comment=comment;
     }
 
     public Long getOrderId() {
@@ -56,10 +58,16 @@ public class UserOrdersDTO {
     public Long getRestaurantId() {
         return restaurantId;
     }
+
     public String getRestaurantName() {
         return restaurantName;
     }
+
     public Long getAddressId() {
         return addressId;
+    }
+
+    public String getComment() {
+        return comment;
     }
 }

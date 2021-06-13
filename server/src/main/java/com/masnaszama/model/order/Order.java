@@ -18,6 +18,7 @@ public class Order {
     private Integer tip;
     private Integer orderPrice;
 
+    private String comment;
     private String orderedTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
     private String desiredDeliveryTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
 
@@ -99,6 +100,14 @@ public class Order {
 
     public void setOrderPrice(Integer orderPrice) {
         this.orderPrice = orderPrice;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @JsonProperty(value = "restaurantId")

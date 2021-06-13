@@ -8,4 +8,6 @@ export interface OrderHistory{
   restaurantId: number;
   statusId: number;
   restaurantName: string;
+  comment: string;
+  addressId: number;
 }

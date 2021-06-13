@@ -30,7 +30,7 @@ public interface OrderRepo extends CrudRepository<Order, Long> {
     List<OrdersDTO> getOrderByCustomerId(Long customerId);
 
     @Query(value = "SELECT new com.masnaszama.dto.UserOrdersDTO" +
-            "(o.orderId, o.desiredDeliveryTime, o.orderPrice, o.orderedTime, o.tip, o.customer.id, o.orderStatus.statusId, o.restaurant.restaurantId, o.restaurant.restaurantName, o.customer.address.addressId) " +
+            "(o.orderId, o.desiredDeliveryTime, o.orderPrice, o.orderedTime, o.tip, o.customer.id, o.orderStatus.statusId, o.restaurant.restaurantId, o.restaurant.restaurantName, o.address.addressId, o.comment) " +
             "FROM Order o " +
             "WHERE o.customer.id = ?1")
     List<UserOrdersDTO> getOrderByUserId(Long customerId);

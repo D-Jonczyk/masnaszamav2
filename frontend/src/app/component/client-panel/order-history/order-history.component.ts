@@ -27,7 +27,7 @@ export class OrderHistoryComponent implements OnInit {
   fas = 'fas';
   links=LINKS;
   clientId = CLIENTID;
-
+  empty:boolean;
   public orderHistory: OrderHistory[];
 
   constructor(public route: ActivatedRoute,
@@ -48,6 +48,10 @@ this.getUserOrdersById();
       (response: OrderHistory[]) => {
         this.orderHistory = response;
         console.log(this.orderHistory);
+        if(response.length === 0)
+        {
+          this.empty = true;
+        }
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
