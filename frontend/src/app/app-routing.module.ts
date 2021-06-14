@@ -27,8 +27,12 @@ import {ClientAdressComponent} from './component/client-panel/client-adsress';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
 import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {HelpComponent} from './component/client-panel/help';
+import {PaymentSystemComponent} from './component/payment-system/payment-system.component';
+import {CancelComponent} from './component/cancel/cancel.component';
+import {SucessComponent} from './component/sucess/sucess.component';
 import {UserListComponent} from './component/admin-panel/user-list/user-list.component';
 import { OpinionComponent } from './component/client-panel/opinion';
+
 export const routes: Routes = [
   {
     path: '',
@@ -79,6 +83,9 @@ export const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'restaurant-menu-update-panel', component: RestaurantMenuUpdatePanelComponent},
   {path: 'list-resto', component: ListRestoComponent},
+  {path: 'payment-system', component: PaymentSystemComponent},
+  {path: 'payment-success', component: SucessComponent},
+  {path: 'payment-cancel', component: CancelComponent},
   {path: 'user-list', component: UserListComponent},
   {
     // client

@@ -49,6 +49,9 @@ import {OrderItemComponent} from './component/admin-panel/overview/order-item/or
 import {OverviewComponent} from './component/admin-panel/overview/overview.component';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { HelpComponent } from './component/client-panel/help';
+import { PaymentSystemComponent } from './component/payment-system/payment-system.component';
+import { CancelComponent } from './component/cancel/cancel.component';
+import { SucessComponent } from './component/sucess/sucess.component';
 import { UserListComponent } from './component/admin-panel/user-list/user-list.component';
 import { OpinionComponent } from './component/client-panel/opinion';
 
@@ -92,6 +95,9 @@ import { OpinionComponent } from './component/client-panel/opinion';
     RestaurantSummaryComponent,
     WeekPipe,
     HelpComponent,
+    PaymentSystemComponent,
+    CancelComponent,
+    SucessComponent,
     UserListComponent,
     OpinionComponent,
   ],

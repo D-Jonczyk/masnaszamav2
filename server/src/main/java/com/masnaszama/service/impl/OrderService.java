@@ -57,4 +57,6 @@ public class OrderService {
     public void createNewMeal(Meal newMeal) {
         mealRepo.save(newMeal);
     }
+
+    public void setStatus(Long id) { orderRepo.setStatusToFinished(id); }
 }
