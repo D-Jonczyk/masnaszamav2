@@ -1,9 +1,11 @@
 package com.masnaszama.model.restaurant;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.order.Order;
+import com.masnaszama.model.person.Employee.Employee;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -30,7 +32,9 @@ public class Restaurant {
     @OneToOne(fetch = FetchType.LAZY)
     private Address address;
 
-    @OneToOne(mappedBy = "restaurant")
+    @JsonBackReference
+    @JoinColumn(name = "opening_hours_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private OpeningHours openingHours;
 
     private String restaurantName;
@@ -44,8 +48,21 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private Set<RestaurantsMeals> restaurantsMeals = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "myRestaurant")
+    private Set<Employee> employees = new HashSet<>();
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
 
     public Long getRestaurantId() {
         return restaurantId;
