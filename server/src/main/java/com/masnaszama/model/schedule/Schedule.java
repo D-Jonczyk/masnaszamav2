@@ -14,13 +14,6 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long scheduleId;
 
-    @ManyToOne
-    @JoinColumn (name= "person_id", nullable=false)
-    private Coordinator coordinator;
-
-    @ManyToMany(mappedBy = "schedules")
-    private Set<Employee> employees = new HashSet<>();
-
     private String dateCreated = new java.text.SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date());
     private String startTime = new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date());
     private String endTime = new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date());
@@ -42,14 +35,6 @@ public class Schedule {
 
     public void setScheduleId(Long scheduleId) {
         this.scheduleId = scheduleId;
-    }
-
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
     }
 
     public String getDateCreated() {

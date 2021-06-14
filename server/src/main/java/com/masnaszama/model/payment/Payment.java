@@ -2,6 +2,7 @@ package com.masnaszama.model.payment;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.order.Order;
+import com.masnaszama.model.restaurant.Restaurant;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,7 +18,7 @@ public class Payment {
     private Long paymentId;
 
     @JsonManagedReference
-    @OneToOne(mappedBy="payment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Order order;
 
     public Payment() {
