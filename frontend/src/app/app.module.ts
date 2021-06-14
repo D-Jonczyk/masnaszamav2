@@ -28,7 +28,7 @@ import {ProfileComponent} from './component/courier-panel/profile/profile.compon
 import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
 import {OrderlistComponent} from './component/courier-panel/orderlist';
 import {ClientPanelComponent} from './component/client-panel';
-import {ClientAdressComponent} from './component/client-panel/client-adress';
+import {ClientAdressComponent} from './component/client-panel/client-adsress';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
 import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {AngularFireModule} from '@angular/fire';
@@ -50,6 +50,7 @@ import {OverviewComponent} from './component/admin-panel/overview/overview.compo
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { HelpComponent } from './component/client-panel/help';
 import { UserListComponent } from './component/admin-panel/user-list/user-list.component';
+import { OpinionComponent } from './component/client-panel/opinion';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { UserListComponent } from './component/admin-panel/user-list/user-list.c
     WeekPipe,
     HelpComponent,
     UserListComponent,
+    OpinionComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {
   faCalendarAlt,  faCheckSquare, faClipboardList,  faCoffee, faComments, faFingerprint, faHandMiddleFinger,
   faHeadset, faHistory,  faInfo, faListAlt,  faLocationArrow,  faMapMarkerAlt, faPhoneAlt, faQuestionCircle, faSearch,
-  faSquare,  faTruckLoading, faUserCircle, faSignOutAlt,faCrown,faQuestion
+  faSquare,  faTruckLoading, faUserCircle, faSignOutAlt,faCrown,faQuestion,faBullhorn
 } from '@fortawesome/free-solid-svg-icons';
 import {FaIconLibrary} from '@fortawesome/angular-fontawesome';
 import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
@@ -28,7 +28,7 @@ export class HelpComponent implements OnInit {
   ) {
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
       faClipboardList, faHeadset, faPhoneAlt, faCheckCircle, faPlayCircle, faListAlt, faLocationArrow,
-      faCalendarAlt, faUserCircle, faQuestionCircle, faComments, faHistory,faSignOutAlt,faCrown,faQuestion);
+      faCalendarAlt, faUserCircle, faQuestionCircle, faComments, faHistory,faSignOutAlt,faCrown,faQuestion,faBullhorn);
   }
 
   ngOnInit(): void {

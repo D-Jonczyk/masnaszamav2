@@ -2,10 +2,13 @@ package com.masnaszama.model.address;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.masnaszama.model.User;
+import com.masnaszama.model.order.Order;
 import com.masnaszama.model.person.Customer;
 import com.masnaszama.model.restaurant.Restaurant;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Address {
@@ -15,12 +18,18 @@ public class Address {
     private Long addressId;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Customer customer;
+    @OneToMany(mappedBy="address", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Order> orders;
+
+
 
     @JsonManagedReference
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Restaurant restaurant;
+
+    @JsonManagedReference
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
 
     private String city;
     private String street;
@@ -34,13 +43,7 @@ public class Address {
         this.addressId = addressId;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public Restaurant getRestaurant() {
         return restaurant;
@@ -72,5 +75,13 @@ public class Address {
 
     public void setFlatNumber(Integer flatNumber) {
         this.flatNumber = flatNumber;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

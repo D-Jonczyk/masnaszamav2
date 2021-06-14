@@ -1,6 +1,8 @@
 package com.masnaszama.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.masnaszama.model.address.Address;
 import com.masnaszama.model.person.Person;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -40,6 +42,15 @@ public class User extends Person implements UserDetails, Serializable  {
         this.imgUrl = imgUrl;
         this.email = email;
         this.roles = roles;
+    }
+  
+    @JsonBackReference
+    @JoinColumn(name = "address_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Address address;
+   
+    public Long getId() {
+        return id;
     }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -81,6 +92,14 @@ public class User extends Person implements UserDetails, Serializable  {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

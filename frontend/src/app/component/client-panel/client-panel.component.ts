@@ -4,7 +4,7 @@ import {faCheckCircle, faClock, faPlayCircle} from '@fortawesome/free-regular-sv
 import {
   faCalendarAlt,  faCheckSquare, faClipboardList,  faCoffee, faComments, faFingerprint, faHandMiddleFinger,
   faHeadset, faHistory,  faInfo, faListAlt,  faLocationArrow,  faMapMarkerAlt, faPhoneAlt, faQuestionCircle, faSearch,
-  faSquare,  faTruckLoading, faUserCircle, faSignOutAlt,faCrown,faQuestion
+  faSquare,  faTruckLoading, faUserCircle, faSignOutAlt,faCrown,faQuestion, faDonate, faBullhorn
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -22,6 +22,7 @@ export const LINKS: object[] = [
   { title: 'Lista Adresow', fragment: '/client-adress', icon: 'list-alt'},
   { title: 'Zamowienia', fragment: '/order-history', icon: 'history'},
   { title: 'Ulubione', fragment: '/favorite-restaurant', icon: 'crown'},
+  { title: 'Opinie', fragment: '/opinion', icon: 'bullhorn'},
   { title: 'Pomoc', fragment: '/help', icon: 'question-circle'},
 ];
 
@@ -58,7 +59,7 @@ export class ClientPanelComponent implements OnInit {
     config.keyboard = false;
     library.addIcons(faSquare, faCheckSquare, faMedium, faGithub, faClock, faMapMarkerAlt, faLocationArrow, faInfo, faTruckLoading,
       faClipboardList, faHeadset, faPhoneAlt, faCheckCircle, faPlayCircle, faListAlt, faLocationArrow,
-      faCalendarAlt, faUserCircle, faQuestionCircle, faComments, faHistory,faSignOutAlt,faCrown,faQuestion);
+      faCalendarAlt, faUserCircle, faQuestionCircle, faComments, faHistory,faSignOutAlt,faCrown,faQuestion,faBullhorn);
   }
 
   ngOnInit(): void {

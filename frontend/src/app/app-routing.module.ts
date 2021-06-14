@@ -23,12 +23,12 @@ import {CategoriesComponent} from './component/admin-panel/categories/categories
 import {RestaurantMenuUpdatePanelComponent} from './component/admin-panel/restaurant-menu-update-panel/restaurant-menu-update-panel.component';
 import {ListRestoComponent} from './component/admin-panel/list-resto/list-resto.component';
 import {ClientPanelComponent} from './component/client-panel';
-import {ClientAdressComponent} from './component/client-panel/client-adress';
+import {ClientAdressComponent} from './component/client-panel/client-adsress';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
 import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {HelpComponent} from './component/client-panel/help';
 import {UserListComponent} from './component/admin-panel/user-list/user-list.component';
-
+import { OpinionComponent } from './component/client-panel/opinion';
 export const routes: Routes = [
   {
     path: '',
@@ -96,6 +96,12 @@ export const routes: Routes = [
     // client
     path: 'favorite-restaurant',
     component: FavoriteRestaurantComponent,
+    pathMatch: 'full'
+  },
+  {
+    // client
+    path: 'opinion',
+    component: OpinionComponent,
     pathMatch: 'full'
   },
   {

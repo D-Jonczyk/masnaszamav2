@@ -20,10 +20,7 @@ public class Customer extends Person{
 
     public Customer() { super(); }
 
-    @JsonBackReference
-    @JoinColumn(name = "address_id")
-    @OneToOne(fetch = FetchType.LAZY)
-    private Address address;
+
 
     @JsonManagedReference
     @OneToMany(mappedBy="customer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -34,13 +31,6 @@ public class Customer extends Person{
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public Set<Order> getOrders() {
         return orders;
