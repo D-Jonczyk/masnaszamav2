@@ -10,6 +10,8 @@ import {Restaurant} from '../model/Restaurant';
 import {Customer} from '../model/Customer';
 import {Payment} from '../model/Payment';
 import {OrderStatus} from '../model/OrderStatus';
+import {routes} from '../../../app-routing.module';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-order-checkout',
@@ -36,6 +38,7 @@ export class OrderCheckoutComponent implements OnInit {
               private library: FaIconLibrary,
               private restaurantMenu: RestaurantMenuService,
               private location: Location,
+              private router: Router,
               private  orderCheckoutService: OrderCheckoutService) {
     library.addIcons(faShoppingCart);
     this.totalCost = restaurantMenu.totalCost;
@@ -52,11 +55,14 @@ export class OrderCheckoutComponent implements OnInit {
 
   addNewOrder() : void
   {
-    this.order = new Order(1352, 300, new Customer(400),
-      new Payment(100),1, '2020-01-01 12:12:12', 99,
-      '2020-01-01 13:12:12', 2);
 
-    this.orderCheckoutService.addNewOrder(this.order);
+    this.router.navigateByUrl('payment-system');
+
+    // this.order = new Order(1352, 300, new Customer(400),
+    //   new Payment(100),1, '2020-01-01 12:12:12', 99,
+    //   '2020-01-01 13:12:12', 2);
+    //
+    // this.orderCheckoutService.addNewOrder(this.order);
   }
 
 }
