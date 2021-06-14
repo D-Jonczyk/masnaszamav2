@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -28,7 +28,7 @@ import {ProfileComponent} from './component/courier-panel/profile/profile.compon
 import {CourierOrderhistoryComponent} from './component/courier-panel/courier-orderhistory/courier-orderhistory.component';
 import {OrderlistComponent} from './component/courier-panel/orderlist';
 import {ClientPanelComponent} from './component/client-panel';
-import {ClientAdressComponent} from './component/client-panel/client-adress';
+import {ClientAdressComponent} from './component/client-panel/client-adsress';
 import {FavoriteRestaurantComponent} from './component/client-panel/favorite-restaurant';
 import {OrderHistoryComponent} from './component/client-panel/order-history';
 import {AngularFireModule} from '@angular/fire';
@@ -52,6 +52,8 @@ import { HelpComponent } from './component/client-panel/help';
 import { PaymentSystemComponent } from './component/payment-system/payment-system.component';
 import { CancelComponent } from './component/cancel/cancel.component';
 import { SucessComponent } from './component/sucess/sucess.component';
+import { UserListComponent } from './component/admin-panel/user-list/user-list.component';
+import { OpinionComponent } from './component/client-panel/opinion';
 
 @NgModule({
   declarations: [
@@ -96,6 +98,8 @@ import { SucessComponent } from './component/sucess/sucess.component';
     PaymentSystemComponent,
     CancelComponent,
     SucessComponent,
+    UserListComponent,
+    OpinionComponent,
   ],
   imports: [
     BrowserAnimationsModule,

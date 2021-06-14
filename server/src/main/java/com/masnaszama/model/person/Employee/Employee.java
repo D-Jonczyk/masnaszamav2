@@ -1,11 +1,8 @@
 package com.masnaszama.model.person.Employee;
 
 import com.masnaszama.model.person.Person;
-import com.masnaszama.model.restaurant.Restaurant;
 import com.masnaszama.model.schedule.Schedule;
 import com.masnaszama.model.schedule.Timesheet;
-import org.hibernate.annotations.Polymorphism;
-import org.hibernate.annotations.PolymorphismType;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -32,19 +29,9 @@ public class Employee extends Person {
     )
     Set<Timesheet> timesheets = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="restaurant_id")//, nullable=false)
-    private Restaurant myRestaurant;
     @Id
     private Long id;
 
-    public Restaurant getMyRestaurant() {
-        return myRestaurant;
-    }
-
-    public void setMyRestaurant(Restaurant myRestaurant) {
-        this.myRestaurant = myRestaurant;
-    }
 
     public void setId(Long id) {
         this.id = id;

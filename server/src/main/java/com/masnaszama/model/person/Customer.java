@@ -1,5 +1,6 @@
 package com.masnaszama.model.person;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.order.Order;
@@ -19,9 +20,7 @@ public class Customer extends Person{
 
     public Customer() { super(); }
 
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private Address address;
+
 
     @JsonManagedReference
     @OneToMany(mappedBy="customer", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -32,13 +31,6 @@ public class Customer extends Person{
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public Set<Order> getOrders() {
         return orders;

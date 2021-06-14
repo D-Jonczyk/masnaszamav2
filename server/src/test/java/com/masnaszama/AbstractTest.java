@@ -18,7 +18,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by fan.jin on 2016-11-07.
@@ -69,7 +71,7 @@ public abstract class AbstractTest {
         List<Authority> userAuthorities = new ArrayList<>();
         userAuthorities.add(userAuthority);
         user.setUsername("user");
-        user.setAuthorities(userAuthorities);
+        user.setRoles(userAuthorities);
         return user;
     }
 
@@ -84,7 +86,7 @@ public abstract class AbstractTest {
         adminAuthorities.add(adminAuthority);
         User admin = new User();
         admin.setUsername("admin");
-        admin.setAuthorities(adminAuthorities);
+        admin.setRoles(adminAuthorities);
         return admin;
     }
 

@@ -1,7 +1,9 @@
 package com.masnaszama.controller;
 
+import com.masnaszama.dto.OrderMealsDTO;
 import com.masnaszama.dto.OrdersDTO;
 import com.masnaszama.dto.RestaurantOrdersDTO;
+import com.masnaszama.dto.UserOrdersDTO;
 import com.masnaszama.model.order.Order;
 import com.masnaszama.model.views.OrdersDelivery;
 import com.masnaszama.service.impl.OrderService;
@@ -32,6 +34,15 @@ public class OrderController {
     @GetMapping(path = "/getby/customer")
     public List<OrdersDTO> getOrderByCustomerId(@RequestParam Long customerId){
         return orderService.getOrderByCustomerId(customerId);
+    }
+
+    @GetMapping(path = "/getbyuser/customer")
+    public List<UserOrdersDTO> getOrderByUserId(@RequestParam Long customerId){
+        return orderService.getOrderByUserId(customerId);
+    }
+    @GetMapping(path = "/getbyorder/order")
+    public List<OrderMealsDTO> getOpinionMealsByOrderId(@RequestParam Long orderId){
+        return orderService.getOpinionMealsByOrderId(orderId);
     }
 
     @GetMapping(path = "/getbyRestaurantId")

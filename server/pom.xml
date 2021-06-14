@@ -98,8 +98,10 @@
             <artifactId>stripe-java</artifactId>
             <version>20.35.0</version>
         </dependency>
-
-
+      <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

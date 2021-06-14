@@ -7,6 +7,9 @@ import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {User} from '../component';
 import {AccountRoles} from '../shared/models/account-roles';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+
+declare var FB: any;
 
 @Component({
   selector: 'app-login',
@@ -39,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {
 
   }
@@ -96,6 +99,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
         });
   }
+
 
   getRedirectUrl(user: User): string {
     for (const authority of user.authorities) {

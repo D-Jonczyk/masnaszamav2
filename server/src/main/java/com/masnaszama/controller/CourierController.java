@@ -57,10 +57,16 @@ public class CourierController {
         return new ResponseEntity<>(newCourier, HttpStatus.CREATED);
     }
    // @PreAuthorize("hasAnyRole('ROLE_COURIER, ROLE_ADMIN')")
-    @PutMapping("/update")
+    @PutMapping(path = "/update", headers = {
+            "content-type=application/json; charset=utf-8" }, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Courier> updateCourier(@RequestBody Courier courier) {
         Courier updatedCourier = courierService.updateCourier(courier);
         return new ResponseEntity<>(updatedCourier, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/incrementNumberOfDeliveries")
+    public void updateOrderStatus(@RequestParam Long courierId){
+        courierService.incrementNumberOfDeliveries(courierId);
     }
 
 }

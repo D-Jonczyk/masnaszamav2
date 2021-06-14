@@ -1,5 +1,6 @@
 package com.masnaszama.model.restaurant;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.order.Order;
@@ -26,15 +27,13 @@ public class Restaurant {
     @Id
     private Long restaurantId;
 
-    @JsonManagedReference
-    @OneToOne(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonBackReference
+    @JoinColumn(name = "address_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private Address address;
 
     @OneToOne(mappedBy = "restaurant")
     private OpeningHours openingHours;
-
-    @OneToMany(mappedBy = "myRestaurant")
-    private Set<Employee> employees;
 
     private String restaurantName;
     private String restaurantDescription;
@@ -110,11 +109,8 @@ public class Restaurant {
         this.restaurantsMeals = restaurantsMeals;
     }
 
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
 
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

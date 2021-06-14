@@ -1,9 +1,7 @@
 package com.masnaszama.model;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
 import java.util.List;
+
 
 public class UserRequest {
     private Long id;
@@ -16,20 +14,12 @@ public class UserRequest {
 
     private List<Authority> authorities;
 
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.authorities;
+    public Long getId() {
+        return id;
     }
 
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
-    }
-
-    public Long getPhonenumber() {
-        return phonenumber;
-    }
-
-    public void setPhonenumber(Long phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -64,14 +54,6 @@ public class UserRequest {
         this.lastname = lastname;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getImgUrl() {
         return imgUrl;
     }
@@ -80,4 +62,19 @@ public class UserRequest {
         this.imgUrl = imgUrl;
     }
 
+    public Long getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(Long phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public List<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
+    }
 }

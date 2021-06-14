@@ -1,8 +1,8 @@
 package com.masnaszama.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,6 +28,7 @@ public class TokenHelper {
     @Autowired
     @Qualifier("customUserDetailsService")
     private UserDetailsService userDetailsService;
+
     @Value("${app.name}")
     private String APP_NAME;
     @Value("${jwt.secret}")
@@ -38,6 +39,8 @@ public class TokenHelper {
     private String AUTH_HEADER;
     @Value("${jwt.cookie}")
     private String AUTH_COOKIE;
+
+    private final Log logger = LogFactory.getLog(this.getClass());
 
     public String getUsernameFromToken(String token) {
         String username;
@@ -114,7 +117,7 @@ public class TokenHelper {
 
     private Date generateExpirationDate() {
 
-        return new Date(getCurrentTimeMillis() + this.EXPIRES_IN * 1000);
+        return new Date(getCurrentTimeMillis() + this.EXPIRES_IN * 1000L);
     }
 
     public String getToken(HttpServletRequest request) {
@@ -154,5 +157,26 @@ public class TokenHelper {
             }
         }
         return null;
+    }
+
+    public boolean validateToken(String authToken) {
+        try {
+            Jwts.parser()
+                    .setSigningKey(this.SECRET)
+                    .parseClaimsJws(authToken);
+
+            return true;
+        } catch (SignatureException ex) {
+            logger.error("Invalid JWT signature");
+        } catch (MalformedJwtException ex) {
+            logger.error("Invalid JWT token");
+        } catch (ExpiredJwtException ex) {
+            logger.error("Expired JWT token");
+        } catch (UnsupportedJwtException ex) {
+            logger.error("Unsupported JWT token");
+        } catch (IllegalArgumentException ex) {
+            logger.error("JWT claims string is empty.");
+        }
+        return false;
     }
 }

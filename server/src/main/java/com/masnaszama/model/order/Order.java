@@ -3,6 +3,7 @@ package com.masnaszama.model.order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.masnaszama.model.address.Address;
 import com.masnaszama.model.payment.Payment;
 import com.masnaszama.model.person.Customer;
 import com.masnaszama.model.restaurant.Restaurant;
@@ -17,6 +18,7 @@ public class Order {
     private Integer tip;
     private Integer orderPrice;
 
+    private String comment;
     private String orderedTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
     private String desiredDeliveryTime = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
 
@@ -42,13 +44,19 @@ public class Order {
     @JsonBackReference
     private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name="address_id")
+    @JsonBackReference
+    private Address address;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+
     @JsonManagedReference
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
     // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne
+    @JoinColumn(name="payment_id")
     private Payment payment;
 
     @OneToOne
@@ -94,6 +102,14 @@ public class Order {
         this.orderPrice = orderPrice;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @JsonProperty(value = "restaurantId")
     public Restaurant getRestaurant() {
         return restaurant;
@@ -124,6 +140,16 @@ public class Order {
         this.payment = payment;
     }
 
+    @JsonProperty(value = "addressId")
+    public Address getAddress() {
+        return address;
+    }
+
+    @JsonProperty(value = "addressId")
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public String getOrderedTime() {
         return orderedTime;
     }
@@ -147,4 +173,6 @@ public class Order {
     public void setOrderStatus(Status orderStatus) {
         this.orderStatus = orderStatus;
     }
+
+
 }

@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface CourierService {
     Courier findCourierByPhonenumber(Long phonenumber);
+    void incrementNumberOfDeliveries(Long courierId);
 }
