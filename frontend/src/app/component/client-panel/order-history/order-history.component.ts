@@ -90,14 +90,15 @@ this.getUserOrdersById();
       results = results.reduce((acc, {desiredDeliveryTime, orderPrice,
        orderedTime, orderId, tip, customerId, restaurantId, statusId
         ,restaurantName, comment, addressId, city, street, flatNumber,mealName,
-      price}) => {
+      price,opinionComment}) => {
         const existing = acc.find(i => i.orderId === orderId)
         if (existing) {
           existing.mealName.push(mealName)
-          existing.price.push(price)}
+          existing.price.push(price)
+          existing.opinionComment.push(opinionComment)}
         else {acc.push({orderId, mealName: [mealName],desiredDeliveryTime, orderPrice,
           orderedTime,tip, customerId, restaurantId, statusId
-          ,restaurantName, comment, addressId, city, street, flatNumber,price: [price]})}
+          ,restaurantName, comment, addressId, city, street, flatNumber,price: [price],opinionComment:[opinionComment]})}
         return acc
       }, [])
       this.orderHistory$ = results;

@@ -84,23 +84,57 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <p class="text-gray mb-1">
-                        <fa-icon [icon]="['fas', 'hamburger']"> </fa-icon>
-                      </p>
-                      <ul>
-                        <li *ngFor="let meal of order.mealName" class="text-info" >{{meal}}<br></li>
-                      </ul>
-
-                      <p class="text-gray mb-1">
-                        <fa-icon [icon]="['fas', 'dollar-sign']"> </fa-icon>
-                        <span class="text-info">{{order.price}}</span><br>
-                      </p>
+                      <div class="container">
+                      <div class="left">
+                        <fa-icon  [icon]="['fas', 'hamburger']"> </fa-icon><a >&nbsp;&nbsp;Posiłek</a>
+                        <ul style="padding-left:20px">
+                          <li *ngFor="let meal of order.mealName" style="padding-right:35px" class="text-info" >{{meal}}</li>
+                          <br>
+                        </ul>
+                      </div>
+                        <div  class="right">
+                        <fa-icon [icon]="['fas', 'dollar-sign']"> </fa-icon><a  style="padding-right:35px">&nbsp;&nbsp;Cena</a>
+                          <ul>
+                            <li *ngFor="let meals of order.price" class="text-info" >{{meals}}</li>
+                            <br>
+                          </ul>
+                      </div>
+                      </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Zakoncz</button>
                     </div>
                   </ng-template>
                   <!--finish show meals -->
+                  <!--Show opinion -->
+                  <ng-template #showOpinion let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">Wystaw Opinie posiłków</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click');">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container">
+                        <div class="left">
+                          <fa-icon  [icon]="['fas', 'hamburger']"> </fa-icon><a >&nbsp;&nbsp;Posiłek</a>
+                          <ul style="padding-left:20px">
+                            <li *ngFor="let meal of order.mealName" class="text-info" >{{meal}}</li>
+                            <br>
+                          </ul>
+                        </div>
+                        <a >&nbsp;Opinia</a>
+
+                            <div *ngFor="let opinion of order.opinionComment" class="text-info" > - {{opinion}}</div>
+                            <br>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Zakoncz</button>
+                    </div>
+                  </ng-template>
+                  <!--finish show opinion -->
                   <div class="bg-white card mb-4 order-list shadow-sm">
                   <div class="gold-members p-3">
                     <div class="media">
@@ -150,7 +184,7 @@
 
                         <div class="float-right">
 
-                          <a class="btn btn-sm btn-primary btn-primary px-2" href="#">
+                          <a class="btn btn-sm btn-primary btn-primary px-2" (click)="open(showOpinion)">
                             <fa-icon [icon]="['far', 'check-circle']" > </fa-icon> Dodaj swoją opinie</a>
                         </div>
                         <a class="btn btn-sm btn-outline-primary px-2"   (click)="open(showAddress)">Sprawdz adres zamowienia</a>

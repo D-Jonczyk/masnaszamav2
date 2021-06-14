@@ -15,5 +15,6 @@ export interface OrderHistory{
   flatNumber:number;
   mealName:string;
   price:number;
+  opinionComment:string;
 }
 

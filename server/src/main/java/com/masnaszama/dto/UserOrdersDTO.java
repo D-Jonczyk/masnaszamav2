@@ -20,9 +20,10 @@ public class UserOrdersDTO {
     private final Integer flatNumber;
     private final String mealName;
     private final BigDecimal price;
+    private final String opinionComment;
     public UserOrdersDTO(Long orderId, String desiredDeliveryTime,Integer orderPrice, String orderedTime,
                          Integer tip, Long customerId, Long statusId, Long restaurantId,String restaurantName,Long addressId,String comment,
-                         String city, String street, Integer flatNumber,String mealName,BigDecimal price) {
+                         String city, String street, Integer flatNumber,String mealName,BigDecimal price, String opinionComment) {
         this.orderId = orderId;
         this.desiredDeliveryTime = desiredDeliveryTime;
         this.orderPrice = orderPrice;
@@ -39,6 +40,7 @@ public class UserOrdersDTO {
         this.flatNumber=flatNumber;
         this.mealName = mealName;
         this.price = price;
+        this.opinionComment = opinionComment;
     }
 
     public Long getOrderId() {
@@ -101,5 +103,7 @@ public class UserOrdersDTO {
     }
     public BigDecimal getPrice() {
         return price;
+    }
+    public String getOpinionComment(){return opinionComment;
     }
 }
