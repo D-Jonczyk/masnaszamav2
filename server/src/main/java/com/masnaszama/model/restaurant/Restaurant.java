@@ -35,9 +35,6 @@ public class Restaurant {
     @OneToOne(mappedBy = "restaurant")
     private OpeningHours openingHours;
 
-    @OneToMany(mappedBy = "myRestaurant")
-    private Set<Employee> employees;
-
     private String restaurantName;
     private String restaurantDescription;
     private Integer averageOpinion;
@@ -112,13 +109,6 @@ public class Restaurant {
         this.restaurantsMeals = restaurantsMeals;
     }
 
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
-    }
 
     public void setAddress(Address address) {
         this.address = address;

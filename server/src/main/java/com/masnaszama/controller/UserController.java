@@ -1,9 +1,7 @@
 package com.masnaszama.controller;
 
 import com.masnaszama.exception.ResourceConflictException;
-import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
-import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -40,7 +38,7 @@ public class UserController {
         return this.userService.findById(userId);
     }
     @GetMapping("/user/findById/{id}")
-    public ResponseEntity<User> getCourierById(@PathVariable("id") Long userId){
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId){
         User user = userService.findUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -86,9 +84,8 @@ public class UserController {
         userRequest.setUsername(user.getUsername());
         userRequest.setFirstName(user.getFirstName());
         userRequest.setLastName(user.getLastName());
-        userRequest.setId(user.getId());
         userRequest.setImgUrl(user.getImgUrl());
-        userRequest.setAuthorities((List<Authority>) user.getAuthorities());
+        userRequest.setRoles(user.getRoles());
         userRequest.setPhonenumber(user.getPhonenumber());
         return userRequest;
     }

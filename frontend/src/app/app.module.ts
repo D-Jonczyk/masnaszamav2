@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -50,7 +50,6 @@ import {OverviewComponent} from './component/admin-panel/overview/overview.compo
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { HelpComponent } from './component/client-panel/help';
 import { UserListComponent } from './component/admin-panel/user-list/user-list.component';
-
 
 @NgModule({
   declarations: [

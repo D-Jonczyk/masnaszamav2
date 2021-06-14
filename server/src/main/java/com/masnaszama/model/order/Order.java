@@ -43,13 +43,14 @@ public class Order {
     private Customer customer;
 
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
-    // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+
+    @OneToOne(fetch = FetchType.LAZY)
     private Payment payment;
+
 
     @OneToOne
     @JoinColumn(name="status_id")

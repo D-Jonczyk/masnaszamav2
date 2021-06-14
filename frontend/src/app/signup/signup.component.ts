@@ -13,7 +13,6 @@ import {takeUntil} from 'rxjs/operators';
 })
 export class SignupComponent implements OnInit, OnDestroy {
   title = 'Rejestracja';
-  githubLink = 'https://github.com/bfwg/angular-spring-starter';
   form: FormGroup;
 
   /**

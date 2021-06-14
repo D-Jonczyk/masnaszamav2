@@ -33,13 +33,15 @@
             <div class="row">
               <!-- edit form column -->
               <div class="col-md-7 personal-info">
-                <div class="alert alert-info alert-dismissable" [hidden]="isClicked">
-                  <a class="panel-close close" data-dismiss="alert" (click)="toggleDisplay()">×</a>
+                <div class="alert alert-info alert-dismissable" *ngIf="operationStatus === 'success'">
+                  <a class="panel-close close" data-dismiss="alert" (click)="closeAlert()">×</a>
                   Pomyślnie zaktualizowano dane.
                 </div>
 
                 <form class="form-horizontal" role="form" #editForm="ngForm">
                   <input type="hidden" ngModel="{{courier?.id}}" name="id" class="form-control" id="id">
+                  <input type="hidden" ngModel="{{courier?.averageDeliveryTime}}" class="form-control" name="averageDeliveryTime" id="averageDeliveryTime" readonly>
+                  <input type="hidden" ngModel="{{courier?.numberOfDeliveries}}" class="form-control" name="numberOfDeliveries" id="numberOfDeliveries" readonly>
                   <div class="form-group">
                     <label class="col-lg-8 control-label">Imię:</label>
                     <div class="col-lg-8">
@@ -65,7 +67,7 @@
                     </div>
                   </div>
                   <div class="form-check-label col-lg-8">
-                    <button class="btn btn-outline-primary">Zatwierdź zmiany</button>
+                    <button (click)="onEditProfile(editForm.value)" class="btn btn-outline-primary">Zatwierdź zmiany</button>
                   </div>
                 </form>
               </div>

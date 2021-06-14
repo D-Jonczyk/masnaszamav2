@@ -24,7 +24,8 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Order order;
 
     private Date paymentDate;

@@ -11,14 +11,21 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+#security:
+#  oauth2:
+#    client:
+#      access-token-uri: https://graph.facebook.com/oauth/access_token
+#      user-authorization-uri: https://www.facebook.com/dialog/oauth
+#      token-name: oauth_token
+#      authentication-scheme: query
+#      client-authentication-scheme: form
+#      client-id: 325876535735247
+#      client-secret: 0af02d8f837cf1bffcba46ae27be826a
+#    resource:
+#      user-info-uri: https://graph.facebook.com/me
+
 jwt:
   header: Authorization
   expires_in: 600 # 10 minutes
   secret: queenvictoria
   cookie: AUTH-TOKEN
-
-logging:
-  level:
-    org.springframework.web: ERROR
-    com.bfwg: DEBUG
-    com.masnaszama: DEBUG

@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   isWorking = false;
   links = LINKS;
   courier: any = '';
+  operationStatus = '';
 
   constructor(public route: ActivatedRoute, private library: FaIconLibrary,
               private courierProfileService: CourierProfileService) {
@@ -43,23 +44,32 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  /*
+
   public onEditProfile(courier: Courier): void {
     this.courierProfileService.editCourierProfile(courier).subscribe(
       (response: Courier) => {
+        this.onSuccessAlert();
       },
       (error: HttpErrorResponse) => {
-        alert('error w oneditprofile');
-        alert(error.message);
+        this.onFailureAlert(error);
       }
     );
   }
-*/
-  toggleDisplay(): void {
-    this.isClicked = !this.isClicked;
+
+  closeAlert(): void {
+    this.operationStatus = '';
   }
 
   toggleShiftButton(): void {
     this.isWorking = !this.isWorking;
+  }
+
+  onSuccessAlert(): void {
+    this.operationStatus = 'success';
+  }
+
+  onFailureAlert(error: HttpErrorResponse): void {
+    alert('Wystąpił błąd przy zapisywaniu danych, błąd: ' + error.message);
+    this.operationStatus = 'fail';
   }
 }

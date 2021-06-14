@@ -26,6 +26,11 @@ public class CourierServiceImpl implements CourierService {
         return courierRepo.findCourierByPhonenumber(phonenumber);
     }
 
+    @Override
+    public void incrementNumberOfDeliveries(Long courierId) {
+        courierRepo.increaseNumberOfDeliveries(courierId);
+    }
+
     public Iterable<Courier> findAllCouriers() {
         return courierRepo.findAll();
     }
