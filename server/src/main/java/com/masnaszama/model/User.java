@@ -112,7 +112,7 @@ public class User extends Person implements UserDetails, Serializable  {
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
-    
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;
