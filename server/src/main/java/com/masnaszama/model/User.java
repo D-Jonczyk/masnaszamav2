@@ -32,6 +32,12 @@ public class User extends Person implements UserDetails, Serializable  {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "is_google")
+    private Boolean isGoogle;
+
+    @Column(name = "access_token")
+    private String accessToken;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
             joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
@@ -91,6 +97,22 @@ public class User extends Person implements UserDetails, Serializable  {
         this.email = email;
     }
 
+    public Boolean getGoogle() {
+        return isGoogle;
+    }
+
+    public void setGoogle(Boolean google) {
+        isGoogle = google;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;
