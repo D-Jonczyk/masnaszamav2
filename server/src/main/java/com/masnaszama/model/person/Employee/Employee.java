@@ -16,19 +16,19 @@ public class Employee extends Person {
     @Id
     private Long id;
 
-    @ManyToMany(cascade = { CascadeType.ALL})
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "employees_schedules",
-            joinColumns = { @JoinColumn(name = "person_id")},
-            inverseJoinColumns = { @JoinColumn(name = "schedule_id")}
+            joinColumns = { @JoinColumn(name = "person_id", referencedColumnName = "id")},
+            inverseJoinColumns = { @JoinColumn(name = "schedule_id", referencedColumnName = "scheduleId")}
     )
     Set<Schedule> schedules = new HashSet<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "employees_timesheets",
-            joinColumns = { @JoinColumn(name = "person_id")},
-            inverseJoinColumns = { @JoinColumn(name = "timesheet_id")}
+            joinColumns = { @JoinColumn(name = "person_id", referencedColumnName = "id")},
+            inverseJoinColumns = { @JoinColumn(name = "timesheet_id", referencedColumnName = "timesheetId")}
     )
     Set<Timesheet> timesheets = new HashSet<>();
 
