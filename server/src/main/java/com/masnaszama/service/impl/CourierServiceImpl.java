@@ -1,6 +1,5 @@
 package com.masnaszama.service.impl;
 
-import com.masnaszama.exception.UserNotFoundException;
 import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.model.views.CourierSchedules;
 import com.masnaszama.model.views.OrdersFinished;
@@ -9,7 +8,6 @@ import com.masnaszama.service.CourierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class CourierServiceImpl implements CourierService {

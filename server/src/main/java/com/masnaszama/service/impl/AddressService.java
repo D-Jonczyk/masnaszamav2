@@ -2,8 +2,6 @@ package com.masnaszama.service.impl;
 
 import com.masnaszama.dto.AddressDTO;
 
-import com.masnaszama.model.address.Address;
-import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.repository.AddressRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

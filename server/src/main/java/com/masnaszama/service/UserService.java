@@ -1,11 +1,8 @@
 package com.masnaszama.service;
 
 import com.masnaszama.model.User;
-import com.masnaszama.model.UserRoleName;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 public interface UserService {
   void resetCredentials();
@@ -19,9 +16,5 @@ public interface UserService {
   List<User> findAll();
 
   User save(User user);
-
-  User findUserByEmail(String email);
-
-  User registerUser(User user, UserRoleName role);
 
 }

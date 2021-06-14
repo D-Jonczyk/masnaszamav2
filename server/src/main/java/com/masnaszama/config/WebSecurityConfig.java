@@ -9,14 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
@@ -32,8 +29,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  */
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   protected final Log LOGGER = LogFactory.getLog(getClass());
@@ -81,29 +77,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http
-            .csrf()
-              .ignoringAntMatchers("/api/login", "/api/signup", "/**")
+    http.csrf().ignoringAntMatchers("/api/login", "/api/signup", "/**")
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint)
-            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
             .addFilterBefore(jwtAuthenticationTokenFilter(), BasicAuthenticationFilter.class)
-            .authorizeRequests()
-              .antMatchers(HttpMethod.POST, "/signin").permitAll()
-              .antMatchers(HttpMethod.POST, "/facebook/signin").permitAll()
-              .antMatchers(HttpMethod.POST, "/users").anonymous()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()
-              .loginPage("/api/login")
-              .successHandler(authenticationSuccessHandler)
-              .failureHandler(authenticationFailureHandler)
-            .and()
-            .logout()
-              .logoutRequestMatcher(new AntPathRequestMatcher("/api/logout"))
-              .logoutSuccessHandler(logoutSuccess).deleteCookies(TOKEN_COOKIE);
+            .authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/api/login")
+            .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler)
+            .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/api/logout"))
+            .logoutSuccessHandler(logoutSuccess).deleteCookies(TOKEN_COOKIE);
 
   }
 

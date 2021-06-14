@@ -4,23 +4,20 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.person.Person;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
-@Builder
-@NoArgsConstructor
 @Table(name = "USER")
 public class User extends Person implements UserDetails, Serializable  {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "username")
@@ -35,43 +32,27 @@ public class User extends Person implements UserDetails, Serializable  {
     @Column(name = "email")
     private String email;
 
-    public User(Long id, String username, String password, String imgUrl, String email, List<Authority> roles) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.imgUrl = imgUrl;
-        this.email = email;
-        this.roles = roles;
-    }
-  
-    @JsonBackReference
-    @JoinColumn(name = "address_id")
-    @OneToOne(fetch = FetchType.LAZY)
-    private Address address;
-   
-    public Long getId() {
-        return id;
-    }
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
             joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "authority_id", referencedColumnName = "id") })
-    private List<Authority> roles;
+    private List<Authority> authorities;
 
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.roles = new ArrayList<>();
-        Authority userRole = new Authority();
-        userRole.setName(UserRoleName.ROLE_USER);
-        this.roles.add(userRole);
+    @JsonIgnore
+    @JoinColumn(name = "address_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Address address;
+
+    public Long getId() {
+        return id;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {
@@ -102,23 +83,6 @@ public class User extends Person implements UserDetails, Serializable  {
         this.address = address;
     }
 
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
-
-    public List<Authority> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Authority> roles) {
-        this.roles = roles;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -127,9 +91,15 @@ public class User extends Person implements UserDetails, Serializable  {
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.authorities;
     }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
     // We can add the below fields in the users table.
     // For now, they are hardcoded.
     @JsonIgnore
@@ -156,3 +126,4 @@ public class User extends Person implements UserDetails, Serializable  {
         return true;
     }
 }
+

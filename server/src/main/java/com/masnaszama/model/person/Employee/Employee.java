@@ -1,6 +1,7 @@
 package com.masnaszama.model.person.Employee;
 
 import com.masnaszama.model.person.Person;
+import com.masnaszama.model.restaurant.Restaurant;
 import com.masnaszama.model.schedule.Schedule;
 import com.masnaszama.model.schedule.Timesheet;
 
@@ -12,6 +13,8 @@ import java.util.Set;
 @Table(name = "employee")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Employee extends Person {
+    @Id
+    private Long id;
 
     @ManyToMany(cascade = { CascadeType.ALL})
     @JoinTable(
@@ -29,9 +32,33 @@ public class Employee extends Person {
     )
     Set<Timesheet> timesheets = new HashSet<>();
 
-    @Id
-    private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="restaurant_id")//, nullable=false)
+    private Restaurant myRestaurant;
 
+    public Set<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(Set<Schedule> schedules) {
+        this.schedules = schedules;
+    }
+
+    public Set<Timesheet> getTimesheets() {
+        return timesheets;
+    }
+
+    public void setTimesheets(Set<Timesheet> timesheets) {
+        this.timesheets = timesheets;
+    }
+
+    public Restaurant getMyRestaurant() {
+        return myRestaurant;
+    }
+
+    public void setMyRestaurant(Restaurant myRestaurant) {
+        this.myRestaurant = myRestaurant;
+    }
 
     public void setId(Long id) {
         this.id = id;

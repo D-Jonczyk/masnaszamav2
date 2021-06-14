@@ -40,8 +40,6 @@ public class TokenHelper {
     @Value("${jwt.cookie}")
     private String AUTH_COOKIE;
 
-    private final Log logger = LogFactory.getLog(this.getClass());
-
     public String getUsernameFromToken(String token) {
         String username;
         try {
@@ -157,26 +155,5 @@ public class TokenHelper {
             }
         }
         return null;
-    }
-
-    public boolean validateToken(String authToken) {
-        try {
-            Jwts.parser()
-                    .setSigningKey(this.SECRET)
-                    .parseClaimsJws(authToken);
-
-            return true;
-        } catch (SignatureException ex) {
-            logger.error("Invalid JWT signature");
-        } catch (MalformedJwtException ex) {
-            logger.error("Invalid JWT token");
-        } catch (ExpiredJwtException ex) {
-            logger.error("Expired JWT token");
-        } catch (UnsupportedJwtException ex) {
-            logger.error("Unsupported JWT token");
-        } catch (IllegalArgumentException ex) {
-            logger.error("JWT claims string is empty.");
-        }
-        return false;
     }
 }

@@ -71,7 +71,7 @@ public abstract class AbstractTest {
         List<Authority> userAuthorities = new ArrayList<>();
         userAuthorities.add(userAuthority);
         user.setUsername("user");
-        user.setRoles(userAuthorities);
+        user.setAuthorities(userAuthorities);
         return user;
     }
 
@@ -86,7 +86,7 @@ public abstract class AbstractTest {
         adminAuthorities.add(adminAuthority);
         User admin = new User();
         admin.setUsername("admin");
-        admin.setRoles(adminAuthorities);
+        admin.setAuthorities(adminAuthorities);
         return admin;
     }
 

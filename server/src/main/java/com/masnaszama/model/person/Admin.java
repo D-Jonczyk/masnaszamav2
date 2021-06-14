@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Polymorphism(type = PolymorphismType.EXPLICIT)
 public class Admin extends Person{
 
     @OneToMany(mappedBy = "admin")

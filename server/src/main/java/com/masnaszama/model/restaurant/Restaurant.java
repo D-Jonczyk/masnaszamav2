@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.address.Address;
 import com.masnaszama.model.order.Order;
-import com.masnaszama.model.person.Customer;
-import com.masnaszama.model.person.Employee.Employee;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -108,7 +106,6 @@ public class Restaurant {
     public void setRestaurantsMeals(Set<RestaurantsMeals> restaurantsMeals) {
         this.restaurantsMeals = restaurantsMeals;
     }
-
 
     public void setAddress(Address address) {
         this.address = address;

@@ -20,8 +20,6 @@ public class Customer extends Person{
 
     public Customer() { super(); }
 
-
-
     @JsonManagedReference
     @OneToMany(mappedBy="customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders;
@@ -30,7 +28,6 @@ public class Customer extends Person{
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
 
     public Set<Order> getOrders() {
         return orders;

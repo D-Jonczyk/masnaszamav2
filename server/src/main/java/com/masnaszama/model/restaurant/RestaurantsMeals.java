@@ -19,4 +19,28 @@ public class RestaurantsMeals {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "meal_id", nullable = false)
     private Meal meal;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
+    }
 }

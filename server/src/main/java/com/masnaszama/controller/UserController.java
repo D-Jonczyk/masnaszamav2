@@ -1,6 +1,7 @@
 package com.masnaszama.controller;
 
 import com.masnaszama.exception.ResourceConflictException;
+import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
 import com.masnaszama.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,8 +86,9 @@ public class UserController {
         userRequest.setFirstName(user.getFirstName());
         userRequest.setLastName(user.getLastName());
         userRequest.setImgUrl(user.getImgUrl());
-        userRequest.setRoles(user.getRoles());
+        userRequest.setAuthorities((List<Authority>) user.getAuthorities());
         userRequest.setPhonenumber(user.getPhonenumber());
+        userRequest.setId(user.getId());
         return userRequest;
     }
 

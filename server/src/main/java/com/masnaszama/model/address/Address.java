@@ -21,14 +21,11 @@ public class Address {
     @OneToMany(mappedBy="address", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders;
 
-
-
     @JsonManagedReference
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Restaurant restaurant;
 
-    @JsonManagedReference
-    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private User user;
 
     private String city;
@@ -43,7 +40,13 @@ public class Address {
         this.addressId = addressId;
     }
 
+    public Set<Order> getOrders() {
+        return orders;
+    }
 
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 
     public Restaurant getRestaurant() {
         return restaurant;
