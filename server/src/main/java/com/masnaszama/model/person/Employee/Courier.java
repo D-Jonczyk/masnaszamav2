@@ -1,5 +1,6 @@
 package com.masnaszama.model.person.Employee;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.masnaszama.model.order.Order;
 
 import javax.persistence.*;
@@ -10,12 +11,14 @@ import java.util.Set;
 public class Courier extends Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     Integer averageDeliveryTime;
     Integer numberOfDeliveries;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "couriers_orders",
             joinColumns = @JoinColumn(name = "courier_id", referencedColumnName = "id"),
@@ -27,6 +30,7 @@ public class Courier extends Employee {
     }
 
     public Courier(Long id, String firstName, String lastName, Long phoneNumber, Integer averageDeliveryTime, Integer numberOfDeliveries){
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phonenumber = phoneNumber;

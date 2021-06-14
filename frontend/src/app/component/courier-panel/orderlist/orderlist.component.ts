@@ -19,6 +19,8 @@ import {DeliveryOrder} from './delivery-order';
 import {DeliveryOrderService} from './delivery-order.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Order} from '../../Order/order';
+import {exitCodeFromResult} from '@angular/compiler-cli';
+import {Courier} from '../../Person/Employee/courier';
 
 @Component({
   selector: 'app-orderlist',
@@ -76,7 +78,16 @@ export class OrderlistComponent implements OnInit {
         alert(error.message);
       }
     );
-  }
+
+    this.deliveryOrdersService.incrementNumberOfDeliveries(this.courierId).subscribe(
+      (response: Courier) => {
+        console.log(response);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  };
 
   openConfirmDelivery(content): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-confirm-delivery'}).result.then((result) => {

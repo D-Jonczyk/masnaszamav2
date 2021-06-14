@@ -50,8 +50,8 @@ public class Order {
     private Address address;
 
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
     // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)

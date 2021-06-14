@@ -1,12 +1,7 @@
 package com.masnaszama.model.person;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.masnaszama.model.User;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @MappedSuperclass
 public class Person implements Serializable {
