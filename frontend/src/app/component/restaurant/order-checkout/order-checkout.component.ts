@@ -76,7 +76,7 @@ export class OrderCheckoutComponent implements OnInit {
   async pay(): Promise<void> {
     // here we create a payment object
     const payment = {
-      name: 'Iphone',
+      name: 'masnaszama',
       currency: 'pln',
       // amount on cents *10 => to be on dollar
       amount: 10000,

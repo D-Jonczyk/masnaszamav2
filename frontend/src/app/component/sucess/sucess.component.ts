@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Order} from '../restaurant/model/Order';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {RestaurantMenuService} from '../restaurant/restaurant-menu-service/restaurant-menu.service';
+import {Meal} from '../restaurant/model/meal.model';
 
 @Component({
   selector: 'app-sucess',
@@ -12,8 +14,15 @@ export class SucessComponent implements OnInit {
 
   private orderUrl = environment.apiBaseUrl + '/order/createNewOrder';
   order: string;
+  total: number;
+  meal: Meal[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private restaurantMenuService: RestaurantMenuService) {
+    this.total = 0;
+    this.meal = this.restaurantMenuService.orderMeals;
+    console.log(this.meal);
+  }
 
   ngOnInit(): void {
     this.addNewOrder();
@@ -27,34 +36,22 @@ export class SucessComponent implements OnInit {
     // console.log(order.orderStatus.statusId);
     // console.log(order.customer.personId);
 
-    this.order = '{\n' +
-      '    "orderedTime": "2020-01-01 12:12:12",\n' +
-      '    "orderPrice": 99,\n' +
-      '    "desiredDeliveryTime": "2020-01-01 13:12:12",\n' +
-      '    "tip": 2,\n' +
-      '    "customerId": {"id": 301 },\n' +
-      '    "restaurantId": { "restaurantId": 37 },\n' +
-      '    "orderStatus": 1,\n' +
-      '    "orderMeals": [\n' +
-      '        { "mealId": { "mealId": 500 }, "opinionId": { "opinionId": 100 }},\n' +
-      '        { "mealId": { "mealId": 501 }, "opinionId": { "opinionId": 101 }}\n' +
-      '    ]\n' +
-      '}';
-    const order = {
-      orderedTime: '2020-01-01 12:12:12',
-      orderPrice: 99,
-      desiredDeliveryTime: '2020-01-01 13:12:12',
-      tip: 2,
-      customerId: {id: 301},
-      restaurantId: {restaurantId: 37},
+      const currentDate = new Date();
+      const order = {
+        addressId: {addressId: 12},
+      orderedTime: currentDate,
+      orderPrice: 71.03,
+      desiredDeliveryTime: '2021-06-15 19:22:12',
+      tip: 0,
+      customerId: {id: 650},
+      restaurantId: {restaurantId: 44},
       orderStatus: 1,
       orderMeals: [
-        { mealId: {mealId: 500 }, opinionId: { opinionId: 100 }},
-        { mealId: {mealId: 501 }, opinionId: { opinionId: 101 }}
+        { mealId: {mealId: 190 }, opinionId: { opinionId: 100 }},
+        { mealId: {mealId: 57 }, opinionId: { opinionId: 101 }}
       ]
-
     };
-    return this.http.put(this.orderUrl, this.order)
+    return this.http.put(this.orderUrl, order)
       .subscribe(r=>{});
   }
 }
