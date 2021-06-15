@@ -1,5 +1,6 @@
 package com.masnaszama.controller;
 
+import com.masnaszama.model.User;
 import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.model.views.CourierSchedules;
 import com.masnaszama.model.views.OrdersFinished;
@@ -56,12 +57,16 @@ public class CourierController {
         Courier newCourier = courierService.addCourier(courier);
         return new ResponseEntity<>(newCourier, HttpStatus.CREATED);
     }
-   // @PreAuthorize("hasAnyRole('ROLE_COURIER, ROLE_ADMIN')")
+
     @PutMapping(path = "/update", headers = {
             "content-type=application/json; charset=utf-8" }, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Courier> updateCourier(@RequestBody Courier courier) {
-        Courier updatedCourier = courierService.updateCourier(courier);
-        return new ResponseEntity<>(updatedCourier, HttpStatus.OK);
+    public ResponseEntity<User> updateUser(@RequestBody Courier courier) {
+        Long id = courier.getId();
+        String first_name = courier.getFirstName();
+        String last_name = courier.getLastName();
+        Long phonenumber = courier.getPhonenumber();
+        this.courierService.updateCourier(last_name, phonenumber, first_name, id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping(path = "/incrementNumberOfDeliveries")

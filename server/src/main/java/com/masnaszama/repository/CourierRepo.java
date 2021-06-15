@@ -36,4 +36,10 @@ public interface CourierRepo extends CrudRepository<Courier, Long> {
             "FROM OrdersFinished od " +
             "WHERE od.courierId = ?1")
     List<OrdersFinished> getDeliveryHistory(Long courierId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE courier c SET c.last_name=?1, c.phonenumber=?2, c.first_name=?3 WHERE c.id=?4", nativeQuery = true)
+    void updateCourier(String lastName, Long phonenumber, String firstName, Long id);
+
 }
