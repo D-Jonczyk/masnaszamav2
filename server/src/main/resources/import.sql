@@ -17,7 +17,9 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (4, 4);
 INSERT INTO user (id, username, password, phonenumber, first_name, last_name,img_url,address_id) VALUES (650, 'user1', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', 124324232, 'damian', 'linek','https://firebasestorage.googleapis.com/v0/b/masnaszamcia.appspot.com/o/accImg%2Fuser.png?alt=media&token=8bde7c6f-0899-4ac0-aced-3cb2f742483b',1);
 
 INSERT INTO user_authority (user_id, authority_id) VALUES (650, 1);
-	
-	
+
+
+insert into employee  values(4, 'damian', 'linek', 623999000, 44);
+
 
 
