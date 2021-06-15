@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.masnaszama.model.address.Address;
-import com.masnaszama.model.payment.Payment;
 import com.masnaszama.model.person.Customer;
 import com.masnaszama.model.restaurant.Restaurant;
 
@@ -35,28 +34,24 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
-    @JsonBackReference
+    @JsonBackReference(value = "restaurant")
     private Restaurant restaurant;
 
 
     @ManyToOne
     @JoinColumn(name="customer_id")
-    @JsonBackReference
+    @JsonBackReference(value = "customer")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name="address_id")
+    @JsonBackReference(value = "address")
     private Address address;
 
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference(value = "orders-meals")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
-
-    @JsonBackReference
-    @JoinColumn(name = "payment_id")
-    @OneToOne(fetch = FetchType.LAZY)
-    private Payment payment;
 
     @OneToOne
     @JoinColumn(name="status_id")
@@ -127,16 +122,6 @@ public class Order {
     @JsonProperty(value = "customerId")
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    @JsonProperty(value = "paymentId")
-    public Payment getPayment() {
-        return payment;
-    }
-
-    @JsonProperty(value = "paymentId")
-    public void setPayment(Payment payment) {
-        this.payment = payment;
     }
 
     @JsonProperty(value = "addressId")

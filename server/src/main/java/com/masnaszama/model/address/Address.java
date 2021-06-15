@@ -1,7 +1,6 @@
 package com.masnaszama.model.address;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.masnaszama.model.User;
 import com.masnaszama.model.order.Order;
@@ -18,10 +17,11 @@ public class Address {
     @Column(name = "address_id")
     private Long addressId;
 
-    @JsonIgnore
+    @JsonManagedReference(value = "address")
     @OneToMany(mappedBy="address", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders;
-    @JsonIgnore
+
+    @JsonManagedReference(value = "address")
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Restaurant restaurant;
 

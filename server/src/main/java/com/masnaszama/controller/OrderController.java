@@ -60,8 +60,7 @@ public class OrderController {
         orderService.updateOrderStatus(orderId);
     }
 
-    @PutMapping(path = "/createNewOrder", headers = {
-            "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/createNewOrder")
     public ResponseEntity<?> createNewOrder(@RequestBody Order newOrder) {
 
         orderService.createNewOrder(newOrder);

@@ -20,7 +20,7 @@ public class Customer extends Person{
 
     public Customer() { super(); }
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "customer")
     @OneToMany(mappedBy="customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders;
 

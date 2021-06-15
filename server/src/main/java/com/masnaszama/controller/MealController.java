@@ -39,6 +39,7 @@ public class MealController {
         this.mealRestaurantsRepo.updateMealByMealId(mealId, price, mealName);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }
 
 

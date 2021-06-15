@@ -13,8 +13,10 @@ export class RestaurantMenuService {
   totalCost: number;
   minOrderCost: number;
 
+  orderMeals: Meal[];
+
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient) { this.orderMeals = []; }
 
   getMeals(id): Observable<Meal[]> {
 
