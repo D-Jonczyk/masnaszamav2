@@ -1,5 +1,7 @@
 package com.masnaszama.model.person.Employee;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.masnaszama.model.person.Person;
 import com.masnaszama.model.restaurant.Restaurant;
 import com.masnaszama.model.schedule.Schedule;
@@ -32,7 +34,8 @@ public class Employee extends Person {
     )
     Set<Timesheet> timesheets = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="restaurant_id")//, nullable=false)
     private Restaurant myRestaurant;
 
