@@ -21,4 +21,25 @@ BEGIN
 END 
 //
 
+DROP TRIGGER IF EXISTS update_phone//
+CREATE TRIGGER update_phone BEFORE UPDATE ON courier
+
+FOR EACH ROW 
+BEGIN
+	UPDATE user SET phonenumber = new.phonenumber;
+END 
+//
+
+SET SQL_SAFE_UPDATES = 0;
+
+DELIMITER //
+DROP TRIGGER IF EXISTS update_phone//
+CREATE TRIGGER update_phone 
+BEFORE UPDATE ON courier
+FOR EACH ROW 
+BEGIN
+	UPDATE user SET phonenumber = new.phonenumber WHERE user.phonenumber = old.phonenumber;
+END 
+//
+
 DELIMITER ;
