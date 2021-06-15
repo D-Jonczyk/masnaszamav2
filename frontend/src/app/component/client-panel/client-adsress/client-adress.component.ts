@@ -16,6 +16,7 @@ import {ClientAddress} from './client-address';
 import {ClientAddressService} from './client-address-service';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {OrderAddress} from './order-address';
+import {User} from '../../Person/user';
 
 
 @Component({
@@ -30,8 +31,9 @@ export class ClientAdressComponent implements OnInit {
   public clientName = this.clientPanelService.clientName;
   links=LINKS;
   clientId = CLIENTID;
-  empty:boolean;
+  empty=false;
   clientAddress: ClientAddress;
+  operationStatus = '';
   public orderAddress: OrderAddress[];
   constructor(private library: FaIconLibrary,
               public clientAddressService:ClientAddressService,
@@ -54,28 +56,43 @@ export class ClientAdressComponent implements OnInit {
   public getAddressByUserId(): void {
     this.clientAddressService.getAddressByUserId(this.clientId).subscribe(
       (response: ClientAddress) => {
-        this.clientAddress = response;
-        console.log(response)
         if(response === null){
           this.empty = true;
+        }else {
+          this.clientAddress = response;
         }
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
       }
     );
   }
   public getAddressFromOrder(): void {
     this.clientAddressService.getAddressFromOrder(this.clientId).subscribe(
       (response: OrderAddress[]) => {
-        this.orderAddress = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+        if(response.length===0){
+          this.empty = true;
+        }else{
+          this.orderAddress = response;
+        }
       }
     );
   }
+  public onEditProfile(clientAddress: ClientAddress): void {
+    this.clientAddressService.editAddress(clientAddress).subscribe(
+      (response: ClientAddress) => {
+        this.onSuccessAlert();
+      },
+      (error: HttpErrorResponse) => {
+        this.onFailureAlert(error);
+      }
+    );
+  }
+  onSuccessAlert(): void {
+    this.operationStatus = 'success';
+  }
 
+  onFailureAlert(error: HttpErrorResponse): void {
+    alert('Wystąpił błąd przy zapisywaniu danych, błąd: ' + error.message);
+    this.operationStatus = 'fail';
+  }
   open(content) {
     this.modalService.open(content);
   }

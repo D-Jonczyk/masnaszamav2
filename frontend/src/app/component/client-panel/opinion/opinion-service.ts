@@ -10,7 +10,7 @@ import {Opinion} from './opinion';
 })
 export class OpinionService {
 
-  private userOrdersUrl = environment.apiBaseUrl + '/order/getbyorder/order?orderId=';
+  private userOrdersUrl = environment.apiBaseUrl + '/order/getbyuser/customer?customerId=';
 
   constructor(private http: HttpClient) {
 

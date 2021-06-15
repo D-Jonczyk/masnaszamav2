@@ -13,6 +13,7 @@ export class ClientAddressService {
 
   private userOrdersUrl = environment.apiBaseUrl + '/address/getby/user?userId=';
   private addressOrdersUrl = environment.apiBaseUrl + '/address/getby/customer?customerId=';
+  private editAddressUrl = environment.apiBaseUrl + '/address/update';
   constructor(private http: HttpClient) {
 
   }
@@ -22,5 +23,8 @@ export class ClientAddressService {
   }
   getAddressFromOrder(customerId): Observable<ClientAddress[]> {
     return this.http.get<ClientAddress[]>(this.addressOrdersUrl + customerId);
+  }
+  editAddress(clientAddress: ClientAddress){
+    return this.http.put(this.editAddressUrl, clientAddress);
   }
 }
