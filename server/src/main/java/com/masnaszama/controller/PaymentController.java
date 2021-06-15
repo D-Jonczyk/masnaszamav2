@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.masnaszama.model.order.Meal;
-import com.masnaszama.model.payment.Payment;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

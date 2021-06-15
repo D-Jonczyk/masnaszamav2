@@ -20,7 +20,7 @@ public class OrdersMeals {
     private Order order;
 
     @JsonBackReference(value = "meal")
-    @ManyToOne(cascade = CascadeType.ALL) //cascade = CascadeType.ALL
+    @ManyToOne(fetch = FetchType.LAZY) //cascade = CascadeType.ALL
     @JoinColumn(name = "meal_id")
     private Meal meal;
 

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.masnaszama.model.address.Address;
-import com.masnaszama.model.payment.Payment;
 import com.masnaszama.model.person.Customer;
 import com.masnaszama.model.restaurant.Restaurant;
 
@@ -51,14 +50,8 @@ public class Order {
 
 
     @JsonManagedReference(value = "orders-meals")
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
-
-    // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)
-    @OneToOne
-    @JoinColumn(name="payment_id")
-    @JsonBackReference(value = "payment")
-    private Payment payment;
 
     @OneToOne
     @JoinColumn(name="status_id")
@@ -129,16 +122,6 @@ public class Order {
     @JsonProperty(value = "customerId")
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    @JsonProperty(value = "paymentId")
-    public Payment getPayment() {
-        return payment;
-    }
-
-    @JsonProperty(value = "paymentId")
-    public void setPayment(Payment payment) {
-        this.payment = payment;
     }
 
     @JsonProperty(value = "addressId")
