@@ -1,5 +1,7 @@
 package com.masnaszama.model.restaurant;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.sql.Time;
 
@@ -10,8 +12,8 @@ public class OpeningHours {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long opening_hours_id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "openingHours", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Restaurant restaurant;
 
     private int day;

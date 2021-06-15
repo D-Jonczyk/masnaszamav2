@@ -2,14 +2,15 @@ import {Authority} from './authority';
 
 export interface User {
   id: number;
-  username: string;
-  password: string;
-  firstName: string,
-  lastName: string,
+  firstName: string;
+  lastName: string;
   phonenumber: number;
+  email:string;
   imgUrl: string;
-  authorities: Authority[];
+  password: string;
+  username: string;
   addressId:number;
+  authorities: Authority[];
 }
 
 // TODO: pobieranie kuriera z istniejącej sesji

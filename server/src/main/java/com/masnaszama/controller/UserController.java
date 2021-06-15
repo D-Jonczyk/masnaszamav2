@@ -4,6 +4,7 @@ import com.masnaszama.exception.ResourceConflictException;
 import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
 import com.masnaszama.service.UserService;
+import com.masnaszama.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,10 +28,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class UserController {
 
     private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserServiceImpl userServiceImpl) {
         this.userService = userService;
+        this.userServiceImpl = userServiceImpl;
+    }
+
+    @PutMapping(path = "/user/update", headers = {
+            "content-type=application/json; charset=utf-8" }, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        User updatedUser = userServiceImpl.updateUser(user);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @RequestMapping(method = GET, value = "/user/{userId}")
