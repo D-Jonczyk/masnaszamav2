@@ -120,7 +120,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           email: [response.email],
           phonenumber:[120010000]
         });
-        console.log('Kacper jurek'+this.accessToken)
         this.authService.signup(this.formRegister.value)
           .subscribe(data => {
               this.authService.login(this.formRegister.value).subscribe(() => {

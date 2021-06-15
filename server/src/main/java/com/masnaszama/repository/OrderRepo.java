@@ -33,7 +33,7 @@ public interface OrderRepo extends CrudRepository<Order, Long> {
     @Query(value = "SELECT new com.masnaszama.dto.UserOrdersDTO" +
             "(o.orderId, o.desiredDeliveryTime, o.orderPrice, o.orderedTime, o.tip," +
             " o.customer.id, o.orderStatus.statusId, o.restaurant.restaurantId, o.restaurant.restaurantName," +
-            " o.address.addressId, o.comment, a.city, a.street, a.flatNumber, m.mealName, m.price, op.opinionComment) " +
+            " o.address.addressId, o.comment, a.city, a.street, a.flatNumber, m.mealName, m.price, op.opinionComment,op.rating) " +
             "FROM Order o " +
             "JOIN Address a ON a.addressId = o.address.addressId " +
             "JOIN OrdersMeals om ON om.order.orderId= o.orderId " +

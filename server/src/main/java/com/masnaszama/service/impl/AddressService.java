@@ -2,6 +2,8 @@ package com.masnaszama.service.impl;
 
 import com.masnaszama.dto.AddressDTO;
 
+import com.masnaszama.model.User;
+import com.masnaszama.model.address.Address;
 import com.masnaszama.repository.AddressRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,9 @@ public class AddressService {
     public AddressService(AddressRepo addressRepo) {
         this.addressRepo = addressRepo;
     }
-
+    public Address updateAddress(Address address) {
+        return addressRepo.save(address);
+    }
     public AddressDTO getAddressByUserId(Long userId) {
         return addressRepo.getAddressByUserId(userId);
     }

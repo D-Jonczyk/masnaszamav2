@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
   <title></title>
+  <script src="../client-panel-service.ts"></script>
 </head>
 
 <body>
@@ -42,11 +43,53 @@
                 <div style=" height: 900px; width: 1200px; overflow: scroll;">
                 <h4 class="font-weight-bold mt-0 mb-4">Twoje Adresy</h4>
                 <tbody>
+                <div *ngIf="this.empty==true">
+                <p>Nie posiadasz adresu domyslnego !</p>
+                <a class="btn btn-sm btn-primary btn-primary px-2" (click)="open(addAddress)" >
+                  <fa-icon [icon]="['fas', 'retweet']" > </fa-icon>Zmień adres domyślny</a>
+                  <!--add address -->
+                  <ng-template #addAddress let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">Zmien swoj adres, a nastepnie zapisz!</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="col-lg-8">
+                        <form class="form-horizontal" role="form" >
+                          <div class="form-group">
+                            <label class="col-lg-8 control-label">Miasto:</label>
+                            <div class="col-lg-8">
+                              <label>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-lg-8 control-label">Ulica:</label>
+                            <div class="col-lg-8">
+                              <label>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-lg-8 control-label">Numer Mieszkania:</label>
+                            <div class="col-lg-8">
+                              <label>
+                              </label>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Zatwierdź zmiany</button>
+                    </div>
+                  </ng-template>
+                  <!-- finish addd address -->
 
-                  <div *ngIf="this.empty"><p>Nie posiadasz adresu domyslnego !</p>
-                    <a class="btn btn-sm btn-primary btn-primary px-2" (click)="open(addAddress)" >
-                      <fa-icon [icon]="['fas', 'retweet']" > </fa-icon>Zmień adres domyślny</a>
-                  </div>
+                </div>
+                  <div *ngIf="this.empty==false">
                     <h4 class="modal-title" id="modal-basic-title">Adres domyslny:</h4>
                     <div class="bg-white card mb-4 order-list shadow-sm">
                       <div class="gold-members p-3">
@@ -72,33 +115,80 @@
                             </div>
                       </div>
                     </div>
-                  <h4 class="modal-title" id="modal-basic-title">Uzyte przez ciebie adresy:</h4>
-                  <tr *ngFor="let orderAddress of orderAddress">
-                    <div class="bg-white card mb-4 order-list shadow-sm">
-                      <div class="gold-members p-3">
-                        <div class="media">
-                          <div class="media-body">
-                            <hr/>
-                            <p class="text-gray mb-1">
-                              <fa-icon [icon]="['fas', 'city']"> </fa-icon>
-                              Miasto:
-                              <span class="text-info">{{orderAddress.city}}</span><br>
-                            </p>
-                            <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'road']"> </fa-icon>
-                              Ulica:
-                              <span class="text-info">{{orderAddress.street}}</span><br>
-                            </p>
-                            <p class="text-gray mb-3">
-                              <fa-icon [icon]="['fas', 'list-ol']"> </fa-icon>
-                              Numer mieszkania:
-                              <span class="text-info">{{orderAddress.flatNumber}}</span><br>
-                            </p>
-                            <hr/>
+                    <h4 class="modal-title" id="modal-basic-title">Uzyte przez ciebie adresy:</h4>
+                    <tr *ngFor="let orderAddress of orderAddress">
+                      <div class="bg-white card mb-4 order-list shadow-sm">
+                        <div class="gold-members p-3">
+                          <div class="media">
+                            <div class="media-body">
+                              <hr/>
+                              <p class="text-gray mb-1">
+                                <fa-icon [icon]="['fas', 'city']"> </fa-icon>
+                                Miasto:
+                                <span class="text-info">{{orderAddress.city}}</span><br>
+                              </p>
+                              <p class="text-gray mb-1"><fa-icon [icon]="['fas', 'road']"> </fa-icon>
+                                Ulica:
+                                <span class="text-info">{{orderAddress.street}}</span><br>
+                              </p>
+                              <p class="text-gray mb-3">
+                                <fa-icon [icon]="['fas', 'list-ol']"> </fa-icon>
+                                Numer mieszkania:
+                                <span class="text-info">{{orderAddress.flatNumber}}</span><br>
+                              </p>
+                              <hr/>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </tr>
+                    </tr>
+                    <!--change address -->
+                    <ng-template #changeAddress let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Zmien swoj adres, a nastepnie zapisz!</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="col-lg-8">
+                          <form class="form-horizontal" role="form" #editForm="ngForm">
+                            <input type="hidden" value="{{clientAddress.addressId}}" ngModel="{{clientAddress.addressId}}" name="addressId" class="form-control" id="addressId">
+                            <div class="form-group">
+                              <label class="col-lg-8 control-label">Miasto:</label>
+                              <div class="col-lg-8">
+                                <label>
+                                  <input class="form-control" ngModel="{{clientAddress.city}}" id="city" name="city" type="text" required>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-lg-8 control-label">Ulica:</label>
+                              <div class="col-lg-8">
+                                <label>
+                                  <input class="form-control" ngModel="{{clientAddress.street}}" id="street" name="street" type="text" required>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-lg-8 control-label">Numer mieszkania:</label>
+                              <div class="col-lg-8">
+                                <label>
+                                  <input class="form-control" ngModel="{{clientAddress.flatNumber}}"  id="flatNumber" name="flatNumber" type="text" required>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="form-check-label col-lg-8">
+                              <button (click)="onEditProfile(editForm.value)" class="btn btn-outline-primary">Zatwierdź zmiany</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <!-- finish change address -->
+                  </div>
+
+
                 </div>
               </div>
             </div>
@@ -109,91 +199,6 @@
     </div> <!-- end card-box-->
   </div> <!-- end col -->
 </div>
-<!--add address -->
-<ng-template #addAddress let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Zmien swoj adres, a nastepnie zapisz!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="col-lg-8">
-      <form class="form-horizontal" role="form" >
-        <div class="form-group">
-          <label class="col-lg-8 control-label">Miasto:</label>
-          <div class="col-lg-8">
-            <label>
-              <input class="form-control" ngModel="" id="city" name="firstName" type="text" required>
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-8 control-label">Ulica:</label>
-          <div class="col-lg-8">
-            <label>
-              <input class="form-control" ngModel="" id="street" name="lastName" type="text" required>
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-8 control-label">Numer Mieszkania:</label>
-          <div class="col-lg-8">
-            <label>
-              <input class="form-control" ngModel="" id="flatNumber" name="userName"  type="text" required>
-            </label>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Zatwierdź zmiany</button>
-  </div>
-</ng-template>
-<!-- finish addd address -->
-<!--change address -->
-<ng-template #changeAddress let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Zmien swoj adres, a nastepnie zapisz!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="col-lg-8">
-      <form class="form-horizontal" role="form" >
-        <div class="form-group">
-          <label class="col-lg-8 control-label">Miasto:</label>
-          <div class="col-lg-8">
-            <label>
-              <input class="form-control" ngModel="{{this.clientAddress.city}}" id="firstName" name="firstName" type="text" required>
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-8 control-label">Ulica:</label>
-          <div class="col-lg-8">
-            <label>
-              <input class="form-control" ngModel="{{this.clientAddress.street}}" id="lastName" name="lastName" type="text" required>
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-8 control-label">Numer Mieszkania:</label>
-          <div class="col-lg-8">
-            <label>
-              <input class="form-control" ngModel="{{this.clientAddress.flatNumber}}" id="userName" name="userName"  type="text" required>
-            </label>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Zatwierdź zmiany</button>
-  </div>
-</ng-template>
-<!-- finish change address -->
+
 </body>
 </html>

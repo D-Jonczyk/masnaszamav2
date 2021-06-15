@@ -87,6 +87,9 @@ this.getUserOrdersById();
   public getUserOrdersById(): void {
     this.orderHistoryService.getUserOrdersById(this.clientId).subscribe
     (results => {
+      if(results.length===0){
+        this.empty=true;
+      }
       results = results.reduce((acc, {desiredDeliveryTime, orderPrice,
        orderedTime, orderId, tip, customerId, restaurantId, statusId
         ,restaurantName, comment, addressId, city, street, flatNumber,mealName,

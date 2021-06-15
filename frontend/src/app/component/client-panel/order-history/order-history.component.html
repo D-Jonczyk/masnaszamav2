@@ -43,8 +43,8 @@
                 <h4 class="font-weight-bold mt-0 mb-4">Historia zamowien</h4>
                 <tbody>
                 <div style=" height: 900px; width: 1200px; overflow: scroll;">
-                  <div *ngIf="this.empty"><p>Twoja historia jest pusta !</p></div>
-                <tr *ngFor="let order of orderHistory$; let j = index ;  ">
+                  <div *ngIf="this.empty ==true "><p>Twoja historia jest pusta !</p></div>
+                <tr *ngFor="let order of orderHistory$; ">
 
                   <!--show address -->
                   <ng-template #showAddress let-c="close" let-d="dismiss">

@@ -27,9 +27,11 @@ public class Address {
 
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private User user;
-
+    @Column(name = "city")
     private String city;
+    @Column(name = "street")
     private String street;
+    @Column(name = "flatNumber")
     private Integer flatNumber;
 
     public Long getAddressId() {
