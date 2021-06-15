@@ -3,6 +3,7 @@ package com.masnaszama.controller;
 import com.masnaszama.exception.ResourceConflictException;
 import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
+import com.masnaszama.repository.UserRepository;
 import com.masnaszama.service.UserService;
 import com.masnaszama.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +30,34 @@ public class UserController {
 
     private final UserService userService;
     private final UserServiceImpl userServiceImpl;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserService userService, UserServiceImpl userServiceImpl) {
+    public UserController(UserService userService, UserServiceImpl userServiceImpl, UserRepository userRepository) {
         this.userService = userService;
         this.userServiceImpl = userServiceImpl;
+        this.userRepository = userRepository;
     }
 
     @PutMapping(path = "/user/update", headers = {
             "content-type=application/json; charset=utf-8" }, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> updateUser(@RequestBody User user) {
-        User updatedUser = userServiceImpl.updateUser(user);
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        Long id = user.getId();
+        String first_name = user.getFirstName();
+        String last_name = user.getLastName();
+        Long phonenumber = user.getPhonenumber();
+        String email = user.getEmail();
+        String username = user.getUsername();
+        this.userRepository.updateUserByUserId(id, first_name, last_name, phonenumber, email,username);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PutMapping(path = "/user/updateurlimg", headers = {
+            "content-type=application/json; charset=utf-8" }, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUserImgUrl(@RequestBody User user) {
+        Long id = user.getId();
+        String img_url = user.getImgUrl();
+        this.userRepository.updateImgUrlByUserId(id, img_url);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = GET, value = "/user/{userId}")

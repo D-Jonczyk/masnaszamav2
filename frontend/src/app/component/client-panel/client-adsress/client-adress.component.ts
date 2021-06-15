@@ -75,10 +75,11 @@ export class ClientAdressComponent implements OnInit {
       }
     );
   }
-  public onEditProfile(clientAddress: ClientAddress): void {
+  public onEditAddress(clientAddress: ClientAddress): void {
     this.clientAddressService.editAddress(clientAddress).subscribe(
       (response: ClientAddress) => {
         this.onSuccessAlert();
+        console.log(this.clientAddress.addressId)
       },
       (error: HttpErrorResponse) => {
         this.onFailureAlert(error);

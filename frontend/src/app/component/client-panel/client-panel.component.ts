@@ -12,13 +12,14 @@ import {faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {ClientPanel} from './client-panel';
 import {ClientPanelService} from './client-panel-service';
-import {UserService} from '../../service';
+import {AuthService, UserService} from '../../service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {finalize} from 'rxjs/operators';
 import {User} from '../Person/user';
 import {COURIERID} from '../courier-panel';
 import {Courier} from '../Person/Employee/courier';
+import {Router} from '@angular/router';
 export const LINKS: object[] = [
   { title: 'Moj profil', fragment: '/client-panel', icon: 'user-circle' },
   { title: 'Lista Adresow', fragment: '/client-adress', icon: 'list-alt'},
@@ -56,7 +57,9 @@ export class ClientPanelComponent implements OnInit {
               private afStorage: AngularFireStorage,
               private http: HttpClient,
               config: NgbModalConfig,
-              private modalService: NgbModal
+              private modalService: NgbModal,
+              private authService: AuthService,
+              private router: Router,
               ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -76,6 +79,16 @@ export class ClientPanelComponent implements OnInit {
   }
   public onEditProfile(user: User): void {
     this.clientPanelService.editClientProfile(user).subscribe(
+      (response: User) => {
+        this.onSuccessAlert();
+      },
+      (error: HttpErrorResponse) => {
+        this.onFailureAlert(error);
+      }
+    );
+  }
+  public onEditUrl(user: User): void {
+    this.clientPanelService.editClientProfileUrl(user).subscribe(
       (response: User) => {
         this.onSuccessAlert();
       },
@@ -133,6 +146,7 @@ export class ClientPanelComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
             this.clientPanelService.accImgLink=url;
             this.accPomLink=url;
+            this.user.imgUrl=url;
           })
         })
       ).subscribe();
@@ -153,6 +167,11 @@ export class ClientPanelComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content);
+  }
+  logout() {
+    this.authService.logout().subscribe(res => {
+      this.router.navigate(['/login']);
+    });
   }
 
 }

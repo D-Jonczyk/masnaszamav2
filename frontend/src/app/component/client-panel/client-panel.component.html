@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="utf-8">
   <title></title>
@@ -57,9 +57,10 @@
 
 <!--change image -->
 <ng-template #changeImg let-c="close" let-d="dismiss">
+  <form class="form-horizontal" role="form" #editForm="ngForm">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Wybierz zdjęcie które checsz  dodać!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click');">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click');onEditUrl(editForm.value);">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -69,8 +70,11 @@
     <button type="button" class="btn btn-outline-dark" (click)=" uploadImage(); ">Zapisz zdjecie</button>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click');">Wroc</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click');onEditUrl(editForm.value);">Wroc</button>
   </div>
+    <input type="hidden" value="{{user.id}}" ngModel="{{user?.id}}" name="id" class="form-control" id="id">
+    <input type="hidden" value="{{user.imgUrl}}" ngModel="{{user?.imgUrl}}" name="imgUrl" class="form-control" id="imgUrl">
+  </form>
 </ng-template>
 <!--finish change image -->
 
@@ -78,16 +82,14 @@
 <ng-template #changeData let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Zmien swoje dane, a nastepnie zapisz!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click');">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div class="col-lg-8">
       <form class="form-horizontal" role="form" #editForm="ngForm">
-        <input type="hidden" value="{{user.id}}" ngModel="{{user?.id}}" name="id" class="form-control" id="id">
-        <input type="hidden" value="{{user.password}}" ngModel="{{user?.password}}" name="password" class="form-control" id="password">
-        <input type="hidden" value="{{user.imgUrl}}" ngModel="{{user?.imgUrl}}" name="imgUrl" class="form-control" id="imgUrl">
+        <input type="hidden" value="{{user.id}}" ngModel="{{user?.id}}" name="id" class="form-control" id="idUser">
         <div class="form-group">
           <label class="col-lg-8 control-label">Imię:</label>
           <div class="col-lg-8">
@@ -124,12 +126,12 @@
           <label class="col-lg-8 control-label">Adres email:</label>
           <div class="col-lg-8">
             <label>
-              <input class="form-control" value="{{user.email}}" ngModel="{{user?.email}}"  id="email" name="email" type="text" required>
+              <input class="form-control" value="{{user.email}}" ngModel="{{user?.email}}"  id="email" name="email" type="email" required>
             </label>
           </div>
         </div>
         <div class="form-check-label col-lg-8">
-          <button (click)="onEditProfile(editForm.value)" class="btn btn-outline-primary">Zatwierdź zmiany</button>
+          <button (click)="onEditProfile(editForm.value); open(info); c('Save click');" class="btn btn-outline-primary">Zatwierdź zmiany</button>
         </div>
       </form>
     </div>
@@ -137,10 +139,30 @@
 
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Zakoncz</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click');">Zakoncz</button>
   </div>
 </ng-template>
 
 <!-- finish change data -->
+<ng-template #info let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Zmien swoje dane, a nastepnie zapisz!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click');">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-lg-8">
+     <p>Po zmianie danych wymagane będzie ponowne zalogowanie się!</p><br/>
+      <p>Jeśli nie chcesz zmienić danych kliknij wróć!</p>
+    </div>
+  </div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click'); ">Wróć</button>
+    <button type="button" class="btn btn-outline-dark" (click)="logout(); c('Save click');">Rozumiem</button>
+  </div>
+</ng-template>
 </body>
 </html>

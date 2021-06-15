@@ -19,6 +19,7 @@ export class ClientPanelService {
   user = this.userService.currentUser;
   private clientProfileByIdUrl = environment.apiBaseUrl + '/user/findById/';
   private editProfileUrl = environment.apiBaseUrl + '/user/update';
+  private editProfileUrlImg = environment.apiBaseUrl + '/user/updateurlimg';
   constructor(private http: HttpClient,
               private userService: UserService,) {
   }
@@ -27,5 +28,8 @@ export class ClientPanelService {
   }
   editClientProfile(user: User){
     return this.http.put(this.editProfileUrl, user);
+  }
+  editClientProfileUrl(user: User){
+    return this.http.put(this.editProfileUrlImg, user);
   }
 }
