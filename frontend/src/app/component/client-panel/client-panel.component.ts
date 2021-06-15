@@ -17,6 +17,8 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {finalize} from 'rxjs/operators';
 import {User} from '../Person/user';
+import {COURIERID} from '../courier-panel';
+import {Courier} from '../Person/Employee/courier';
 export const LINKS: object[] = [
   { title: 'Moj profil', fragment: '/client-panel', icon: 'user-circle' },
   { title: 'Lista Adresow', fragment: '/client-adress', icon: 'list-alt'},
@@ -47,6 +49,7 @@ export class ClientPanelComponent implements OnInit {
   public editProfile = new ClientPanel();
   public guard = 0;
   user:User;
+  operationStatus = '';
   constructor(private library: FaIconLibrary,
               public clientPanelService: ClientPanelService,
               private userService: UserService,
@@ -70,6 +73,24 @@ export class ClientPanelComponent implements OnInit {
       console.log('client-panel this.user: ', this.user);
       this.getClientProfileById(this.user.id);
     }
+  }
+  public onEditProfile(user: User): void {
+    this.clientPanelService.editClientProfile(user).subscribe(
+      (response: User) => {
+        this.onSuccessAlert();
+      },
+      (error: HttpErrorResponse) => {
+        this.onFailureAlert(error);
+      }
+    );
+  }
+  onSuccessAlert(): void {
+    this.operationStatus = 'success';
+  }
+
+  onFailureAlert(error: HttpErrorResponse): void {
+    alert('Wystąpił błąd przy zapisywaniu danych, błąd: ' + error.message);
+    this.operationStatus = 'fail';
   }
   userName() {
     const user = this.userService.currentUser;
