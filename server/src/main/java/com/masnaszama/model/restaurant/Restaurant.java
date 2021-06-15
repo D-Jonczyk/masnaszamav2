@@ -27,7 +27,6 @@ public class Restaurant {
     @Id
     private Long restaurantId;
 
-    @JsonBackReference
     @JoinColumn(name = "address_id")
     @OneToOne(fetch = FetchType.LAZY)
     private Address address;

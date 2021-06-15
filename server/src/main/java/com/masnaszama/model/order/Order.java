@@ -46,7 +46,6 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name="address_id")
-    @JsonBackReference
     private Address address;
 
 
