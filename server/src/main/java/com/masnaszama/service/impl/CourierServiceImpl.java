@@ -33,8 +33,8 @@ public class CourierServiceImpl implements CourierService {
         return courierRepo.findAll();
     }
 
-    public Courier updateCourier(Courier courier) {
-        return courierRepo.save(courier);
+    public void updateCourier(String lastName, Long phonenumber, String firstName, Long id) {
+        courierRepo.updateCourier(lastName, phonenumber, firstName, id);
     }
 
     public Courier findCourierById(Long id){
