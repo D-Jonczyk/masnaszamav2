@@ -51,6 +51,15 @@ public class UserController {
         this.userRepository.updateUserByUserId(id, first_name, last_name, phonenumber, email,username);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PutMapping(path = "/user/updateurlimg", headers = {
+            "content-type=application/json; charset=utf-8" }, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUserImgUrl(@RequestBody User user) {
+        Long id = user.getId();
+        String img_url = user.getImgUrl();
+        this.userRepository.updateImgUrlByUserId(id, img_url);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @RequestMapping(method = GET, value = "/user/{userId}")
     public User loadById(@PathVariable Long userId) {
 

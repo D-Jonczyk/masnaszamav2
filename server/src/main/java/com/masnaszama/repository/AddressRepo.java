@@ -31,7 +31,7 @@ public interface AddressRepo extends CrudRepository<Address, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE address a SET a.city=?1, a.street=?2, a.flatNumber=?3, WHERE a.addressId=?4", nativeQuery = true)
-    void updateAddressById(String city, String street, Integer flatNumber, Long addressId);
+    @Query(value = "UPDATE address a SET a.city=?2, a.street=?3, a.flat_number=?4 WHERE a.address_id=?1", nativeQuery = true)
+    void updateAddressById(Long addressId, String city, String street, Integer flat_number );
 
 }

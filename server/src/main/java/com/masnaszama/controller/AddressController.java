@@ -39,11 +39,11 @@ public class AddressController {
     @PutMapping(path = "/update", headers = {
             "content-type=application/json; charset=utf-8" }, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateAddress(@RequestBody Address address) {
+        Long addressId = address.getAddressId();
         String city = address.getCity();
         String street = address.getStreet();
-        Integer flatNumber = address.getFlatNumber();
-        Long addressId = address.getAddressId();
-        this.addressRepo.updateAddressById(city, street, flatNumber,addressId);
+        Integer flat_number = address.getFlatNumber();
+        this.addressRepo.updateAddressById(addressId, city, street, flat_number);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
