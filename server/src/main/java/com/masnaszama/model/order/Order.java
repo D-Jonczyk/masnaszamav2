@@ -35,28 +35,29 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
-    @JsonBackReference
+    @JsonBackReference(value = "restaurant")
     private Restaurant restaurant;
 
 
     @ManyToOne
     @JoinColumn(name="customer_id")
-    @JsonBackReference
+    @JsonBackReference(value = "customer")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name="address_id")
-    @JsonBackReference
+    @JsonBackReference(value = "address")
     private Address address;
 
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "orders-meals")
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 
     // TODO: sprawdzić ktora wersja działa (cascade = CascadeType.ALL)
     @OneToOne
     @JoinColumn(name="payment_id")
+    @JsonBackReference(value = "payment")
     private Payment payment;
 
     @OneToOne

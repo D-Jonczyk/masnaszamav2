@@ -16,7 +16,7 @@ public class Payment {
     @Column(name = "payment_id")
     private Long paymentId;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "payment")
     @OneToOne(mappedBy="payment", cascade = CascadeType.ALL, orphanRemoval = true)
     private Order order;
 

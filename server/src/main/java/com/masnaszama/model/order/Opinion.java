@@ -11,7 +11,7 @@ public class Opinion {
     private Long opinionId;
 
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "opinion")
     @OneToOne(mappedBy="opinion", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private OrdersMeals ordersMeals;
 

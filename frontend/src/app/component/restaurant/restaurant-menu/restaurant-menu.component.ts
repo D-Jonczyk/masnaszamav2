@@ -35,20 +35,25 @@ export class RestaurantMenuComponent implements OnInit {
   }
 
   addToOrder(meal): void {
-    this.orderMeals.push(meal);
-    this.total += this.orderMeals[this.orderMeals.length - 1].price;
+    // this.orderMeals.push(meal);
+    this.restaurantMenuService.orderMeals.push(meal);
+    this.total += this.restaurantMenuService.orderMeals[this.restaurantMenuService.orderMeals.length - 1].price;
     this.restaurantMenuService.totalCost = this.total;
+    this.orderMeals = this.restaurantMenuService.orderMeals;
   }
 
   deleteFromOrder(id): void {
-    const removeIndex = this.orderMeals.findIndex(meal => meal.id === id);
-    this.total = this.total - this.orderMeals[removeIndex].price;
-    this.orderMeals.splice(removeIndex, 1);
+    const removeIndex = this.restaurantMenuService.orderMeals.findIndex(meal => meal.id === id);
+    this.total = this.total - this.restaurantMenuService.orderMeals[removeIndex].price;
+    this.restaurantMenuService.orderMeals.splice(removeIndex, 1);
     this.restaurantMenuService.totalCost = this.total;
+    this.orderMeals = this.restaurantMenuService.orderMeals;
   }
 
-  checkOrder(): void {
-    // check if order cost is greater than min order cost
-    // check if order is not null
+  checkOrder(): boolean {
+    if(this.orderMeals.length > 0)
+      return false;
+    else
+      return true;
   }
 }

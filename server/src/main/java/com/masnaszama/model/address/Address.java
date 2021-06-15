@@ -17,11 +17,11 @@ public class Address {
     @Column(name = "address_id")
     private Long addressId;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "address")
     @OneToMany(mappedBy="address", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "address")
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Restaurant restaurant;
 

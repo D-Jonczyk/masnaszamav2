@@ -53,7 +53,7 @@
       <hr>
       <b>Razem: {{total | currency:'PLN'}}</b>
       <hr>
-      <button type="button" class="btn" routerLink="/order-checkout">Zamawiam</button>
+      <button type="button" class="btn" [disabled]="checkOrder()" routerLink="/order-checkout">Zamawiam</button>
     </div> <!-- basket end -->
 
   </div> <!-- row end -->

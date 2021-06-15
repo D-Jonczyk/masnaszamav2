@@ -25,7 +25,7 @@ public class Restaurant {
     @Id
     private Long restaurantId;
 
-    @JsonBackReference
+    @JsonBackReference(value = "address")
     @JoinColumn(name = "address_id")
     @OneToOne(fetch = FetchType.LAZY)
     private Address address;
@@ -40,7 +40,7 @@ public class Restaurant {
     private Integer deliveryCost;
     private Integer minOrderCost;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "restaurant")
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Order> orders = new HashSet<>();
 

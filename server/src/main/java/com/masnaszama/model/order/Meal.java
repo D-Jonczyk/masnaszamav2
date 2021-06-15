@@ -27,7 +27,7 @@ public class Meal {
 //    @OneToOne(mappedBy = "meal")
 //    private Request request;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="meal")
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrdersMeals> ordersMeals = new HashSet<>();
 

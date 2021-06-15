@@ -14,17 +14,17 @@ public class OrdersMeals {
     @Column(name = "order_meal_id")
     private Long orderMealId;
 
-    @JsonBackReference
+    @JsonBackReference(value = "orders-meals")
     @ManyToOne(cascade = CascadeType.ALL) //cascade = CascadeType.ALL
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @JsonBackReference
+    @JsonBackReference(value = "meal")
     @ManyToOne(cascade = CascadeType.ALL) //cascade = CascadeType.ALL
     @JoinColumn(name = "meal_id")
     private Meal meal;
 
-    @JsonBackReference
+    @JsonBackReference(value = "opinion")
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="opinion_id")
     private Opinion opinion;
