@@ -3,6 +3,7 @@ package com.masnaszama.service.impl;
 import com.masnaszama.model.Authority;
 import com.masnaszama.model.User;
 import com.masnaszama.model.UserRoleName;
+import com.masnaszama.model.person.Employee.Courier;
 import com.masnaszama.repository.UserRepository;
 import com.masnaszama.service.AuthorityService;
 import com.masnaszama.service.UserService;
@@ -29,7 +30,9 @@ public class UserServiceImpl implements UserService {
         this.authService = authService;
 
     }
-
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
     public void resetCredentials() {
         List<User> users = userRepository.findAll();
         for (User user : users) {

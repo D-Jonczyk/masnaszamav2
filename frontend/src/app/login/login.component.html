@@ -25,6 +25,12 @@
       </form>
       <br>
       <div *ngIf="!submitted">
+        <div>
+          <button type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>
+        </div>
+        <div>
+          <button type="button" (click)="registerWithGoogle()" class="btn btn-danger">Register with Google</button>
+        </div>
         <button (click)="onResetCredentials()" color="accent"
                 mat-raised-button matTooltip="Reset password if someone has changed it already!">Reset Credentials
         </button>

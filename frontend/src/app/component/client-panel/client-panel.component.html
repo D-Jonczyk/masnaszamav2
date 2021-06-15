@@ -5,6 +5,7 @@
   <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="../../login/login.component.ts"></script>
 </head>
 
 <body>
@@ -84,13 +85,14 @@
   <div class="modal-body">
     <div class="col-lg-8">
       <form class="form-horizontal" role="form" #editForm="ngForm">
-        <input type="hidden" ngModel="{{this.user.imgUrl}}" name="imgUrl"  class="form-control" id="imgUrl" >
-
+        <input type="hidden" value="{{user.id}}" ngModel="{{user?.id}}" name="id" class="form-control" id="id">
+        <input type="hidden" value="{{user.password}}" ngModel="{{user?.password}}" name="password" class="form-control" id="password">
+        <input type="hidden" value="{{user.imgUrl}}" ngModel="{{user?.imgUrl}}" name="imgUrl" class="form-control" id="imgUrl">
         <div class="form-group">
           <label class="col-lg-8 control-label">Imię:</label>
           <div class="col-lg-8">
             <label>
-              <input class="form-control" ngModel="{{this.user.firstName}}" id="firstName" name="firstName" type="text" required>
+              <input class="form-control" ngModel="{{user?.firstName}}" id="firstName" name="firstName" type="text" required>
             </label>
           </div>
         </div>
@@ -98,15 +100,7 @@
           <label class="col-lg-8 control-label">Nazwisko:</label>
           <div class="col-lg-8">
             <label>
-              <input class="form-control" ngModel="{{this.user.lastName}}" id="lastName" name="lastName" type="text" required>
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-8 control-label">Nazwa użytkownika:</label>
-          <div class="col-lg-8">
-            <label>
-              <input class="form-control" ngModel="{{this.user.username}}" id="userName" name="userName"  type="text" required>
+              <input class="form-control" ngModel="{{user?.lastName}}" id="lastName" name="lastName" type="text" required>
             </label>
           </div>
         </div>
@@ -114,12 +108,28 @@
           <label class="col-lg-8 control-label">Numer telefonu:</label>
           <div class="col-lg-8">
             <label>
-              <input class="form-control" value="{{this.user.phonenumber}}" ngModel="{{this.user.phonenumber}}" id="phoneNumber" name="phoneNumber" type="text" required>
+              <input class="form-control" value="{{user.phonenumber}}" ngModel="{{user?.phonenumber}}" id="phonenumber" name="phonenumber" type="text" required>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-8 control-label">Nazwa uzytkownika:</label>
+          <div class="col-lg-8">
+            <label>
+              <input class="form-control" value="{{user.username}}" ngModel="{{user?.username}}"  id="username" name="username" type="text" required>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-8 control-label">Adres email:</label>
+          <div class="col-lg-8">
+            <label>
+              <input class="form-control" value="{{user.email}}" ngModel="{{user?.email}}"  id="email" name="email" type="text" required>
             </label>
           </div>
         </div>
         <div class="form-check-label col-lg-8">
-          <button class="btn btn-outline-primary">Zatwierdź zmiany</button>
+          <button (click)="onEditProfile(editForm.value)" class="btn btn-outline-primary">Zatwierdź zmiany</button>
         </div>
       </form>
     </div>

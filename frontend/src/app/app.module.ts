@@ -54,6 +54,7 @@ import { CancelComponent } from './component/cancel/cancel.component';
 import { SucessComponent } from './component/sucess/sucess.component';
 import { UserListComponent } from './component/admin-panel/user-list/user-list.component';
 import { OpinionComponent } from './component/client-panel/opinion';
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { OpinionComponent } from './component/client-panel/opinion';
     AngularMaterialModule,
     NgbModule,
     FontAwesomeModule,
+    SocialLoginModule,
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyC7CWGYVLRrx4jwmsC426nkEw99Wj9jEgs',
       authDomain: 'masnaszamcia.firebaseapp.com',
@@ -134,7 +136,21 @@ import { OpinionComponent } from './component/client-panel/opinion';
     ApiService,
     UserService,
     ConfigService,
-    MatIconRegistry
+    MatIconRegistry,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: 'ClerD4tMPfKEhLgsZOdXhle7',
+            provider: new GoogleLoginProvider(
+              '424538541599-vps7a2cplrsdvai5n6db5m49ia8om2s7.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent],
 })
