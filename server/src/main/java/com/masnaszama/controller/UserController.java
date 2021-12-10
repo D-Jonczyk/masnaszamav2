@@ -116,6 +116,7 @@ public class UserController {
         userRequest.setAuthorities((List<Authority>) user.getAuthorities());
         userRequest.setPhonenumber(user.getPhonenumber());
         userRequest.setId(user.getId());
+        // xD
         return userRequest;
     }
 
